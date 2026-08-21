@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Interaktif SDEA 2025 - Ibadat, Faraid & Bahasa Arab</title>
+    <title>Portal Pusat Peperiksaan SDEA 2025 - Bersepadu</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,16 +22,19 @@
                 extend: {
                     colors: {
                         sys: {
-                            900: '#064e3b', // Deep Emerald
+                            900: '#064e3b', // Deep Emerald (Default Ibadat)
                             800: '#065f46',
-                            700: '#047857',
                             accent: '#10b981',
                         },
                         arabic: {
-                            900: '#1e3a8a', // Deep Blue for Arabic
+                            900: '#1e3a8a', // Deep Blue
                             800: '#1e40af',
-                            700: '#1d4ed8',
                             accent: '#3b82f6',
+                        },
+                        tauhid: {
+                            900: '#1e1b4b', // Deep Indigo
+                            800: '#312e81',
+                            accent: '#6366f1',
                         }
                     },
                     fontFamily: {
@@ -45,69 +48,60 @@
 
     <style>
         body { background-color: #f8fafc; }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 280px;
-        }
-        .jawi-text {
-            font-family: 'Amiri', serif;
-            direction: rtl;
-            text-align: right;
-            line-height: 1.8;
-        }
+        .chart-container { position: relative; width: 100%; height: 280px; }
+        .jawi-text { font-family: 'Amiri', serif; direction: rtl; text-align: right; line-height: 1.8; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .tab-active {
-            background-color: #f1f5f9;
-            color: #0f172a;
-            font-weight: 700;
-            border: 1px solid #cbd5e1;
-        }
+        .tab-active { background-color: #f1f5f9; color: #0f172a; font-weight: 700; border: 1px solid #cbd5e1; }
+        select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
     </style>
 </head>
 <body class="text-slate-800 font-sans antialiased min-h-screen flex flex-col">
 
-    <header id="main-header" class="sticky top-0 z-50 bg-sys-900 text-white shadow-md transition-colors duration-500">
+    <header id="main-header" class="sticky top-0 z-50 bg-emerald-900 text-white shadow-md transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col sm:flex-row items-center justify-between h-auto sm:h-16 py-3 sm:py-0 gap-4">
+            <div class="flex flex-col lg:flex-row items-center justify-between h-auto py-3 gap-4">
                 
                 <!-- Logo & Title -->
-                <div class="flex items-center gap-3 w-full sm:w-auto">
-                    <div id="header-logo-bg" class="w-10 h-10 rounded-lg bg-emerald-800 border border-emerald-600 flex items-center justify-center font-bold text-xl shadow-inner font-jawi text-sys-accent transition-colors duration-300">
+                <div class="flex items-center gap-3 w-full lg:w-auto">
+                    <div id="header-logo-bg" class="w-10 h-10 rounded-lg bg-white/20 border border-white/30 flex items-center justify-center font-bold text-xl shadow-inner font-jawi text-white transition-colors duration-300">
                         ع
                     </div>
                     <div>
-                        <h1 class="text-base font-bold leading-tight">Portal SDEA 2025 (Pusat Peperiksaan)</h1>
-                        <p id="header-subtitle" class="text-[10px] text-emerald-300 uppercase tracking-widest">Subjek Aktif: Ibadat & Faraid</p>
+                        <h1 class="text-base font-bold leading-tight">Portal Bersepadu SDEA 2025</h1>
+                        <p id="header-subtitle" class="text-[10px] text-white/80 uppercase tracking-widest">Subjek Aktif: Ibadat & Faraid</p>
                     </div>
                 </div>
 
-                <!-- Global Controls (Subject Switcher, Set Switcher & Mode Switcher) -->
-                <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-end">
+                <!-- Global Controls -->
+                <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-start lg:justify-end">
+                    
                     <!-- Subject Switcher -->
-                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium">
-                        <button id="btn-sub-ibadat" onclick="switchSubject('ibadat')" class="px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-sys-900 font-bold">
-                            🕌 Ibadat & Faraid
+                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium overflow-x-auto custom-scrollbar">
+                        <button id="btn-sub-ibadat" onclick="switchSubject('ibadat')" class="px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-emerald-900 font-bold whitespace-nowrap">
+                            🕌 Ibadat
                         </button>
-                        <button id="btn-sub-arab" onclick="switchSubject('arab')" class="px-3.5 py-1.5 rounded-md transition-all text-emerald-100 hover:text-white">
+                        <button id="btn-sub-arab" onclick="switchSubject('arab')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">
                             📖 Bahasa Arab
+                        </button>
+                        <button id="btn-sub-tauhid" onclick="switchSubject('tauhid')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">
+                            🕋 Tauhid
                         </button>
                     </div>
 
                     <!-- Set Switcher: Sebenar vs Percubaan -->
-                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium">
+                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium whitespace-nowrap">
                         <button id="btn-set-sebenar" onclick="switchExamSet('sebenar')" class="px-3 py-1.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold">
                             Set Sebenar
                         </button>
                         <button id="btn-set-percubaan" onclick="switchExamSet('percubaan')" class="px-3 py-1.5 rounded-md transition-all text-white/80 hover:text-white">
-                            Set Percubaan
+                            Percubaan
                         </button>
                     </div>
 
                     <!-- Mode Switcher: Skema vs Kuiz -->
-                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium">
+                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium whitespace-nowrap">
                         <button id="btn-mode-skema" onclick="switchAppMode('skema')" class="px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-semibold">
                             Skema
                         </button>
@@ -119,27 +113,10 @@
             </div>
         </div>
 
-        <!-- Section Navigation Tabs -->
+        <!-- Section Navigation Tabs (Dynamically Generated) -->
         <div class="bg-white text-slate-700 border-b border-stone-200 overflow-x-auto custom-scrollbar">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 flex gap-2 py-2 text-xs sm:text-sm font-medium whitespace-nowrap" id="nav-tabs-container">
-                <button onclick="showSection('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 rounded-lg transition-colors tab-active">
-                    📊 Dashboard
-                </button>
-                <button onclick="showSection('objektif')" id="tab-objektif" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">
-                    Soalan Objektif (1-20)
-                </button>
-                <button onclick="showSection('isitempat')" id="tab-isitempat" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">
-                    Isi Tempat / Betul-Salah
-                </button>
-                <button onclick="showSection('soalanpendek')" id="tab-soalanpendek" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">
-                    Soalan Pendek / Fakta
-                </button>
-                <button onclick="showSection('petaminda')" id="tab-petaminda" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">
-                    Peta Minda / Huruf Jar
-                </button>
-                <button onclick="showSection('berstruktur')" id="tab-berstruktur" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">
-                    Soalan Struktur & Membina Ayat
-                </button>
+                <!-- Populated via JS based on active subject/set -->
             </div>
         </div>
     </header>
@@ -148,18 +125,18 @@
 
         <!-- SECTION: DASHBOARD -->
         <section id="sec-dashboard" class="space-y-6 block">
-            <div id="dashboard-banner" class="rounded-2xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden transition-colors duration-500 bg-sys-800">
+            <div id="dashboard-banner" class="rounded-2xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden transition-colors duration-500 bg-emerald-900">
                 <div class="relative z-10 max-w-3xl">
                     <span id="banner-badge" class="inline-block px-3 py-1 bg-white/25 text-white text-xs font-semibold rounded-full mb-3 uppercase tracking-wider backdrop-blur-sm">
                         Modul Aktif: IBADAT & FARAID
                     </span>
                     <h2 id="banner-title" class="text-2xl sm:text-3xl font-bold mb-2">Peperiksaan Sijil Darjah Enam Agama (SDEA) 2025</h2>
-                    <p id="banner-desc" class="text-emerald-100 text-sm sm:text-base leading-relaxed">
-                        Pilih subjek pilihan di sudut atas kanan (Ibadat & Faraid atau Bahasa Arab) untuk membuat ulang kaji atau menguji minda secara interaktif.
+                    <p id="banner-desc" class="text-white/90 text-sm sm:text-base leading-relaxed">
+                        Selamat datang ke Portal Pusat. Pilih subjek dan mod di ruang kawalan atas untuk memulakan latihan.
                     </p>
                 </div>
                 <div id="banner-bg-icon" class="absolute -right-6 -bottom-10 opacity-10 font-jawi text-[180px] pointer-events-none select-none">
-                    عبادات
+                    ع
                 </div>
             </div>
 
@@ -167,23 +144,23 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
                     <p class="text-xs text-slate-500 font-medium">Subjek Pilihan</p>
-                    <p id="kpi-subject-text" class="text-lg sm:text-xl font-bold text-sys-900 mt-1 uppercase">Ibadat & Faraid</p>
-                    <span class="text-[10px] text-slate-400 mt-1 inline-block">Boleh tukar subjek atas</span>
+                    <p id="kpi-subject-text" class="text-lg sm:text-xl font-bold text-slate-900 mt-1 uppercase transition-colors">Ibadat & Faraid</p>
+                    <span id="kpi-subject-sub" class="text-[10px] text-slate-400 mt-1 inline-block">Boleh ditukar di menu atas</span>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
                     <p class="text-xs text-slate-500 font-medium">Status Mod</p>
-                    <p id="kpi-mode-text" class="text-xl sm:text-2xl font-bold text-sys-accent mt-1 uppercase">SKEMA</p>
-                    <span class="text-[10px] text-slate-400 mt-1 inline-block">Mod Ujian Kendiri Terdapat</span>
+                    <p id="kpi-mode-text" class="text-xl sm:text-2xl font-bold text-slate-900 mt-1 uppercase transition-colors">SKEMA</p>
+                    <span class="text-[10px] text-slate-400 mt-1 inline-block">Mod Ujian turut disediakan</span>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
-                    <p class="text-xs text-slate-500 font-medium">Jumlah Markah Penuh</p>
+                    <p class="text-xs text-slate-500 font-medium">Markah Penuh</p>
                     <p class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">100 Markah</p>
-                    <span class="text-[10px] text-slate-400 mt-1 inline-block">Format Rasmi SDEA</span>
+                    <span class="text-[10px] text-slate-400 mt-1 inline-block">Format Kertas Peperiksaan</span>
                 </div>
-                <div id="kpi-score-card" class="bg-emerald-50 border border-emerald-200 p-5 rounded-xl shadow-sm transition-colors">
-                    <p id="kpi-score-title" class="text-xs text-emerald-800 font-bold mb-1">Skor Kuiz Objektif</p>
-                    <p id="kpi-score-set1" class="text-2xl sm:text-3xl font-bold text-emerald-600">0 / 20</p>
-                    <span class="text-[10px] text-emerald-800/70">Jawab di bahagian objektif</span>
+                <div id="kpi-score-card" class="bg-slate-50 border border-slate-200 p-5 rounded-xl shadow-sm transition-colors">
+                    <p id="kpi-score-title" class="text-xs text-slate-600 font-bold mb-1 transition-colors">Skor Kuiz Objektif</p>
+                    <p id="kpi-score-set1" class="text-2xl sm:text-3xl font-bold text-slate-900 transition-colors">0 / 20</p>
+                    <span id="kpi-score-desc" class="text-[10px] text-slate-500 transition-colors">Jawab di bahagian objektif</span>
                 </div>
             </div>
 
@@ -191,15 +168,15 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
                     <div>
-                        <h3 class="text-base font-bold text-slate-900 mb-1">Pecahan Markah Peperiksaan</h3>
-                        <p class="text-xs text-slate-500 mb-4">Struktur format kertas peperiksaan SDEA.</p>
+                        <h3 class="text-base font-bold text-slate-900 mb-1">Pecahan Markah Modul</h3>
+                        <p class="text-xs text-slate-500 mb-4">Struktur format kertas peperiksaan yang dipilih.</p>
                     </div>
                     <div class="chart-container"><canvas id="marksChart"></canvas></div>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-stone-200 shadow-sm">
                     <div>
-                        <h3 id="chart-topic-title" class="text-base font-bold text-slate-900 mb-1">Taburan Topik (Ibadat vs Faraid)</h3>
-                        <p class="text-xs text-slate-500 mb-4">Komposisi soalan dalam modul pilihan.</p>
+                        <h3 id="chart-topic-title" class="text-base font-bold text-slate-900 mb-1">Taburan Topik (Objektif)</h3>
+                        <p class="text-xs text-slate-500 mb-4">Komposisi soalan dalam bahagian Alif.</p>
                     </div>
                     <div class="chart-container"><canvas id="topicsChart"></canvas></div>
                 </div>
@@ -211,13 +188,13 @@
             <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <span id="objektif-subtitle" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Alif (40 Markah)</span>
+                        <span id="objektif-subtitle" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Alif</span>
                         <h2 class="text-xl font-bold text-slate-900 mt-0.5">Soalan Objektif (1 - 20)</h2>
                     </div>
                     <select id="objektif-topic-filter" onchange="renderObjektifQuestions(this.value)" class="w-full sm:w-auto text-xs font-medium bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 outline-none">
-                        <option value="all">🔍 Semua Topik (20)</option>
-                        <option value="topic1">📚 Kategori 1</option>
-                        <option value="topic2">📚 Kategori 2</option>
+                        <option value="all">🔍 Semua Topik</option>
+                        <option value="topic1">📚 Bahagian 1</option>
+                        <option value="topic2">📚 Bahagian 2</option>
                     </select>
                 </div>
             </div>
@@ -229,46 +206,56 @@
         <!-- SECTION: ISI TEMPAT KOSONG -->
         <section id="sec-isitempat" class="space-y-6 hidden">
             <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
-                <span id="fill-section-label" class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Ba</span>
-                <h2 id="fill-section-title" class="text-xl font-bold text-slate-900 mt-0.5">Isi Tempat Kosong & Betul / Salah</h2>
-                <p id="fill-section-desc" class="text-xs text-slate-500 mt-1">Lengkapkan maklumat atau tentukan kesahihan pernyataan.</p>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Ba</span>
+                <h2 id="fill-section-title" class="text-xl font-bold text-slate-900 mt-0.5">Isi Tempat Kosong</h2>
+                <p id="fill-section-desc" class="text-xs text-slate-500 mt-1">Lengkapkan maklumat berpandukan pilihan jawapan.</p>
             </div>
             
-            <div id="fill-pool-box" class="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center shadow-inner">
-                <p class="text-sm font-bold text-slate-600 mb-4 uppercase tracking-wider">Pilihan Jawapan / Nota:</p>
-                <div id="fill-blanks-pool" class="flex flex-wrap justify-center gap-4 font-jawi text-xl font-bold text-sys-800"></div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center shadow-inner">
+                <p class="text-sm font-bold text-slate-600 mb-4 uppercase tracking-wider">Pilihan Jawapan:</p>
+                <div id="fill-blanks-pool" class="flex flex-wrap justify-center gap-4 font-jawi text-xl font-bold text-slate-800"></div>
             </div>
-
             <div id="fill-blanks-container" class="space-y-4"></div>
         </section>
 
-        <!-- SECTION: SOALAN PENDEK -->
+        <!-- SECTION: SOALAN PENDEK (Betul/Salah & Fakta) -->
         <section id="sec-soalanpendek" class="space-y-6 hidden">
             <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Soalan Fakta</span>
-                <h2 class="text-xl font-bold text-slate-900 mt-0.5">Soalan Pendek & Hukum (26 - 30)</h2>
-                <p class="text-xs text-slate-500 mt-1">Semak jawapan ringkas atau hukum syarak/nahu.</p>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Ba</span>
+                <h2 id="short-section-title" class="text-xl font-bold text-slate-900 mt-0.5">Soalan Pendek / Betul-Salah</h2>
+                <p class="text-xs text-slate-500 mt-1">Semak jawapan ringkas atau penentuan kesahihan pernyataan.</p>
             </div>
             <div id="short-answer-container" class="grid sm:grid-cols-2 gap-4"></div>
+        </section>
+
+        <!-- SECTION: PADANAN (Untuk Tauhid Percubaan) -->
+        <section id="sec-padanan" class="space-y-6 hidden">
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Ba</span>
+                <h2 class="text-xl font-bold text-slate-900 mt-0.5">Padankan Jawapan</h2>
+                <p class="text-xs text-slate-500 mt-1">Padankan kenyataan dengan pasangan yang betul (Mod Ujian interaktif).</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                <div id="padanan-container" class="space-y-4"></div>
+            </div>
         </section>
 
         <!-- SECTION: PETA MINDA -->
         <section id="sec-petaminda" class="space-y-6 hidden">
             <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Nota Visual</span>
-                <h2 id="mindmap-heading" class="text-xl font-bold text-slate-900 mt-0.5">Peta Minda & Huruf Jar</h2>
-                <p class="text-xs text-slate-500 mt-1">Ulangkaji rajah struktur penting peperiksaan.</p>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Ba</span>
+                <h2 id="mindmap-heading" class="text-xl font-bold text-slate-900 mt-0.5">Peta Minda</h2>
+                <p class="text-xs text-slate-500 mt-1">Lengkapkan rajah struktur penting peperiksaan.</p>
             </div>
 
             <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-6">
                 <div>
-                    <h3 class="text-xs font-bold text-slate-500 uppercase mb-3 text-center">Senarai Pilihan / Rujukan:</h3>
+                    <h3 class="text-xs font-bold text-slate-500 uppercase mb-3 text-center">Senarai Pilihan Jawapan:</h3>
                     <div id="mindmap-pool" class="flex flex-wrap gap-3 justify-center"></div>
                 </div>
-
                 <div class="pt-6 border-t border-slate-100 relative">
                     <div class="text-center mb-8">
-                        <div id="mindmap-center-title" class="inline-block bg-sys-800 text-white font-jawi text-3xl sm:text-4xl font-bold px-10 py-4 rounded-2xl shadow-md border-b-4 border-sys-900 relative z-10 transition-colors">
+                        <div id="mindmap-center-title" class="inline-block bg-slate-800 text-white font-jawi text-3xl sm:text-4xl font-bold px-10 py-4 rounded-2xl shadow-md border-b-4 border-slate-900 relative z-10 transition-colors">
                             عنوان رئيسي
                         </div>
                     </div>
@@ -280,11 +267,10 @@
         <!-- SECTION: SOALAN BERSTRUKTUR -->
         <section id="sec-berstruktur" class="space-y-6 hidden">
             <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Esei / Struktur & Membina Ayat</span>
-                <h2 id="structured-heading" class="text-xl font-bold text-slate-900 mt-0.5">Soalan Berstruktur & Pembinaan Ayat (36 - 45)</h2>
-                <p class="text-xs text-slate-500 mt-1">Panduan lengkap jawapan esei dan tatabahasa.</p>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Ba</span>
+                <h2 id="structured-heading" class="text-xl font-bold text-slate-900 mt-0.5">Soalan Berstruktur</h2>
+                <p class="text-xs text-slate-500 mt-1">Panduan lengkap skema jawapan esei dan soalan berstruktur.</p>
             </div>
-
             <div id="berstruktur-container" class="space-y-6"></div>
         </section>
 
@@ -292,7 +278,7 @@
 
     <script>
         // --- GLOBAL STATE ---
-        let currentSubject = 'ibadat'; // 'ibadat' or 'arab'
+        let currentSubject = 'ibadat'; // 'ibadat', 'arab', or 'tauhid'
         let currentExamSet = 'sebenar'; // 'sebenar' or 'percubaan'
         let currentMode = 'skema';     // 'skema' or 'kuiz'
         let userQuizAnswers = {};
@@ -302,21 +288,14 @@
         const masterDatabases = {
             ibadat: {
                 name: 'Ibadat & Faraid',
+                code: 'DE 103',
                 logo: 'ع',
-                theme: {
-                    primary: '#064e3b',
-                    accent: '#10b981',
-                    bannerClass: 'bg-emerald-900',
-                    chartColor: '#059669',
-                    fontArabic: true
-                },
+                theme: { primary: '#064e3b', accent: '#10b981', headerClass: 'bg-emerald-900', bgClass: 'bg-emerald-800', borderClass: 'border-emerald-400', textClass: 'text-emerald-900' },
                 sebenar: {
                     title: 'Set Sebenar Ibadat & Faraid 2025 (DE 103)',
-                    badgeText: 'Modul Aktif: IBADAT & FARAID (SEBENAR)',
-                    logoText: 'ع',
-                    bannerBg: 'bg-emerald-900',
-                    stats: { t1: 13, t2: 7 },
-                    statLabels: ['Ibadat', 'Faraid'],
+                    badgeText: 'IBADAT & FARAID (SEBENAR)',
+                    stats: { t1: 13, t2: 7 }, statLabels: ['Ibadat', 'Faraid'], marks: [40, 30, 30], markLabels: ['Objektif (40m)', 'Bhgn Ba (30m)', 'Berstruktur (30m)'],
+                    tabs: [ {id: 'dashboard', lbl: '📊 Dashboard'}, {id: 'objektif', lbl: 'Objektif (1-20)'}, {id: 'isitempat', lbl: 'Isi Tempat'}, {id: 'soalanpendek', lbl: 'Soalan Pendek'}, {id: 'petaminda', lbl: 'Peta Minda'}, {id: 'berstruktur', lbl: 'Berstruktur'} ],
                     objektif: [
                         { id: 1, topic: 'topic1', qArabic: 'اقاكه حكوم كانق-كانق مماكاي سوترا؟', qMalay: 'Apakah hukum kanak-kanak memakai sutera?', options: { a: 'واجب', b: 'حرام', c: 'مكروه', d: 'هاروس' }, ans: 'd', exp: 'Memakai sutera diharuskan (dibenarkan) bagi kanak-kanak lelaki tetapi diharamkan ke atas lelaki dewasa.' },
                         { id: 2, topic: 'topic1', qArabic: 'ممكاي فاكاين يغ دچلوف دغن _____ اداله مكروه.', qMalay: 'Memakai pakaian yang dicelup dengan _____ adalah makruh.', options: { a: 'سابون', b: 'كسومبا', c: 'كافور باروس', d: 'زعفران' }, ans: 'd', exp: 'Memakai pakaian dicelup pewarna/minyak wangi khusus untuk wanita seperti Za\'faran adalah makruh bagi lelaki.' },
@@ -339,7 +318,7 @@
                         { id: 19, topic: 'topic2', qArabic: 'نينيق سبله باف دان سبله ایبو منريما 1/6 سكيران سي ماتي تيدق منيغكلكن...', qMalay: 'Nenek bapa & nenek ibu menerima 1/6 sekiranya si mati tidak meninggalkan...', options: { a: 'i دان ii', b: 'i دان iv', c: 'iii دان iv', d: 'i, ii دان iii' }, ans: 'a', exp: 'Kehadiran ibu akan menghijab semua nenek, manakala kehadiran bapa pula menghijab nenek sebelah bapa.' },
                         { id: 20, topic: 'topic2', qArabic: 'قرابة يغ ممقوياءي هوبوغن دغن سي ماتي يغ بوكن اصول دان فروع...', qMalay: 'Kerabat yang mempunyai hubungan dengan si mati yang bukan usul dan furu\'?', options: { a: 'وصيت', b: 'حَوَاشِي', c: 'مشركة', d: 'أكدريّة' }, ans: 'b', exp: 'Hawashi (Waris Sisi) merujuk kepada saudara (adik-beradik), bapa saudara, dan keturunan mereka.' }
                     ],
-                    fillTitle: 'Isi Tempat Kosong (Bahagian Ba)',
+                    fillTitle: 'Isi Tempat Kosong',
                     fillPool: ['ايستري', 'مرتد', 'ساتو كنتغ', 'إسلام', 'صدقه'],
                     fillData: [
                         { id: 21, q: 'شرط واجب زكاة فطرة.', ans: 'إسلام', exp: 'Zakat fitrah hanya diwajibkan ke atas individu Muslim.' },
@@ -348,6 +327,7 @@
                         { id: 24, q: 'قركرا يغ ممبطلكن قواسا.', ans: 'مرتد', exp: 'Murtad (terbatal aqidah Islam) akan membatalkan ibadah puasa serta-merta.' },
                         { id: 25, q: 'قركرا سنة دبولن رمضان.', ans: 'صدقه', exp: 'Memperbanyakkan amalan sunat dan bersedekah sangat digalakkan.' }
                     ],
+                    shortTitle: 'Soalan Fakta Ringkas',
                     shortData: [
                         { id: 26, q: 'حكوم دودوق دأتس سوترا (باكي للاكي).', ans: 'حَرَام', exp: 'Lelaki diharamkan sama sekali menggunakan sutera.' },
                         { id: 27, q: 'حكوم فاكاين يغ دچلوف زعفران.', ans: 'مَكْرُوه', exp: 'Memakai pakaian dicelup pewangi khusus wanita dihukumkan makruh.' },
@@ -358,6 +338,7 @@
                     mindTitle: 'حُكُوم وَصِيَّة',
                     mindPool: ['وَاجِب', 'سُنَّة', 'هَارُوس', 'مَكْرُوه', 'حَرَام', 'بَاطِل'],
                     mindValid: ['وَاجِب', 'سُنَّة', 'هَارُوس', 'مَكْرُوه', 'حَرَام'],
+                    strucTitle: 'Soalan Berstruktur (36-40)',
                     berstrukturData: [
                         { id: 36, q: '(أ) اقاكه بيجي-بيجين يع دواجبكن زكاة?<br><br>(ب) توليس دوا شرط واجب زكاة بيجي-بيجين.', ans: '(أ) فادِي، كَندُوم، بَارلِي.<br><br>(ب) ١. إِسْلَام<br>٢. دِتَانَم اُولِيه مَأْنُسِي', marks: 6, exp: 'Syarat tanaman: Mengenyangkan, tahan disimpan, cukup haul.' },
                         { id: 37, q: '(أ) اقاكه فغرتين قواسا قد بهاس?<br><br>(ب) توليس دوا سبب واجب قواسا.', ans: '(أ) مَنَاهَن دِيرِي.<br><br>(ب) ١. مَلِيهَت اَنَق بُولَن<br>٢. كَنَف ٣٠ هَارِي شَعْبَان', marks: 6, exp: 'Berpuasa dari terbit fajar hingga terbenam matahari dengan niat.' },
@@ -367,12 +348,10 @@
                     ]
                 },
                 percubaan: {
-                    title: 'Set Percubaan Ibadat & Faraid 2025 (Trial Mock)',
-                    badgeText: 'Modul Aktif: IBADAT & FARAID (PERCUBAAN)',
-                    logoText: 'تج',
-                    bannerBg: 'bg-emerald-800',
-                    stats: { t1: 11, t2: 9 },
-                    statLabels: ['Ibadat', 'Faraid'],
+                    title: 'Set Percubaan Ibadat & Faraid (Mock)',
+                    badgeText: 'IBADAT & FARAID (PERCUBAAN)',
+                    stats: { t1: 11, t2: 9 }, statLabels: ['Ibadat', 'Faraid'], marks: [40, 30, 30], markLabels: ['Objektif', 'Bhgn Ba', 'Berstruktur'],
+                    tabs: [ {id: 'dashboard', lbl: '📊 Dashboard'}, {id: 'objektif', lbl: 'Objektif'}, {id: 'isitempat', lbl: 'Isi Tempat'}, {id: 'soalanpendek', lbl: 'Soalan Pendek'}, {id: 'petaminda', lbl: 'Peta Minda'}, {id: 'berstruktur', lbl: 'Berstruktur'} ],
                     objektif: [
                         { id: 1, topic: 'topic1', qArabic: 'اقاكه حكوم منونتوت علم فاردو ع Thereafter؟', qMalay: 'Apakah hukum menuntut ilmu Fardhu Ain bagi setiap Muslim?', options: { a: 'سنة مؤكدة', b: 'فرض كفاية', c: 'فرض عين', d: 'هاروس' }, ans: 'c', exp: 'Menuntut ilmu Fardhu Ain adalah kewajipan mutlak atas setiap mukallaf.' },
                         { id: 2, topic: 'topic1', qArabic: 'انتارا بريكوت يغ مأنسي بواة دالم طواف رودا...', qMalay: 'Antara berikut, manakah syarat sah tawaf?', options: { a: 'توتوڤ عورة', b: 'دوديک', c: 'بركات', d: 'برجال لامبت' }, ans: 'a', exp: 'Menutup aurat adalah salah satu syarat sah tawaf.' },
@@ -404,6 +383,7 @@
                         { id: 24, q: 'کوڬولن واريس يغ منريما سيمي باكي.', ans: 'عصبه', exp: 'Asabah mengambil baki harta pusaka.' },
                         { id: 25, q: 'نام لاءين باكي علم فراءيد.', ans: 'ميراث', exp: 'Ilmu Faraid dikenali juga sebagai Ilmu Mirath.' }
                     ],
+                    shortTitle: 'Soalan Fakta Ringkas',
                     shortData: [
                         { id: 26, q: 'حكوم ممباي زكاة مال كڤد يغ لايق.', ans: 'وَاجِب', exp: 'Membayar zakat harta adalah wajib.' },
                         { id: 27, q: 'نام بلاكي تيمڤوه ستاهون هجره ل.', ans: 'حَوْل', exp: 'Haul ialah syarat tempoh genap setahun.' },
@@ -414,6 +394,7 @@
                     mindTitle: 'أَرْكَان اَلْحَجّ',
                     mindPool: ['رُكُون', 'شَرْط', 'سُنَّة', 'وَاجِب', 'حَرَام', 'بَاطِل'],
                     mindValid: ['رُكُون', 'شَرْط', 'سُنَّة', 'وَاجِب', 'حَرَام'],
+                    strucTitle: 'Soalan Berstruktur (36-40)',
                     berstrukturData: [
                         { id: 36, q: '(أ) ڤڽتكن امڤت ركون حج.<br><br>(ب) اقاكه يغ دصوڬوتكن دغن ركون وڤءة?', ans: '(أ) ١. إِحْرَام<br>٢. وُقُوف دَعَرَفَة<br>٣. طَوَاف إِفَاضَة<br>٤. سَعْي<br><br>(ب) كسمڤورنن هجي.', marks: 6, exp: 'Rukun haji tidak boleh diganti dengan dam.' },
                         { id: 37, q: '(أ) سياڤکه يغ دأيضكن درڤد ممڤوڽاءي هق زكاة?<br><br>(ب) سنتکن بنراكن زكاة كڤد...', ans: '(أ) كلوڬن كاي.<br><br>(ب) فقير و مسكين.', marks: 6, exp: 'Keutamaan agihan zakat kepada fakir miskin.' },
@@ -425,21 +406,14 @@
             },
             arab: {
                 name: 'Bahasa Arab',
+                code: 'Kertas BA',
                 logo: 'غ',
-                theme: {
-                    primary: '#1e3a8a',
-                    accent: '#3b82f6',
-                    bannerClass: 'bg-blue-900',
-                    chartColor: '#1d4ed8',
-                    fontArabic: true
-                },
+                theme: { primary: '#1e3a8a', accent: '#3b82f6', headerClass: 'bg-blue-900', bgClass: 'bg-blue-800', borderClass: 'border-blue-400', textClass: 'text-blue-900' },
                 sebenar: {
-                    title: 'Set Sebenar Bahasa Arab 2025 (Kertas SDEA)',
-                    badgeText: 'Modul Aktif: BAHASA ARAB (SEBENAR)',
-                    logoText: 'غ',
-                    bannerBg: 'bg-blue-900',
-                    stats: { t1: 10, t2: 10 },
-                    statLabels: ['Nahu & Sarraf', 'Ayat & Qawaid'],
+                    title: 'Set Sebenar Bahasa Arab 2025',
+                    badgeText: 'BAHASA ARAB (SEBENAR)',
+                    stats: { t1: 10, t2: 10 }, statLabels: ['Nahu & Sarraf', 'Ayat & Qawaid'], marks: [40, 30, 30], markLabels: ['Objektif (40m)', 'Bhgn Ba (30m)', 'Berstruktur (30m)'],
+                    tabs: [ {id: 'dashboard', lbl: '📊 Dashboard'}, {id: 'objektif', lbl: 'Objektif'}, {id: 'isitempat', lbl: 'Betul / Salah'}, {id: 'soalanpendek', lbl: 'Tukar Ayat'}, {id: 'petaminda', lbl: 'Huruf Jar'}, {id: 'berstruktur', lbl: 'Membina Ayat'} ],
                     objektif: [
                         { id: 1, topic: 'topic1', qArabic: 'اخْتَرِ الفَاعِلَ المُضْمَرَ لِلْفِعْلِ المَاضِي.', qMalay: 'Pilih ganti nama / pelaku yang bersambung untuk kata kerja masa lalu (Fi\'il Madhi).', options: { a: 'يَجْلِسُونَ', b: 'جَلَسْتُمْ', c: 'نَجْلِسُ', d: 'أَجْلِسُ' }, ans: 'b', exp: 'Jalastum (جَلَسْتُمْ) adalah Fi\'il Madhi, manakala yang lain adalah Fi\'il Mudhari\'.' },
                         { id: 2, topic: 'topic1', qArabic: 'أنا \_____\_', qMalay: 'Lengkapkan ayat: Saya seorang \____\_', options: { a: 'مُسْلِمُ', b: 'مُسْلِماً', c: 'مُسْلِمٍ', d: 'مُسْلِمَاتٌ' }, ans: 'a', exp: 'Muslimu (مُسْلِمُ) berbaris hadapan kerana bertindak sebagai khabar.' },
@@ -471,6 +445,7 @@
                         { id: 24, q: 'الفِعْلُ المَضَارِعُ : يَجْلِسْنَ', ans: 'صَحِيح', exp: 'Yajlisna adalah fi\'il mudhari\' bagi jama\' muannas ghain.' },
                         { id: 25, q: 'جَلَسَ + أَنْتُمَا = جَلَسْنَا', ans: 'خَطَأ', exp: 'Jalasna adalah untuk nahnu (kami), sepatutnya jalastuma.' }
                     ],
+                    shortTitle: 'Soalan Pertukaran Ayat / Maksud',
                     shortData: [
                         { id: 26, q: 'هِيَ تَقْرَأُ الكِتَابَ (تukar kepada Huwa)', ans: 'هُوَ يَقْرَأُ الكِتَابَ', exp: 'Perubahan dhamir hua untuk fi\'il mudhari\'.' },
                         { id: 27, q: 'أَنْتَ تَكْتُبُ الدَّرْسَ (Tukar kepada Antum)', ans: 'أَنْتُمْ تَكْتُبُونَ الدَّرْسَ', exp: 'Perubahan dhamir antum jama\' muzakkar.' },
@@ -481,6 +456,7 @@
                     mindTitle: 'حُرُوفُ الجَرّ',
                     mindPool: ['ب', 'إلى', 'على', 'في', 'ل', 'من', 'عن'],
                     mindValid: ['ب', 'إلى', 'على', 'في', 'ل'],
+                    strucTitle: 'Soalan Membina Ayat',
                     berstrukturData: [
                         { id: 41, q: 'بينا ايت دغن كلمة: سَيَّارَة (Kereta)', ans: 'هَذِهِ سَيَّارَةٌ جَدِيدَةٌ.', marks: 6, exp: 'Contoh ayat membina perkataan kereta.' },
                         { id: 42, q: 'بينا ايت دغن كلمة: حَافِلَة (Bas)', ans: 'أَذْهَبُ إِلَى المَدْرَسَةِ بِالحَافِلَةِ.', marks: 6, exp: 'Contoh ayat menaiki bas ke sekolah.' },
@@ -490,12 +466,10 @@
                     ]
                 },
                 percubaan: {
-                    title: 'Set Percubaan Bahasa Arab 2025 (Trial Mock)',
-                    badgeText: 'Modul Aktif: BAHASA ARAB (PERCUBAAN)',
-                    logoText: 'تج',
-                    bannerBg: 'bg-blue-800',
-                    stats: { t1: 10, t2: 10 },
-                    statLabels: ['Sorf', 'Nahu'],
+                    title: 'Set Percubaan Bahasa Arab',
+                    badgeText: 'BAHASA ARAB (PERCUBAAN)',
+                    stats: { t1: 10, t2: 10 }, statLabels: ['Sorf', 'Nahu'], marks: [40, 30, 30], markLabels: ['Objektif', 'Bhgn Ba', 'Membina Ayat'],
+                    tabs: [ {id: 'dashboard', lbl: '📊 Dashboard'}, {id: 'objektif', lbl: 'Objektif'}, {id: 'isitempat', lbl: 'Betul / Salah'}, {id: 'soalanpendek', lbl: 'Erti Kata'}, {id: 'petaminda', lbl: 'Istifham'}, {id: 'berstruktur', lbl: 'Membina Ayat'} ],
                     objektif: [
                         { id: 1, topic: 'topic1', qArabic: 'فِعْلُ المَاضِي لِـ "هُمَا" (مذكرة):', qMalay: 'Fi\'il Madhi untuk ganti nama Humā (Dua orang lelaki):', options: { a: 'ذَهَبَا', b: 'ذَهَبُوا', c: 'ذَهَبَتَا', d: 'ذَهَبْنَ' }, ans: 'a', exp: 'Dzahabā (ذَهَبَا) ialah fi\'il madhi dual muzakkar.' },
                         { id: 2, topic: 'topic1', qArabic: 'فِعْلُ المُضَارِعُ لِـ "هِيَ":', qMalay: 'Fi\'il Mudhari\' untuk ganti nama Hiya (Dia perempuan):', options: { a: 'تَذْهَبُ', b: 'يَذْهَبُ', c: 'أَذْهَبُ', d: 'نَذْهَبُ' }, ans: 'a', exp: 'Tadzhabu (تَذْهَبُ) dimulai dengan huruf Ta\' muannas.' },
@@ -518,7 +492,7 @@
                         { id: 19, topic: 'topic2', qArabic: 'كَمْ يَوْماً فِي الأُسْبُوعِ؟', qMalay: 'Berapakah bilangan hari dalam seminggu?', options: { a: 'سَبْعَةُ أَيَّامٍ', b: 'خَمْسَةُ أَيَّامٍ', c: 'ستة أيام', d: 'ثَمَانِيَةُ أَيَّامٍ' }, ans: 'a', exp: '7 hari seminggu.' },
                         { id: 20, topic: 'topic2', qArabic: 'مَنْ يَعْمَلُ فِي المَشْفَى لِعِلَاجِ المَرْضَى؟', qMalay: 'Siapakah yang bekerja di hospital merawat pesakit?', options: { a: 'الطَّبِيبُ', b: 'المُعَلِّمُ', c: 'الفَلَّاحُ', d: 'الشُّرْطِيُّ' }, ans: 'a', exp: 'At-Tabib (Doktor).' }
                     ],
-                    fillTitle: 'صَحِيح أو خَطَأ (Trial)',
+                    fillTitle: 'Betul atau Salah',
                     fillPool: ['صَحِيح', 'خَطَأ'],
                     fillData: [
                         { id: 21, q: '"يَكْتُبُونَ" فِعْلُ مُضَارِعٌ لِجَمْعِ المُذَكَّرِ.', ans: 'صَحِيح', exp: 'Yaktubuna adalah fi\'il mudhari\' jamak muzakkar.' },
@@ -527,6 +501,7 @@
                         { id: 24, q: '"قَرَأْتُ" فِعْلُ مُضَارِعٌ.', ans: 'خَطَأ', exp: 'Qara\'tu adalah fi\'il madhi (telah membaca).' },
                         { id: 25, q: '"الْمُسْلِمُ" اِسْمٌ مُفْرَدٌ.', ans: 'صَحِيح', exp: 'Al-Muslim adalah kata nama tunggal.' }
                     ],
+                    shortTitle: 'Soalan Erti Kata',
                     shortData: [
                         { id: 26, q: 'ما معنى "قَلَم"?', ans: 'PENA / PENSEL', exp: 'Erti qalam.' },
                         { id: 27, q: 'ما معنى "كِتَاب"?', ans: 'BUKU', exp: 'Erti kitab.' },
@@ -537,6 +512,7 @@
                     mindTitle: 'أَدَوَاتُ الاسْتِفْهَام',
                     mindPool: ['مَنْ', 'مَا', 'أَيْنَ', 'مَتَى', 'كَيْفَ', 'كَمْ', 'هَلْ'],
                     mindValid: ['مَنْ', 'مَا', 'أَيْنَ', 'مَتَى', 'كَيْفَ'],
+                    strucTitle: 'Soalan Membina Ayat',
                     berstrukturData: [
                         { id: 41, q: 'بينا ايت دغن كلمة: قَلَم (Pena)', ans: 'هَذَا قَلَمٌ جَدِيدٌ وَجَمِيلٌ.', marks: 6, exp: 'Contoh ayat pena baharu.' },
                         { id: 42, q: 'بينا ايت دغن كلمة: كِتَاب (Buku)', ans: 'أَقْرَأُ الكِتَابَ النَّافِعَ كُلَّ يَوْمٍ.', marks: 6, exp: 'Contoh ayat membaca buku.' },
@@ -545,40 +521,156 @@
                         { id: 45, q: 'بينا ايت دغن كلمة: طَالِب (Pelajar)', ans: 'الطَّالِبُ النَّجِيبُ يَجْتَهِدُ فِي دُرُوسِهِ.', marks: 6, exp: 'Contoh ayat pelajar rajin.' }
                     ]
                 }
+            },
+            
+            tauhid: {
+                name: 'Tauhid',
+                code: 'DE 102',
+                logo: 'ت',
+                theme: { primary: '#1e1b4b', accent: '#6366f1', headerClass: 'bg-indigo-950', bgClass: 'bg-indigo-900', borderClass: 'border-indigo-400', textClass: 'text-indigo-900' },
+                sebenar: {
+                    title: 'Set Sebenar Tauhid 2025',
+                    badgeText: 'TAUHID (SEBENAR)',
+                    stats: { t1: 13, t2: 7 }, statLabels: ["Aqaidul Iman", "Sam'iyyat (Kiamat)"], marks: [40, 60], markLabels: ['Alif (40m)', 'Bhgn Ba (60m)'],
+                    tabs: [ {id: 'dashboard', lbl: '📊 Dashboard'}, {id: 'objektif', lbl: 'Objektif (1-20)'}, {id: 'isitempat', lbl: 'Isi Tempat'}, {id: 'soalanpendek', lbl: 'Betul / Salah'}, {id: 'petaminda', lbl: 'Peta Minda'}, {id: 'berstruktur', lbl: 'Berstruktur'} ],
+                    objektif: [
+                        { id: 1, topic: 'topic1', qArabic: "برافا كه صيفت يغ ترکاندوغ ددالم اسْتِغْنَاءُ اللَّهِ عَنْ كُلِّ مَا سِوَاهُ؟", qMalay: "Berapakah sifat yang terkandung di dalam Istighna'ullah 'an kulli ma siwahu?", options: { a: "لاقن (8)", b: "سمبیلن (9)", c: "سبلس (11)", d: "سقولوه (10)" }, ans: "c", exp: "Terdapat 11 sifat dalam bahagian Istighna' (Allah terkaya dari segalanya) iaitu Wujud, Qidam, Baqa', Mukhalafatuhu, Qiyamuhu binafsihi, Sama', Basar, Kalam, Sami'an, Basiran, Mutakalliman." },
+                        { id: 2, topic: 'topic1', qArabic: "افاكه فهمن یغ بر اعتقاد كائنات بركواس دغن كقواتن يع دبريكن الله كفدان؟", qMalay: "Apakah fahaman yang beriktikad kainat berkuasa dengan kekuatan yang diberikan Allah kepadanya?", options: { a: "مرجئة", b: "معتزلة", c: "وهابي", d: "جبرية" }, ans: "b", exp: "Fahaman Mu'tazilah dan Qadariyah beriktikad bahawa makhluk (kainat) mempunyai kuasa melakukan perbuatan dengan kudrat yang dikurniakan Allah, berbeza dengan Ahli Sunnah Wal Jamaah." },
+                        { id: 3, topic: 'topic1', qArabic: "سبابق - بابق عقائد یغ ترکاندوغ ددالم دوا كلمة شهادة اياله _____ عَقَائِدُ الإيمان.", qMalay: "Sebanyak-banyak aqaid yang terkandung di dalam dua kalimah syahadah ialah _____ aqaidul iman.", options: { a: "سبلس", b: "دوا قولوه", c: "ليم قولوه", d: "انم قولوه لاقن" }, ans: "c", exp: "Terdapat 50 Aqaidul Iman (41 pada ketuhanan/uluhiyyah, dan 9 pada kenabian/nubuwwah) yang wajib diketahui secara tafsil (terperinci)." },
+                        { id: 4, topic: 'topic1', qArabic: "رسول اداله سأورغ _____ يغ دفيليه الله.", qMalay: "Rasul adalah seorang _____ yang dipilih Allah.", options: { a: "جين", b: "للاكي", c: "مخلوق", d: "فرمقوان" }, ans: "b", exp: "Antara syarat wajib untuk dilantik menjadi seorang Nabi atau Rasul adalah seorang lelaki, merdeka, dan memiliki sifat terpuji yang sempurna." },
+                        { id: 5, topic: 'topic1', qArabic: "سياقا كه رسول يغ تراخير؟", qMalay: "Siapakah rasul yang terakhir?", options: { a: "نبي داود العلي", b: "نبي عيسى العلي", c: "نبي ابراهيم العلي", d: "نبي محمد ﷺ" }, ans: "d", exp: "Nabi Muhammad ﷺ adalah Khatamul Anbiya' wal Mursalin (Penutup segala nabi dan rasul). Tiada lagi nabi selepas baginda." },
+                        { id: 6, topic: 'topic1', qArabic: "انتارا توکس قارا رسول ایاله...", qMalay: "Antara tugas para rasul ialah...", options: { a: "منچيقتا ماءنسي", b: "تيدق ملاكوكن عبادة", c: "ملفكر لا رغن الله", d: "ممبري فرخبرن تنتغ هاري اخرة" }, ans: "d", exp: "Tugas asasi rasul adalah menyampaikan wahyu (Tabligh), menjadi panduan manusia, dan memberi khabar amaran (Nadzir) tentang hari pembalasan." },
+                        { id: 7, topic: 'topic1', qArabic: "اقا که چونتوه صیفت هاروس باكي رسول؟", qMalay: "Apakah contoh sifat harus bagi rasul?", options: { a: "كيلا", b: "بركهوين", c: "برقپاکیت سوقق", d: "خيانة" }, ans: "b", exp: "Sifat harus bagi rasul ialah Al-A'radhul Basyariyyah iaitu sifat kemanusiaan yang tidak menjatuhkan martabat seperti berkahwin, makan, minum, dan berniaga." },
+                        { id: 8, topic: 'topic1', qArabic: "قرکا را ميالهي عادت يغ برلا كو كقد رسول اداله مقصود باكي...", qMalay: "Perkara menyalahi adat yang berlaku kepada rasul adalah maksud bagi...", options: { a: "سيحير", b: "رحمة", c: "شفاعة", d: "معجزة" }, ans: "d", exp: "Mukjizat dikurniakan oleh Allah kepada para Rasul yang mencabar logik akal untuk membuktikan kebenaran kerasulan mereka (seperti tongkat Nabi Musa)." },
+                        { id: 9, topic: 'topic1', qArabic: "جومله رسول يع واجب دكتاهوءي اد _____ اورغ.", qMalay: "Jumlah rasul yang wajib diketahui ada _____ orang.", options: { a: "سقولوه", b: "دوا قولوه", c: "تیک قولوه", d: "دوا قولوه ليم" }, ans: "d", exp: "Terdapat sejumlah 25 orang Rasul yang nama-nama mereka disebut secara spesifik di dalam ayat-ayat Al-Quran." },
+                        { id: 10, topic: 'topic1', qArabic: "انتارا كلبيهن نبي محمد ﷺ سباكاي رسول أُولُو الْعَزْمِ:<br>i. دباکر هيدوق<br>ii. ممبري شفاعة<br>iii. چابرن کتیک بر دعوه<br>iv. شریعتن ككل هيڅك قيامة", qMalay: "Antara kelebihan Nabi Muhammad sebagai rasul Ulul Azmi:", options: { a: "i دان ii", b: "ii دان iii", c: "iii دان iv", d: "ii دان iv" }, ans: "d", exp: "Kelebihan utama kerasulan Nabi Muhammad SAW ialah dikurniakan hak memberi Syafaat di akhirat kelak (ii) dan syariat baginda relevan dan kekal memansuhkan agama lain (iv)." },
+                        { id: 11, topic: 'topic1', qArabic: "برايكوت اداله نبي يع منريما صُحف كجوالي...", qMalay: "Berikut adalah nabi yang menerima suhuf KECUALI...", options: { a: "نبي ادم العلي", b: "نبي موسى العلي", c: "نبي نوح العلي", d: "نبي ادريس العلي" }, ans: "c", exp: "Nabi Nuh A.S tidak dinyatakan dalam sirah ada menerima suhuf khusus secara helaian berbanding Nabi Adam (10), Idris (30), dan Musa (10 sebelum Taurat)." },
+                        { id: 12, topic: 'topic1', qArabic: "افاکه کاندوغن كتاب انجيل؟", qMalay: "Apakah kandungan kitab Injil?", options: { a: "ذيكيردان دعاء", b: "ذيكيردان صلوات", c: "سروان مغساكن الله", d: "ممنسوخکن حکوم کتاب زبور" }, ans: "c", exp: "Semua kitab samawi termasuk Injil (yang asli) turun membawa mesej tauhid yang sama: seruan mengesakan Allah tanpa menyekutukan-Nya." },
+                        { id: 13, topic: 'topic1', qArabic: "اقاکه کتاب يغ ككل تيدق دمنسوخكن هيڅك هاري قيامة؟", qMalay: "Apakah kitab yang kekal tidak dimansuhkan hingga hari kiamat?", options: { a: "توراة", b: "زبور", c: "انجيل", d: "القرءان" }, ans: "d", exp: "Al-Quran adalah mukjizat Nabi Muhammad yang ditanggung peliharaannya oleh Allah SWT, memansuhkan syariat terdahulu dan kekal terpelihara." },
+                        { id: 14, topic: 'topic2', qArabic: "اقا که اصل كجادين ملائكة؟", qMalay: "Apakah asal kejadian malaikat?", options: { a: "اير", b: "افي", c: "چهاي", d: "تانه" }, ans: "c", exp: "Malaikat diciptakan oleh Allah SWT daripada unsur Nur (Cahaya), manakala Jin daripada nyalaan api, dan manusia daripada tanah." },
+                        { id: 15, topic: 'topic2', qArabic: "برايکوت اداله نام ۲ ملائكة كجوالي...", qMalay: "Berikut adalah nama-nama malaikat KECUALI...", options: { a: "رقيب", b: "عَتِيد", c: "منگر", d: "مَنْصُورٍ" }, ans: "d", exp: "Mansur bukanlah nama yang digolongkan dalam 10 nama malaikat rasmi wajib. Raqib, Atid dan Munkar adalah malaikat." },
+                        { id: 16, topic: 'topic2', qArabic: "سموا مخلوق اکن دهیمشو نکن دفادع محشر قد هاري _____.", qMalay: "Semua makhluk akan dihimpunkan di padang mahsyar pada hari _____.", options: { a: "قيامة", b: "عرفة", c: "عاشوراء", d: "تشريق" }, ans: "a", exp: "Hari Kiamat merangkumi himpunan agung semua makhluk (manusia, jin, malaikat, dan haiwan) yang menanti hisab amalan masing-masing." },
+                        { id: 17, topic: 'topic2', qArabic: "برايکوت اداله سواسان هاري قيامة:<br>i. عملن دتيمبغ<br>ii. ماءنسي دهيد وفكن سمولا<br>iii. تياد سسياقا بوليه ممبري شفاعة<br>iv. دسوءال ملائكة رقيب دان عتيد", qMalay: "Berikut adalah suasana hari kiamat:", options: { a: "i دان ii", b: "i دان iii", c: "ii دان iv", d: "iii دان iv" }, ans: "a", exp: "Suasana di Padang Mahsyar: Amalan akan ditimbang menggunakan Mizan (i) dan semua manusia mati telah dihidupkan semula (ii)." },
+                        { id: 18, topic: 'topic2', qArabic: "قدر ایاله اوکورن دان سوکتن كتتقن يغ دتنتوكن اوليه _____.", qMalay: "Qadar ialah ukuran dan sukatan ketetapan yang ditentukan oleh _____.", options: { a: "الله", b: "علمو", c: "كبيجقساناءن", d: "عملن" }, ans: "a", exp: "Qada' (Pelaksanaan) dan Qadar (Ketetapan/Ukuran) adalah kuasa mutlak yang telah diputuskan oleh Allah SWT sejak azali." },
+                        { id: 19, topic: 'topic2', qArabic: "شفاعة اياله _____.", qMalay: "Syafaat ialah _____.", options: { a: "فقهر كاءن", b: "فرتيمبغن", c: "فرتولوغن", d: "فركوغسين" }, ans: "c", exp: "Pada hari kiamat, Syafaat bermaksud memohon pertolongan/bantuan bagi meringankan beban atau mengeluarkan pendosa dari azab neraka." },
+                        { id: 20, topic: 'topic2', qArabic: "شفاعة يع دداقتي قد هاري قيامة اد _____ جنيس.", qMalay: "Syafaat yang didapati pada hari kiamat ada _____ jenis.", options: { a: "دوا (2)", b: "انم (6)", c: "ليم (5)", d: "توجوه (7)" }, ans: "c", exp: "Secara umumnya syafaat di akhirat terbahagi 5 bentuk utama, dengan yang paling agung ialah Syafaat Al-Uzma yang dianugerahkan khusus untuk Rasulullah SAW." }
+                    ],
+                    fillTitle: 'Isi Tempat Kosong',
+                    fillPool: ["صحف (Suhuf)", "زبور (Zabur)", "تیک قولوه (30)", "انجيل (Injil)", "القرءان (Al-Quran)"],
+                    fillData: [
+                        { id: 21, q: "کتاب ٢ کچیل یغ دتورونكن كقد رسول.", ans: "صحف (Suhuf)", exp: "Suhuf merupakan helaian firman Allah berbentuk perintah, suruhan, dan nasihat, tidak selengkap hukum hakam di dalam Kitab." },
+                        { id: 22, q: "کتاب یغ دتورونكن كقد نبي داود السل.", ans: "زبور (Zabur)", exp: "Zabur diturunkan kepada Nabi Daud A.S. yang mengandungi alunan tasbih, zikir, dan peringatan tanpa syariat baru." },
+                        { id: 23, q: "جومله صُحف يع دتريما نبي ادريس القل.", ans: "تیک قولوه (30)", exp: "Daripada jumlah 100 suhuf yang masyhur, 30 suhuf daripadanya dikurniakan kepada Nabi Idris A.S." },
+                        { id: 24, q: "كتاب يغ مغخبر کن بريتا كلاهيرن نبي محمد ﷺ.", ans: "انجيل (Injil)", exp: "Kitab Injil asli menyatakan perkhabaran kedatangan nabi pemutus rahmat bagi seluruh alam (Ahmad/Muhammad)." },
+                        { id: 25, q: "كتاب يغ ممنسوخكن سكالا كتاب سبلومن.", ans: "القرءان (Al-Quran)", exp: "Dengan turunnya Al-Quran, syariat Yahudi (Taurat) dan Nasrani (Injil) terbatal dan dimansuhkan secara rasmi." }
+                    ],
+                    shortTitle: 'Betul atau Salah (Kiamat)',
+                    shortData: [
+                        { id: 26, q: "هاري قيامة اياله هاري برلا كون هورو ها را.", ans: "بَتُول (Betul)", exp: "Tiupan sangkakala pertama merupakan peristiwa hancurnya bumi, gunung meletus dan laut melimpah ruah dalam huru-hara." },
+                        { id: 27, q: "تيوقن سغكا كالا يغ كدوا عالم اكن دبينا ساكن.", ans: "سَالَه (Salah)", exp: "Tiupan sangkakala kedua adalah untuk proses kebangkitan (Ba'ath) di mana manusia dihidupkan dari alam barzakh menuju mahsyar." },
+                        { id: 28, q: "سموا عملن ماء نسي اكن دتيمبغ.", ans: "بَتُول (Betul)", exp: "Timbangan neraca keadilan (Al-Mizan) akan menimbang setiap zarah pahala dan dosa umat manusia tanpa ada kecurangan." },
+                        { id: 29, q: "ملائكة جبريل اللي ميوءال ماء نسي ددالم قبور.", ans: "سَالَه (Salah)", exp: "Tugas bersoal jawab perihal iman di alam kubur adalah amanah Malaikat Munkar dan Nakir." },
+                        { id: 30, q: "نراک اداله تمقت يع ككل باكي اورغ منافق.", ans: "بَتُول (Betul)", exp: "Al-Quran merakamkan balasan kekal di tingkatan paling bawah neraka bagi munafik (menyembunyikan kekufuran dalaman)." }
+                    ],
+                    mindTitle: "رَسُول٢ يَع وَاجِب دِكَتَاهُوءِي",
+                    mindPool: ["آدَم", "إِدْرِيس", "نُوح", "هُود", "صَالِح", "شُعَيْب", "مُوسَى"],
+                    mindValid: ["آدَم", "إِدْرِيس", "نُوح", "هُود", "صَالِح"],
+                    strucTitle: 'Soalan Berstruktur & Teori',
+                    berstrukturData: [
+                        { id: 36, q: "(أ) برافا که صیفت یغ ترکاندوغ ددالم افْتِقَارُ إِلَيْهِ كُلُّ مَا سِوَاهِ؟<br><br>(ب) توليس دوا صيفت يع تركاندوغ ددالم افْتِقَارُ إِلَيْهِ كُلُّ مَا سِواه.", ans: "(أ) سَمْبِيلَن (٩) صِيفَت (Sembilan Sifat).<br><br>(ب) ١. حَيَاة<br>٢. عِلْمٌ", marks: 6, exp: "Bahagian Iftiqar bererti semua yang lain amat berhajat kepada Allah. Terdapat 9 sifat di dalamnya termasuk Qudrat, Iradat, Ilmu, dan Hayat." },
+                        { id: 37, q: "(أ) سنار ایکن دوا صيفت واجب باكي رسول.<br><br>(ب) توليس معنا صیفت مستحيل باكي رسول دباوه.<br><br>كذب:<br>كِثْمَان:", ans: "(أ) ١. صِدْق (Benar)<br>٢. أَمَانَة (Jujur)<br><br>(ب) كذب : بَرْدُسْتَا (Bohong)<br>كِثْمَان : مَپَمْبُوپِيكَن (Menyembunyikan)", marks: 6, exp: "Sifat-sifat terpuji Rasul ada 4 iaitu Siddiq, Amanah, Tabligh, dan Fatanah." },
+                        { id: 38, q: "(أ) اقاکه حکوم برایمان کقد کتاب؟<br><br>(ب) تولیس دوا كتاب يغ دتورونكن الله كقد رسولن.", ans: "(أ) وَاجِب (Rukun Iman Ketiga)<br><br>(ب) ١. القُرْءَان<br>٢. التَّوْرَاة", marks: 6, exp: "Kita wajib meyakini kesucian kitab asal yang pernah diwahyukan oleh Allah sebagai panduan." },
+                        { id: 39, q: "(أ) برافاكه بيلغن ملائكة يع واجب دكتاهوءي؟<br><br>(ب) تولیس نام ملائكة يع منوليس عمل قربواتن باءيق دان بوروق.", ans: "(أ) سَقُولُوه (١٠) مَلَائِكَة.<br><br>(ب) ١. رَقِيب (Kebaikan)<br>٢. عَتِيد (Keburukan)", marks: 6, exp: "Setiap Muslim disyaratkan menghafal 10 nama khusus Malaikat." },
+                        { id: 40, q: "(أ) توليس مقصود هاري قيامة.<br><br>(ب) تولیس دوا نام لاءين هاري قيامة.", ans: "(أ) هَارِي كَهَنْچُورَن اَتَاو كَبِينَاسَاءَن سَلُورُوه عَالَم سَمَسْتَا / خلكق.<br><br>(ب) ١. يَوْمُ الحَشْر (Hari Perhimpunan)<br>٢. يَوْمُ الجَزَاء (Hari Pembalasan)", marks: 6, exp: "Hari Kiamat ialah detik pengakhiran dunia di mana kehidupan abadi akhirat bermula." }
+                    ]
+                },
+                percubaan: {
+                    title: 'Set Percubaan Tauhid (Trial)',
+                    badgeText: 'TAUHID (PERCUBAAN)',
+                    stats: { t1: 9, t2: 8 }, statLabels: ['Ketuhanan', 'Kenabian'], marks: [40, 60], markLabels: ['Alif (40m)', 'Bhgn Ba (60m)'],
+                    tabs: [ {id: 'dashboard', lbl: '📊 Dashboard'}, {id: 'objektif', lbl: 'Objektif'}, {id: 'isitempat', lbl: 'Isi Tempat'}, {id: 'padanan', lbl: 'Padanan'}, {id: 'petaminda', lbl: 'Peta Minda'}, {id: 'berstruktur', lbl: 'Berstruktur'} ],
+                    objektif: [
+                        { id: 1, topic: 'Uluhiyyah', qArabic: "اقاكه فغرتين الألوهية قد بهاس؟", qMalay: "Apakah pengertian Al-Uluhiyyah pada bahasa?", options: { a: "کرسولن", b: "کتوهنن", c: "كأكوغن", d: "كنبين" }, ans: "b", exp: "Al-Uluhiyyah berasal dari kata 'Ilah' yang membawa maksud Ketuhanan dari segi bahasa." },
+                        { id: 2, topic: 'Uluhiyyah', qArabic: "برافا كه صيفت يغ تركاندوغ ددالم إِسْتِغْنَاءُ اللَّهِ عَنْ كُلِّ مَا سِوَاهُ؟", qMalay: "Berapakah sifat yang terkandung di dalam Istighna'ullah 'an kulli ma siwahu?", options: { a: "سمبيلن", b: "سبلس", c: "دوا بلس", d: "دوا قولوه" }, ans: "b", exp: "Terdapat 11 sifat di dalam Istighna'ullah (Maha Kaya Allah dari yang lain)." },
+                        { id: 3, topic: 'Uluhiyyah', qArabic: "الوجود اداله صيفت يغ ترکاندوغ ددالم", qMalay: "Al-Wujud adalah sifat yang terkandung di dalam...", options: { a: "الألوهية", b: "عقائد الإيمان", c: "إِفْتِقَارُ إِلَيْهِ كُلُّ مَا سِوَاهُ", d: "إسْتِغْنَاءُ اللَّهُ عَنْ كُلِّ مَا سِوَاهُ" }, ans: "d", exp: "Sifat Wujud adalah salah satu daripada 11 sifat dalam kategori Istighna'ullah." },
+                        { id: 4, topic: 'Uluhiyyah', qArabic: "إِفْتِقَارُ إِلَيْهِ كُلُّ مَا سِوَاه مغاندوغي ___ صیفت.", qMalay: "Iftiqar ilaihi kullu ma siwahu mengandungi ___ sifat.", options: { a: "تیک", b: "سمبيلن", c: "امقت بلس", d: "دوا قولوه لاقن" }, ans: "b", exp: "Bahagian Iftiqar (Berkehendak segalanya kepadaNya) mengandungi 9 sifat wajib." },
+                        { id: 5, topic: 'Uluhiyyah', qArabic: "برايكوت اداله صيفت ٢ يع تركاندوغ ددالم إِفْتِقَارُ إِلَيْهِ كُلُّ مَا سِوَاهُ كجوالي", qMalay: "Berikut adalah sifat-sifat yang terkandung di dalam Iftiqaru Ilaihi KECUALI...", options: { a: "القُدْرَة", b: "الإرادة", c: "كَوْنُهُ عَالِمًا", d: "كَوْنُهُ بَصِيرًا" }, ans: "d", exp: "Kaunuhu Basiran (KeadaanNya Maha Melihat) termasuk di dalam bahagian Istighna', bukan Iftiqar." },
+                        { id: 6, topic: 'Iman', qArabic: "اعتقاد ___ اداله اعتقاد يع بتول دان بنر.", qMalay: "Iktikad ___ adalah iktikad yang betul dan benar.", options: { a: "معتزلة", b: "قدرية", c: "جبرية", d: "أهل السنة والجماعة" }, ans: "d", exp: "Ahli Sunnah Wal Jamaah adalah satu-satunya manhaj iktikad yang sahih dan selamat." },
+                        { id: 7, topic: 'Iman', qArabic: "أَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ الله اداله لفظ كلمة", qMalay: "'Asyhadu anna Muhammadan Rasulullah' adalah lafaz kalimah...", options: { a: "سومقه", b: "فرجنجين", c: "شهادة قرتام", d: "شهادة كدوا" }, ans: "d", exp: "Lafaz tersebut merupakan bahagian kedua dalam kalimah Syahadah (Syahadah Rasul)." },
+                        { id: 8, topic: 'Iman', qArabic: "مانا که انتارا برایکوت تر ما سوق دالم معنا كلمة \"لا إلهَ إِلَّا الله\"؟<br>i. 20 صيفت يع واجب باكي الله<br>ii. 4 صيفت يغ واجب باكي رسول<br>iii. 4 صيفت يغ مستحيل رسول<br>iv. 20 صيفت يع مستحيل اتسن الله", qMalay: "Manakah antara berikut termasuk dalam makna kalimah 'La ilaha illallah'?", options: { a: "i دان ii", b: "ii دان iii", c: "i دان iv", d: "i دان iii" }, ans: "c", exp: "Kalimah pertama Syahadah (Ketuhanan) mencakupi 41 Aqaidul Iman (20 Wajib Allah, 20 Mustahil Allah, 1 Harus Allah)." },
+                        { id: 9, topic: 'Iman', qArabic: "سبابق - بابق عقائد الإيمان یغ ترما سوق ددالم كلمة دأتس اياله", qMalay: "Sebanyak-banyak Aqaidul Iman yang termasuk di dalam kalimah di atas ialah...", options: { a: "ليم قولوه (50)", b: "انم قولوه دوا (62)", c: "انم قولوه لاقن (68)", d: "انم قولوه سمبيلن (69)" }, ans: "a", exp: "Berdasarkan rujukan asas tauhid SDEA, jumlah keseluruhan Aqaidul Iman dalam kalimah Syahadah adalah 50." },
+                        { id: 10, topic: 'Nubuwwah', qArabic: "ركن ___ يغ كأمفت ایاله برايمان كقد نبي دان رسول.", qMalay: "Rukun ___ yang keempat ialah beriman kepada nabi dan rasul.", options: { a: "ایمان", b: "إسلام", c: "عبادة", d: "شرع" }, ans: "a", exp: "Rukun Iman keempat ialah beriman kepada rasul-rasul." },
+                        { id: 11, topic: 'Nubuwwah', qArabic: "افاكه ارتي \" نبي \" دري سكي بهاس؟", qMalay: "Apakah erti 'Nabi' dari segi bahasa?", options: { a: "برایمان", b: "موليا", c: "يع تيغكي", d: "بر اخلاق" }, ans: "c", exp: "Nabi berasal dari perkataan Naba' yang bermaksud tempat yang tinggi atau pemberi khabar." },
+                        { id: 12, topic: 'Nubuwwah', qArabic: "\"للاكي فيليهن الله دان ميمفايكن وحي كقد ماء نسي دان جين\". قرياتاءن دأتس اداله فغرتين باكي", qMalay: "Lelaki pilihan Allah dan menyampaikan wahyu kepada manusia dan jin. Pernyataan di atas adalah pengertian bagi...", options: { a: "نبي", b: "ملائكة", c: "رسول", d: "ماءنسي" }, ans: "c", exp: "Rasul menerima wahyu untuk diamalkan dan diwajibkan menyampaikannya (Tabligh) kepada manusia." },
+                        { id: 13, topic: 'Nubuwwah', qArabic: "حكمه دأوتوسكن رسول اياله", qMalay: "Hikmah diutuskan rasul ialah...", options: { a: "اونتوق مغاول", b: "بلاجردان ملاتيه", c: "مغوبه قر لمباكاءن", d: "مغاجردان مميمقين ماءنسي" }, ans: "d", exp: "Rasul memimpin dan mengeluarkan umat manusia dari kegelapan jahiliah kepada cahaya tauhid." },
+                        { id: 14, topic: 'Nubuwwah', qArabic: "ميمفايكن فرخبرن تنتع هاري قيامة اداله توكس.", qMalay: "Menyampaikan perkhabaran tentang hari kiamat adalah tugas...", options: { a: "ملائكة", b: "کورو", c: "رسول", d: "ماءنسي" }, ans: "c", exp: "Selain membawa syariat Islam, para Rasul memberi amaran (Nadzir) tentang balasan hari Kiamat." },
+                        { id: 15, topic: 'Nubuwwah', qArabic: "برايكوت اداله صيفت واجب باكي نبي دان رسول كجوالي", qMalay: "Berikut adalah sifat wajib bagi nabi dan rasul KECUALI...", options: { a: "تبليغ", b: "بلادة", c: "امانة", d: "صدق" }, ans: "b", exp: "Baladah bermaksud bodoh, ia merupakan sifat mustahil bagi Rasul (Lawannya Fatanah - Bijaksana)." },
+                        { id: 16, topic: 'Nubuwwah', qArabic: "اقاکه حکوم ستياف مكلف مغتاهوءي بيلغن رسول سچارا تفصيلي؟", qMalay: "Apakah hukum setiap mukalaf mengetahui bilangan rasul secara tafsili?", options: { a: "سنة", b: "هاروس", c: "فرض عين", d: "فرض کفایه" }, ans: "c", exp: "Menjadi Fardu Ain ke atas setiap Muslim menghafal 25 orang rasul secara terperinci." },
+                        { id: 17, topic: 'Nubuwwah', qArabic: "ماء نسي قرتام يغ دچیتا اوليه الله اداله نبي.", qMalay: "Manusia pertama yang dicipta oleh Allah adalah nabi...", options: { a: "أدم", b: "إسحاق", c: "إبراهيم", d: "محمد" }, ans: "a", exp: "Nabi Adam A.S adalah manusia merangkap khalifah dan nabi yang pertama diciptakan Allah." },
+                        { id: 18, topic: 'Suhuf', qArabic: "برايکوت اداله نام کتاب دان رسول يغ منريمان.<br>i. القرءان - نبي محمد<br>ii. توراة - نبي داود<br>iii. انجيل - نبي عيسى<br>iv. زبور - نبي موسى", qMalay: "Berikut adalah nama kitab dan rasul yang menerimanya.", options: { a: "i دان ii", b: "i دان iii", c: "ii دان iii", d: "iii دان iv" }, ans: "b", exp: "Padanan yang salah ialah Taurat (sepatutnya Musa) dan Zabur (sepatutnya Daud). Yang betul adalah i dan iii." },
+                        { id: 19, topic: 'Suhuf', qArabic: "اقاکه کاندوغن کتاب زبور.", qMalay: "Apakah kandungan kitab Zabur?", options: { a: "بريتا", b: "لارغن", c: "فرخبرن", d: "ذيكير" }, ans: "d", exp: "Kitab Zabur mengandungi puji-pujian, zikir, dan nasihat tanpa membawa hukum syariat yang baru." },
+                        { id: 20, topic: 'Suhuf', qArabic: "اقاكه معجزة تربسر نبي محمد ﷺ ؟", qMalay: "Apakah mukjizat terbesar Nabi Muhammad SAW?", options: { a: "كتاب توراة", b: "کتاب زبور", c: "کتاب انجیل", d: "كتاب القراءن" }, ans: "d", exp: "Al-Quran adalah mukjizat agung (Maknawi) yang terpelihara hingga hari Kiamat." }
+                    ],
+                    fillTitle: 'Isi Tempat Kosong',
+                    fillPool: ["واجب", "الكلام", "50 فركارا", "23 تاهون", "نبي موسى"],
+                    fillData: [
+                        { id: 21, q: "___ صيفت إسْتِغْنَاءُ اللَّهُ عَنْ كُلِّ مَا سِوَاهُ.", ans: "الكلام", exp: "Sifat Kalam (Allah Maha Berkata-kata) tidak berhajat kepada suara atau makhluk, membuktikan Dia Maha Terkaya (Istighna')." },
+                        { id: 22, q: "سكورغ - كورغ عقائد الإيمان ددالم دوا كلمة شهادة .", ans: "50 فركارا", exp: "50 rantaian Aqaidul Iman terangkum utuh secara ijmali dalam mengucap dua kalimah syahadah." },
+                        { id: 23, q: "حکوم برایمان كقد نبي دان رسول.", ans: "واجب", exp: "Beriman kepada Rasul adalah rukun iman yang keempat yang fardu diyakini." },
+                        { id: 24, q: "نبي يغ برصبر داتس كظاليمن فرعون.", ans: "نبي موسى", exp: "Nabi Musa A.S adalah Rasul Ulul Azmi yang mendepani kekejaman kerajaan Firaun di Mesir." },
+                        { id: 25, q: "تيمقوه القراءن دتورو نکن سچا را بر فریغکت - فریغکت .", ans: "23 تاهون", exp: "Al-Quran diwahyukan secara berperingkat selama 23 tahun (13 tahun di Makkah, 10 tahun di Madinah)." }
+                    ],
+                    matchData: [
+                        { id: 26, q: "جومله قارا نبي", ans: "124,000 اورغ", opts: ["5 اورغ", "6 اورغ", "25 اورغ", "313 اورغ", "124,000 اورغ"] },
+                        { id: 27, q: "جومله قارا رسول", ans: "313 اورغ", opts: ["5 اورغ", "6 اورغ", "25 اورغ", "313 اورغ", "124,000 اورغ"] },
+                        { id: 28, q: "جومله رسول يغ واجب دكتاهوءي", ans: "25 اورغ", opts: ["5 اورغ", "6 اورغ", "25 اورغ", "313 اورغ", "124,000 اورغ"] },
+                        { id: 29, q: "جومله رسول أولو العزم", ans: "5 اورغ", opts: ["5 اورغ", "6 اورغ", "25 اورغ", "313 اورغ", "124,000 اورغ"] },
+                        { id: 30, q: "جومله رسول يغ ممقوياءي شريعة", ans: "6 اورغ", opts: ["5 اورغ", "6 اورغ", "25 اورغ", "313 اورغ", "124,000 اورغ"] }
+                    ],
+                    mindTitle: "كاندوغن القرءان",
+                    mindPool: ["تَوْحِيد / عَقِيدَة", "عِبَادَة", "أَخْلَاق", "حُكُوم حَاكَم", "قِيصَه نَبِي / سَجَارَه"],
+                    mindValid: ["تَوْحِيد / عَقِيدَة", "عِبَادَة", "أَخْلَاق", "حُكُوم حَاكَم", "قِيصَه نَبِي / سَجَارَه"],
+                    strucTitle: 'Soalan Berstruktur',
+                    berstrukturData: [
+                        { id: 36, q: "(أ) برافاكه بهاكين الألوهية ؟<br><br>(ب) توليس بهاكين الألوهية.", ans: "(أ) دُوَا (2) بَهَاگِين.<br><br>(ب) ١. إِسْتِغْنَاءُ اللَّهِ عَنْ كُلِّ مَا سِوَاهُ<br>٢. إِفْتِقَارُ إِلَيْهِ كُلُّ مَا سِوَاهُ", marks: 6, exp: "Al-Uluhiyyah terbahagi kepada dua asas ketuhanan (Maha Kaya & Makhluk berkehendak kepada-Nya)." },
+                        { id: 37, q: "(أ) افاكه ارتي رسول قد بهاس؟<br><br>(ب) توليس قربيذاءن انتارا نبي دان رسول.", ans: "(أ) اُوتُوسَن (Utusan).<br><br>(ب) ١. رَسُولُ دِأُوتُوسْكَن دَغَن شَرِيعَة بَارُو, نَبِي مَنَرُوسْكَن شَرِيعَة سَبَلُومن.<br>٢. رَسُولُ وَاجِبْ مَپَمْفَايْكَن وَحْيُ كَفَد أُمَّت (تَبْلِيغ), نَبِي حَاپَ أُونْتُوق دِيرِي سَنْدِيرِي.", marks: 6, exp: "Walaupun semua Rasul adalah Nabi, tidak semua Nabi itu tarafnya Rasul." },
+                        { id: 38, q: "(أ) برافا كه صیفت يع واجب باكي رسول؟<br><br>(ب) توليس ارتي صيفت ۲ برايكوت:<br>أ. صِدْقُ:<br>ii. كذب:", ans: "(أ) أَمْفَت (4) صِيفَت.<br><br>(ب) أ. صِدْقُ : بَنَر / بَرْكَتَ بَنَر (Benar).<br>ii. كِذْبٌ : بَرْدُسْتَا / بُوهُوغ (Bohong).", marks: 6, exp: "Sifat wajib Rasul (Siddiq, Amanah, Tabligh, Fatanah) adalah benteng kepercayaan utusan Ilahi." },
+                        { id: 39, q: "(أ) سياقا كه نبي يغ فاليغ اوتام دأنتارا سكالين نبي دان رسول ؟<br><br>(ب) سنار ایکن دوا اورغ رسول أولو العزم.", ans: "(أ) نَبِي مُحَمَّد ﷺ.<br><br>(ب) (Pilih mana-mana 2):<br>١. نَبِي نُوح العَلَيْهِ السَّلَام<br>٢. نَبِي إِبْرَاهِيم العَلَيْهِ السَّلَام<br>٣. نَبِي مُوسَى العَلَيْهِ السَّلَام<br>٤. نَبِي عِيسَى العَلَيْهِ السَّلَام", marks: 6, exp: "Ulul Azmi dikurniakan kepada 5 rasul yang paling utuh kecekalan dan kesabaran mereka berdepan keperitan dakwah." },
+                        { id: 40, q: "توليس بيلغن صحف باكي رسول ۲ برايكوت.<br>i. نبي أدم:<br>ii. نبي إبراهيم:<br>iii. نبي موسى:", ans: "i. نَبِي أَدَم: 10 صُحُف<br>ii. نَبِي إِبْرَاهِيم: 10 صُحُف<br>iii. نَبِي مُوسَى: 10 صُحُف (Sblum Taurat)", marks: 6, exp: "Suhuf adalah lembaran wahyu yang kurang menyeluruh berbanding Kitab Samawi." }
+                    ]
+                }
             }
         };
 
-        // --- CORE INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', () => {
             initApp();
         });
 
         function initApp() {
             renderHeaderTheme();
+            renderTabs();
             renderDashboardBanner();
             renderObjektifQuestions();
             renderFillBlanks();
             renderShortAnswer();
+            renderMatching();
             renderMindMap();
             renderBerstruktur();
             renderCharts();
         }
 
-        // --- SWITCHERS ---
         function switchSubject(subjectName) {
             currentSubject = subjectName;
             userQuizAnswers = {};
 
-            const btnIbadat = document.getElementById('btn-sub-ibadat');
-            const btnArab = document.getElementById('btn-sub-arab');
-
-            if (subjectName === 'ibadat') {
-                btnIbadat.className = 'px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-sys-900 font-bold';
-                btnArab.className = 'px-3.5 py-1.5 rounded-md transition-all text-emerald-100 hover:text-white';
-            } else {
-                btnArab.className = 'px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-blue-900 font-bold';
-                btnIbadat.className = 'px-3.5 py-1.5 rounded-md transition-all text-emerald-100 hover:text-white';
-            }
+            ['ibadat', 'arab', 'tauhid'].forEach(sub => {
+                const btn = document.getElementById(`btn-sub-${sub}`);
+                if(sub === subjectName) {
+                    btn.className = `px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white font-bold whitespace-nowrap ${masterDatabases[sub].theme.textClass}`;
+                } else {
+                    btn.className = 'px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap';
+                }
+            });
 
             initApp();
         }
@@ -606,39 +698,69 @@
             const btnSkema = document.getElementById('btn-mode-skema');
             const btnKuiz = document.getElementById('btn-mode-kuiz');
             const kpiText = document.getElementById('kpi-mode-text');
+            const activeData = masterDatabases[currentSubject];
 
             if (mode === 'skema') {
                 btnSkema.className = 'px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-semibold';
                 btnKuiz.className = 'px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white';
                 kpiText.innerText = 'SKEMA';
+                kpiText.className = `text-xl sm:text-2xl font-bold mt-1 uppercase transition-colors text-slate-900`;
             } else {
-                btnKuiz.className = 'px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-amber-500 text-white font-semibold';
+                btnKuiz.className = `px-3.5 py-1.5 rounded-md transition-all shadow-sm text-white font-semibold ${activeData.theme.bgClass}`;
                 btnSkema.className = 'px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white';
                 kpiText.innerText = 'KUIZ UJIAN';
+                kpiText.className = `text-xl sm:text-2xl font-bold mt-1 uppercase transition-colors ${activeData.theme.textClass}`;
             }
 
-            renderObjektifQuestions(document.getElementById('objektif-topic-filter').value);
+            renderObjektifQuestions(document.getElementById('objektif-topic-filter')?.value || 'all');
+            renderMatching();
+        }
+
+        function renderTabs() {
+            const activeSet = masterDatabases[currentSubject][currentExamSet];
+            const container = document.getElementById('nav-tabs-container');
+            container.innerHTML = '';
+            
+            activeSet.tabs.forEach((tab, index) => {
+                const isActive = index === 0 ? 'tab-active' : 'hover:bg-slate-50';
+                container.innerHTML += `
+                    <button onclick="showSection('${tab.id}')" id="tab-${tab.id}" class="tab-btn px-4 py-2 rounded-lg transition-colors ${isActive}">
+                        ${tab.lbl}
+                    </button>
+                `;
+            });
+
+            // Ensure we start on dashboard when changing sets/subjects
+            showSection('dashboard');
         }
 
         function showSection(secId) {
-            const sections = ['dashboard', 'objektif', 'isitempat', 'soalanpendek', 'petaminda', 'berstruktur'];
-            sections.forEach(s => {
+            const activeSet = masterDatabases[currentSubject][currentExamSet];
+            // Hide all possible sections first
+            ['dashboard', 'objektif', 'isitempat', 'soalanpendek', 'padanan', 'petaminda', 'berstruktur'].forEach(s => {
                 const el = document.getElementById(`sec-${s}`);
-                const tab = document.getElementById(`tab-${s}`);
-                if (s === secId) {
-                    el.style.display = 'block';
-                    tab.classList.add('tab-active');
-                    tab.classList.remove('hover:bg-slate-50');
-                } else {
-                    el.style.display = 'none';
-                    tab.classList.remove('tab-active');
-                    tab.classList.add('hover:bg-slate-50');
+                if (el) el.style.display = 'none';
+            });
+            // Show only targeted section
+            const target = document.getElementById(`sec-${secId}`);
+            if (target) target.style.display = 'block';
+
+            // Update Tab Active Status
+            activeSet.tabs.forEach(t => {
+                const tabEl = document.getElementById(`tab-${t.id}`);
+                if(tabEl) {
+                    if (t.id === secId) {
+                        tabEl.classList.add('tab-active');
+                        tabEl.classList.remove('hover:bg-slate-50');
+                    } else {
+                        tabEl.classList.remove('tab-active');
+                        tabEl.classList.add('hover:bg-slate-50');
+                    }
                 }
             });
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- RENDER DYNAMIC UI COMPONENTS ---
         function renderHeaderTheme() {
             const activeData = masterDatabases[currentSubject];
             const activeSet = activeData[currentExamSet];
@@ -647,17 +769,9 @@
             const logoBg = document.getElementById('header-logo-bg');
             const subtitle = document.getElementById('header-subtitle');
 
-            if (currentSubject === 'ibadat') {
-                header.className = 'sticky top-0 z-50 bg-sys-900 text-white shadow-md transition-colors duration-500';
-                logoBg.className = 'w-10 h-10 rounded-lg bg-emerald-800 border border-emerald-600 flex items-center justify-center font-bold text-xl shadow-inner font-jawi text-sys-accent transition-colors duration-300';
-                logoBg.innerText = activeSet.logoText;
-                subtitle.innerText = 'Subjek Aktif: Ibadat & Faraid';
-            } else {
-                header.className = 'sticky top-0 z-50 bg-arabic-900 text-white shadow-md transition-colors duration-500';
-                logoBg.className = 'w-10 h-10 rounded-lg bg-blue-800 border border-blue-600 flex items-center justify-center font-bold text-xl shadow-inner font-jawi text-blue-200 transition-colors duration-300';
-                logoBg.innerText = activeSet.logoText;
-                subtitle.innerText = 'Subjek Aktif: Bahasa Arab';
-            }
+            header.className = `sticky top-0 z-50 text-white shadow-md transition-colors duration-500 ${activeData.theme.headerClass}`;
+            logoBg.innerText = activeData.logo;
+            subtitle.innerText = `Subjek Aktif: ${activeData.name} (${activeData.code})`;
         }
 
         function renderDashboardBanner() {
@@ -670,21 +784,47 @@
             const bannerDesc = document.getElementById('banner-desc');
             const bannerIcon = document.getElementById('banner-bg-icon');
             const kpiSubText = document.getElementById('kpi-subject-text');
+            const kpiScoreCard = document.getElementById('kpi-score-card');
+            const kpiScoreTitle = document.getElementById('kpi-score-title');
+            const kpiScoreVal = document.getElementById('kpi-score-set1');
+            const kpiScoreDesc = document.getElementById('kpi-score-desc');
 
-            banner.className = `rounded-2xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden transition-colors duration-500 ${activeSet.bannerBg}`;
+            // Banner
+            banner.className = `rounded-2xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden transition-colors duration-500 ${activeData.theme.bgClass}`;
             badge.innerText = activeSet.badgeText;
             bannerTitle.innerText = activeSet.title;
-            bannerDesc.innerText = `Anda sedang melayari modul rasmi SDEA 2025 bagi subjek ${activeData.name}. Pilih mod skema atau kuiz kendiri di atas.`;
+            bannerDesc.innerText = `Anda sedang melayari modul SDEA bagi subjek ${activeData.name}. Pilih mod skema atau kuiz kendiri di atas.`;
             bannerIcon.innerText = activeData.logo;
+            
+            // KPIs
             kpiSubText.innerText = activeData.name;
+            kpiSubText.className = `text-lg sm:text-xl font-bold mt-1 uppercase transition-colors ${activeData.theme.textClass}`;
+            
+            // Dynamic KPI coloring
+            kpiScoreCard.className = `p-5 rounded-xl shadow-sm transition-colors border ${activeData.theme.borderClass} ${currentSubject === 'ibadat' ? 'bg-emerald-50' : currentSubject === 'arab' ? 'bg-blue-50' : 'bg-indigo-50'}`;
+            kpiScoreTitle.className = `text-xs font-bold mb-1 transition-colors ${activeData.theme.textClass}`;
+            kpiScoreVal.className = `text-2xl sm:text-3xl font-bold transition-colors ${activeData.theme.textClass}`;
+            kpiScoreDesc.className = `text-[10px] transition-colors ${activeData.theme.textClass} opacity-70`;
+
+            // Make sure the score resets visually on change
+            let correctCount = 0;
+            Object.keys(userQuizAnswers).forEach(k => {
+                if(k.startsWith('obj_')) {
+                    const questionId = parseInt(k.replace('obj_', ''));
+                    const qObj = activeSet.objektif.find(q => q.id === questionId);
+                    if (qObj && userQuizAnswers[k] === qObj.ans) correctCount++;
+                }
+            });
+            kpiScoreVal.innerText = `${correctCount} / 20`;
         }
 
         function renderObjektifQuestions(filterTopic = 'all') {
-            const activeData = masterDatabases[currentSubject][currentExamSet];
+            const activeData = masterDatabases[currentSubject];
+            const activeSet = activeData[currentExamSet];
             const container = document.getElementById('objektif-questions-container');
             container.innerHTML = '';
 
-            const filtered = filterTopic === 'all' ? activeData.objektif : activeData.objektif.filter(q => q.topic === filterTopic);
+            const filtered = filterTopic === 'all' ? activeSet.objektif : activeSet.objektif.filter(q => q.topic === filterTopic);
 
             filtered.forEach(q => {
                 const card = document.createElement('div');
@@ -695,23 +835,36 @@
                     const optText = q.options[opt];
                     if (currentMode === 'skema') {
                         const isCorrect = opt === q.ans;
+                        
+                        // Setup correct color based on subject theme
+                        let correctBg = 'bg-slate-50', correctBorder = 'border-slate-200', correctText = 'text-slate-600', correctMini = 'text-slate-400';
+                        if(isCorrect) {
+                            if(currentSubject === 'ibadat') { correctBg = 'bg-emerald-50'; correctBorder = 'border-emerald-400'; correctText = 'text-emerald-900'; correctMini = 'text-emerald-700'; }
+                            if(currentSubject === 'arab') { correctBg = 'bg-blue-50'; correctBorder = 'border-blue-400'; correctText = 'text-blue-900'; correctMini = 'text-blue-700'; }
+                            if(currentSubject === 'tauhid') { correctBg = 'bg-indigo-50'; correctBorder = 'border-indigo-400'; correctText = 'text-indigo-900'; correctMini = 'text-indigo-700'; }
+                        }
+
                         optionsHtml += `
-                            <div class="p-3 rounded-lg border text-sm flex items-center justify-between ${isCorrect ? 'bg-emerald-50 border-emerald-400 font-bold text-emerald-900 shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-600'}">
-                                <span class="font-jawi text-xl">${optText}</span>
-                                <span class="text-xs font-sans px-2 py-0.5 rounded ${isCorrect ? 'bg-emerald-200 text-emerald-800 font-bold' : 'text-slate-400'}">(${opt.toUpperCase()})</span>
+                            <div class="p-3 rounded-lg border text-sm flex flex-col gap-1 ${isCorrect ? `font-bold shadow-sm ${correctBg} ${correctBorder} ${correctText}` : 'bg-slate-50 border-slate-200 text-slate-600'}">
+                                <span class="font-jawi text-xl text-right">${optText}</span>
+                                <span class="text-xs font-sans text-left ${isCorrect ? correctMini : 'text-slate-400'}">(${opt.toUpperCase()})</span>
                             </div>
                         `;
                     } else {
                         const userAns = userQuizAnswers[`obj_${q.id}`];
                         let btnStyle = 'bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-700 hover:border-slate-300';
                         if (userAns) {
-                            if (opt === q.ans) btnStyle = 'bg-emerald-100 border-emerald-400 text-emerald-900 font-bold';
+                            if (opt === q.ans) {
+                                if(currentSubject === 'ibadat') btnStyle = 'bg-emerald-100 border-emerald-400 text-emerald-900 font-bold';
+                                if(currentSubject === 'arab') btnStyle = 'bg-blue-100 border-blue-400 text-blue-900 font-bold';
+                                if(currentSubject === 'tauhid') btnStyle = 'bg-green-100 border-green-400 text-green-900 font-bold'; // Using generic green for correct in quiz
+                            }
                             else if (userAns === opt) btnStyle = 'bg-red-100 border-red-300 text-red-800';
                         }
                         optionsHtml += `
-                            <button onclick="handleQuizAnswer('obj_${q.id}', '${opt}', '${q.ans}')" class="w-full text-left p-3 rounded-lg border text-sm transition flex items-center justify-between ${btnStyle}">
-                                <span class="font-jawi text-xl">${optText}</span>
-                                <span class="text-xs font-sans text-slate-500">(${opt.toUpperCase()})</span>
+                            <button onclick="handleQuizAnswer('obj_${q.id}', '${opt}', '${q.ans}')" class="w-full text-left p-3 rounded-lg border text-sm transition flex flex-col gap-1 ${btnStyle}">
+                                <span class="font-jawi text-xl w-full text-right block">${optText}</span>
+                                <span class="text-xs font-sans text-slate-500 w-full text-left block">(${opt.toUpperCase()})</span>
                             </button>
                         `;
                     }
@@ -721,14 +874,13 @@
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-3 border-b border-slate-100 pb-2">
                             <span class="text-xs font-bold bg-slate-100 text-slate-600 px-3 py-1 rounded-md border border-slate-200">Soalan ${q.id}</span>
-                            <span class="text-[10px] uppercase font-bold tracking-wide text-slate-400">${q.topic}</span>
                         </div>
                         <h3 class="font-jawi text-2xl font-bold text-slate-900 text-right leading-relaxed mb-1">${q.qArabic}</h3>
                         <p class="text-xs text-slate-500 mb-5 pb-2">${q.qMalay}</p>
                         <div class="grid grid-cols-2 gap-3 mb-4">${optionsHtml}</div>
                     </div>
                     <div class="pt-4 border-t border-slate-100 text-xs text-slate-600 bg-slate-50/70 -mx-5 -mb-5 p-4 rounded-b-xl">
-                        <span class="font-bold text-emerald-700 block mb-1">💡 Huraian Skema:</span>
+                        <span class="font-bold block mb-1 ${activeData.theme.textClass}">💡 Huraian / Rujukan:</span>
                         <p class="leading-relaxed text-slate-600">${q.exp}</p>
                     </div>
                 `;
@@ -739,42 +891,53 @@
         function handleQuizAnswer(qKey, selectedOpt, correctOpt) {
             if (currentMode === 'skema') return;
             userQuizAnswers[qKey] = selectedOpt;
-            renderObjektifQuestions(document.getElementById('objektif-topic-filter').value);
+            renderObjektifQuestions(document.getElementById('objektif-topic-filter')?.value || 'all');
 
             let correctCount = 0;
-            const activeData = masterDatabases[currentSubject][currentExamSet];
+            const activeSet = masterDatabases[currentSubject][currentExamSet];
             Object.keys(userQuizAnswers).forEach(k => {
-                const questionId = parseInt(k.replace('obj_', ''));
-                const qObj = activeData.objektif.find(q => q.id === questionId);
-                if (qObj && userQuizAnswers[k] === qObj.ans) correctCount++;
+                if(k.startsWith('obj_')) {
+                    const questionId = parseInt(k.replace('obj_', ''));
+                    const qObj = activeSet.objektif.find(q => q.id === questionId);
+                    if (qObj && userQuizAnswers[k] === qObj.ans) correctCount++;
+                }
             });
 
-            document.getElementById(`kpi-score-set1`).innerText = `${correctCount} / 20`;
+            document.getElementById('kpi-score-set1').innerText = `${correctCount} / 20`;
         }
 
         function renderFillBlanks() {
-            const activeData = masterDatabases[currentSubject][currentExamSet];
+            const activeData = masterDatabases[currentSubject];
+            const activeSet = activeData[currentExamSet];
             
-            document.getElementById('fill-section-title').innerText = activeData.fillTitle;
-            
+            if(!activeSet.fillData) return;
+
             const pool = document.getElementById('fill-blanks-pool');
             pool.innerHTML = '';
-            activeData.fillPool.forEach(opt => {
-                pool.innerHTML += `<span class="bg-white border border-slate-300 px-6 py-2 rounded-xl shadow-sm text-sys-800">${opt}</span>`;
+            activeSet.fillPool.forEach(opt => {
+                pool.innerHTML += `<span class="bg-white border border-slate-300 px-6 py-2 rounded-xl shadow-sm ${activeData.theme.textClass}">${opt}</span>`;
             });
 
             const container = document.getElementById('fill-blanks-container');
             container.innerHTML = '';
-            activeData.fillData.forEach(q => {
+            activeSet.fillData.forEach(q => {
+                // Determine theme styling for answer box
+                let ansBoxClasses = "bg-slate-100 border border-slate-300 text-slate-900";
+                if(currentSubject === 'ibadat') ansBoxClasses = "bg-emerald-100 border border-emerald-300 text-emerald-900";
+                if(currentSubject === 'arab') ansBoxClasses = "bg-blue-100 border border-blue-300 text-blue-900";
+                if(currentSubject === 'tauhid') ansBoxClasses = "bg-indigo-100 border border-indigo-300 text-indigo-900";
+
+                let qText = q.q.includes('___') ? q.q.replace('___', '<span class="inline-block w-20 border-b-2 border-slate-300 mx-2"></span>') : q.q;
+
                 container.innerHTML += `
                     <div class="bg-white rounded-xl border border-stone-200 p-5 shadow-sm">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                            <div class="flex-grow">
+                            <div class="flex-grow w-full">
                                 <span class="text-xs font-bold bg-slate-100 text-slate-600 px-3 py-1 rounded-md mb-2 inline-block">Soalan ${q.id}</span>
-                                <h3 class="font-jawi text-2xl font-bold text-slate-900 text-right leading-loose">${q.q}</h3>
+                                <h3 class="font-jawi text-2xl font-bold text-slate-900 text-right leading-loose">${qText}</h3>
                             </div>
                             <div class="text-right whitespace-nowrap mt-2 sm:mt-0">
-                                <span class="inline-block bg-emerald-100 border border-emerald-300 text-emerald-900 font-jawi text-2xl font-bold px-6 py-2 rounded-xl shadow-sm">
+                                <span class="inline-block font-jawi text-xl font-bold px-5 py-2 rounded-xl shadow-sm ${ansBoxClasses}">
                                     ${q.ans}
                                 </span>
                             </div>
@@ -789,10 +952,22 @@
         }
 
         function renderShortAnswer() {
-            const activeData = masterDatabases[currentSubject][currentExamSet];
+            const activeData = masterDatabases[currentSubject];
+            const activeSet = activeData[currentExamSet];
+            
+            if(!activeSet.shortData) return;
+
+            document.getElementById('short-section-title').innerText = activeSet.shortTitle || "Soalan Pendek";
+
             const container = document.getElementById('short-answer-container');
             container.innerHTML = '';
-            activeData.shortData.forEach(q => {
+            
+            activeSet.shortData.forEach(q => {
+                let ansBoxClasses = "bg-slate-50 text-slate-900 border-slate-200";
+                if(currentSubject === 'ibadat') ansBoxClasses = "bg-emerald-50 text-emerald-900 border-emerald-200";
+                if(currentSubject === 'arab') ansBoxClasses = "bg-blue-50 text-blue-900 border-blue-200";
+                if(currentSubject === 'tauhid') ansBoxClasses = "bg-indigo-50 text-indigo-900 border-indigo-200";
+
                 container.innerHTML += `
                     <div class="bg-white rounded-xl border border-stone-200 p-5 shadow-sm flex flex-col justify-between">
                         <div>
@@ -801,24 +976,78 @@
                         </div>
                         <div>
                             <div class="mb-4 text-right">
-                                <span class="inline-block border font-jawi text-2xl font-bold px-6 py-2 rounded-xl shadow-sm bg-indigo-50 text-indigo-900 border-indigo-200">${q.ans}</span>
+                                <span class="inline-block border font-jawi text-2xl font-bold px-6 py-2 rounded-xl shadow-sm ${ansBoxClasses}">${q.ans}</span>
                             </div>
-                            <p class="text-[11px] text-slate-500 pt-3 border-t border-slate-100"><strong class="text-slate-700">Fakta:</strong> ${q.exp}</p>
+                            <p class="text-[11px] text-slate-500 pt-3 border-t border-slate-100"><strong class="text-slate-700">Nota:</strong> ${q.exp}</p>
                         </div>
                     </div>
                 `;
             });
         }
 
-        function renderMindMap() {
-            const activeData = masterDatabases[currentSubject][currentExamSet];
+        function renderMatching() {
+            const activeData = masterDatabases[currentSubject];
+            const activeSet = activeData[currentExamSet];
             
-            document.getElementById('mindmap-heading').innerText = activeData.mindTitle;
-            document.getElementById('mindmap-center-title').innerText = activeData.mindTitle;
+            // Only applicable for modules with matchData (like Tauhid Percubaan)
+            const container = document.getElementById('padanan-container');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            if(!activeSet.matchData) return;
+            
+            let highlightClass = "bg-slate-50 border-slate-300 text-slate-900";
+            if(currentSubject === 'tauhid') highlightClass = "bg-indigo-50 border-indigo-300 text-indigo-900";
+
+            activeSet.matchData.forEach(q => {
+                let optionsDropdown = `<select ${currentMode === 'skema' ? 'disabled' : ''} onchange="handleMatchChange(this, '${q.ans}')" class="font-jawi text-xl p-2 rounded-lg border ${currentMode === 'skema' ? `${highlightClass} font-bold` : 'bg-white border-slate-300 text-slate-700'} w-48 text-right cursor-pointer outline-none">`;
+                
+                if (currentMode === 'kuiz') {
+                    optionsDropdown += `<option value="" disabled selected>فيليه جوافن...</option>`;
+                }
+
+                q.opts.forEach(opt => {
+                    const isSelected = (currentMode === 'skema' && opt === q.ans);
+                    optionsDropdown += `<option value="${opt}" ${isSelected ? 'selected' : ''}>${opt}</option>`;
+                });
+                
+                optionsDropdown += `</select>`;
+
+                container.innerHTML += `
+                    <div class="flex flex-col sm:flex-row justify-between items-center p-4 border-b border-slate-100 gap-4 hover:bg-slate-50 transition-colors rounded-lg">
+                        <div class="flex-grow w-full text-right flex flex-col gap-1">
+                            <span class="text-[10px] font-bold text-slate-400 text-left">Soalan ${q.id}</span>
+                            <span class="font-jawi text-2xl text-slate-800 font-bold">${q.q}</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-slate-300 font-bold hidden sm:inline-block">←</span>
+                            ${optionsDropdown}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function handleMatchChange(selectEl, correctAns) {
+            if(selectEl.value === correctAns) {
+                selectEl.className = "font-jawi text-xl p-2 rounded-lg border bg-green-50 border-green-400 text-green-900 font-bold w-48 text-right outline-none";
+            } else {
+                selectEl.className = "font-jawi text-xl p-2 rounded-lg border bg-red-50 border-red-400 text-red-900 w-48 text-right outline-none";
+            }
+        }
+
+        function renderMindMap() {
+            const activeData = masterDatabases[currentSubject];
+            const activeSet = activeData[currentExamSet];
+            
+            if(!activeSet.mindValid) return;
+
+            document.getElementById('mindmap-center-title').innerText = activeSet.mindTitle;
+            document.getElementById('mindmap-center-title').className = `inline-block text-white font-jawi text-3xl sm:text-4xl font-bold px-10 py-4 rounded-2xl shadow-md border-b-4 relative z-10 transition-colors ${activeData.theme.bgClass} border-black/20`;
 
             const pool = document.getElementById('mindmap-pool');
             pool.innerHTML = '';
-            activeData.mindPool.forEach(opt => {
+            activeSet.mindPool.forEach(opt => {
                 pool.innerHTML += `
                     <button class="px-6 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-2xl font-jawi font-bold text-slate-800 hover:bg-slate-100 transition shadow-sm outline-none">
                         ${opt}
@@ -828,24 +1057,33 @@
 
             const nodesContainer = document.getElementById('mindmap-nodes');
             nodesContainer.innerHTML = '';
-            activeData.mindValid.forEach((ans, idx) => {
+            activeSet.mindValid.forEach((ans, idx) => {
                 nodesContainer.innerHTML += `
-                    <div class="rounded-xl border-2 border-slate-200 bg-white p-5 text-center shadow-sm flex flex-col items-center justify-center">
+                    <div class="rounded-xl border-2 border-slate-200 bg-white p-5 text-center shadow-sm flex flex-col items-center justify-center min-h-[120px]">
                         <span class="text-[10px] uppercase font-bold text-slate-400 block mb-2 tracking-widest">Item ${idx + 1}</span>
-                        <div class="font-jawi text-3xl font-bold text-emerald-700">${ans}</div>
+                        <div class="font-jawi text-3xl font-bold ${activeData.theme.textClass}">${ans}</div>
                     </div>
                 `;
             });
         }
 
         function renderBerstruktur() {
-            const activeData = masterDatabases[currentSubject][currentExamSet];
+            const activeData = masterDatabases[currentSubject];
+            const activeSet = activeData[currentExamSet];
             
-            document.getElementById('structured-heading').innerText = currentSubject === 'ibadat' ? 'Soalan Berstruktur (36 - 40)' : 'Soalan Membina Ayat (41 - 45)';
+            if(!activeSet.berstrukturData) return;
+
+            document.getElementById('structured-heading').innerText = activeSet.strucTitle || "Soalan Berstruktur";
 
             const container = document.getElementById('berstruktur-container');
             container.innerHTML = '';
-            activeData.berstrukturData.forEach(q => {
+            activeSet.berstrukturData.forEach(q => {
+                let ansBoxClasses = "bg-slate-50 border-slate-100";
+                let sideBarClass = "bg-slate-400";
+                if(currentSubject === 'ibadat') { ansBoxClasses = "bg-emerald-50/50 border-emerald-100"; sideBarClass = "bg-emerald-400"; }
+                if(currentSubject === 'arab') { ansBoxClasses = "bg-blue-50/50 border-blue-100"; sideBarClass = "bg-blue-400"; }
+                if(currentSubject === 'tauhid') { ansBoxClasses = "bg-indigo-50/50 border-indigo-100"; sideBarClass = "bg-indigo-400"; }
+
                 container.innerHTML += `
                     <div class="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm flex flex-col gap-4">
                         <div class="flex justify-between items-start border-b border-slate-100 pb-3">
@@ -857,10 +1095,10 @@
                             <h3 class="font-jawi text-2xl font-bold text-slate-900 text-right leading-loose">${q.q}</h3>
                         </div>
 
-                        <div class="bg-emerald-50/50 p-5 rounded-xl border border-emerald-100 text-right relative overflow-hidden">
-                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-400"></div>
-                            <span class="text-[10px] text-emerald-600 font-bold block font-sans mb-3 tracking-widest uppercase">Skema Jawapan Rasmi:</span>
-                            <p class="font-jawi text-2xl font-bold text-sys-900 leading-loose">${q.ans}</p>
+                        <div class="${ansBoxClasses} p-5 rounded-xl border text-right relative overflow-hidden">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 ${sideBarClass}"></div>
+                            <span class="text-[10px] ${activeData.theme.textClass} font-bold block font-sans mb-3 tracking-widest uppercase text-left">Skema Jawapan Rasmi:</span>
+                            <p class="font-jawi text-2xl font-bold text-slate-900 leading-loose">${q.ans}</p>
                         </div>
                         
                         <div class="pt-3">
@@ -872,20 +1110,31 @@
         }
 
         function renderCharts() {
-            const activeData = masterDatabases[currentSubject][currentExamSet];
+            const activeData = masterDatabases[currentSubject];
+            const activeSet = activeData[currentExamSet];
+            
             const marksCtx = document.getElementById('marksChart').getContext('2d');
             const topicsCtx = document.getElementById('topicsChart').getContext('2d');
 
             if (chartsInstance.marks) chartsInstance.marks.destroy();
             if (chartsInstance.topics) chartsInstance.topics.destroy();
 
+            // Setup chart colors based on subject
+            let cPrimary = '#059669', cSecondary = '#34d399', cTertiary = '#6ee7b7';
+            if (currentSubject === 'arab') { cPrimary = '#1d4ed8'; cSecondary = '#60a5fa'; cTertiary = '#93c5fd'; }
+            if (currentSubject === 'tauhid') { cPrimary = '#4f46e5'; cSecondary = '#818cf8'; cTertiary = '#a5b4fc'; }
+
+            // Adapt dataset arrays if data size differs
+            let marksBgColors = [cPrimary, cSecondary];
+            if (activeSet.marks.length > 2) marksBgColors.push(cTertiary);
+
             chartsInstance.marks = new Chart(marksCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Objektif (40m)', 'Bahagian Ba (30m)', 'Bahagian Esei/Struktur (30m)'],
+                    labels: activeSet.markLabels,
                     datasets: [{
-                        data: [40, 30, 30],
-                        backgroundColor: [activeData.logoText === 'ع' ? '#059669' : '#1d4ed8', '#34d399', '#6ee7b7'],
+                        data: activeSet.marks,
+                        backgroundColor: marksBgColors,
                         borderWidth: 2, 
                         borderColor: '#ffffff'
                     }]
@@ -899,16 +1148,16 @@
                 }
             });
 
-            document.getElementById('chart-topic-title').innerText = `Taburan Topik (${activeData.statLabels[0]} vs ${activeData.statLabels[1]})`;
+            document.getElementById('chart-topic-title').innerText = `Taburan Topik (${activeSet.statLabels[0]} vs ${activeSet.statLabels[1]})`;
 
             chartsInstance.topics = new Chart(topicsCtx, {
                 type: 'bar',
                 data: {
-                    labels: activeData.statLabels,
+                    labels: activeSet.statLabels,
                     datasets: [{
-                        label: 'Taburan Soalan',
-                        data: [activeData.stats.t1, activeData.stats.t2],
-                        backgroundColor: [activeData.logoText === 'ع' ? '#059669' : '#1d4ed8', '#047857'],
+                        label: 'Bilangan Soalan',
+                        data: [activeSet.stats.t1, activeSet.stats.t2],
+                        backgroundColor: [cPrimary, cSecondary],
                         borderRadius: 6,
                         barPercentage: 0.5
                     }]
