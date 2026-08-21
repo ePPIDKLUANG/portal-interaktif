@@ -52,50 +52,51 @@
 
     <header id="main-header" class="sticky top-0 z-50 bg-ibadat-900 text-white shadow-md transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col xl:flex-row items-center justify-between h-auto py-3 gap-4">
+            <div class="flex flex-col xl:flex-row items-center justify-between h-auto py-4 gap-5">
                 
-                <div class="flex items-center gap-3 w-full xl:w-auto">
-                    <div id="header-logo-bg" class="w-10 h-10 rounded-lg bg-emerald-800 border border-emerald-600 flex items-center justify-center font-bold text-xl shadow-inner font-jawi text-ibadat-accent transition-colors duration-300">
+                <div class="flex items-center gap-4 w-full xl:w-auto">
+                    <div id="header-logo-bg" class="w-12 h-12 rounded-lg bg-emerald-800 border border-emerald-600 flex items-center justify-center font-bold text-2xl shadow-inner font-jawi text-ibadat-accent transition-colors duration-300">
                         ع
                     </div>
                     <div>
-                        <h1 class="text-base font-bold leading-tight">Pusat Peperiksaan SDEA 2025</h1>
-                        <p id="header-subtitle" class="text-[10px] text-white/80 uppercase tracking-widest transition-colors">Subjek Aktif: Ibadat & Faraid</p>
+                        <h1 class="text-xl sm:text-2xl font-bold leading-tight">Pusat Peperiksaan SDEA 2025</h1>
+                        <p id="header-subtitle" class="text-xs sm:text-sm text-white/80 uppercase tracking-widest transition-colors mt-1">Subjek Aktif: Ibadat & Faraid</p>
                     </div>
                 </div>
 
                 <div class="flex flex-wrap items-center gap-3 w-full xl:w-auto justify-start xl:justify-end">
-                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium overflow-x-auto custom-scrollbar">
-                        <button id="btn-sub-ibadat" onclick="switchSubject('ibadat')" class="px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold whitespace-nowrap">🕌 Ibadat</button>
-                        <button id="btn-sub-arab" onclick="switchSubject('arab')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">📖 Arab</button>
-                        <button id="btn-sub-tauhid" onclick="switchSubject('tauhid')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">🕋 Tauhid</button>
-                        <button id="btn-sub-mmj" onclick="switchSubject('mmj')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">⚖️ MMJ</button>
-                        <button id="btn-sub-tafsir" onclick="switchSubject('tafsir')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">📜 Tafsir</button>
-                        <button id="btn-sub-sirah" onclick="switchSubject('sirah')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">🐪 Sirah</button>
-                        <button id="btn-sub-akhlak" onclick="switchSubject('akhlak')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">🌹 Akhlak</button>
+                    <div class="bg-black/20 p-1.5 rounded-lg border border-white/10 flex items-center text-sm sm:text-base font-medium overflow-x-auto custom-scrollbar">
+                        <button id="btn-sub-ibadat" onclick="switchSubject('ibadat')" class="px-4 py-2 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold whitespace-nowrap">🕌 Ibadat</button>
+                        <button id="btn-sub-arab" onclick="switchSubject('arab')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">📖 Arab</button>
+                        <button id="btn-sub-tauhid" onclick="switchSubject('tauhid')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">🕋 Tauhid</button>
+                        <button id="btn-sub-mmj" onclick="switchSubject('mmj')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">⚖️ MMJ</button>
+                        <button id="btn-sub-tafsir" onclick="switchSubject('tafsir')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">📜 Tafsir</button>
+                        <button id="btn-sub-sirah" onclick="switchSubject('sirah')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">🐪 Sirah</button>
+                        <button id="btn-sub-akhlak" onclick="switchSubject('akhlak')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">🌹 Akhlak</button>
+                        <button id="btn-sub-tajwid" onclick="switchSubject('tajwid')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">🔤 Tajwid</button>
                     </div>
 
-                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium whitespace-nowrap">
-                        <button id="btn-set-sebenar" onclick="switchExamSet('sebenar')" class="px-3 py-1.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold">Sebenar</button>
-                        <button id="btn-set-percubaan" onclick="switchExamSet('percubaan')" class="px-3 py-1.5 rounded-md transition-all text-white/80 hover:text-white">Percubaan</button>
+                    <div class="bg-black/20 p-1.5 rounded-lg border border-white/10 flex items-center text-sm sm:text-base font-medium whitespace-nowrap">
+                        <button id="btn-set-sebenar" onclick="switchExamSet('sebenar')" class="px-4 py-2 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold">Sebenar</button>
+                        <button id="btn-set-percubaan" onclick="switchExamSet('percubaan')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white">Percubaan</button>
                     </div>
 
-                    <div class="bg-black/20 p-1 rounded-lg border border-white/10 flex items-center text-xs font-medium whitespace-nowrap">
-                        <button id="btn-mode-skema" onclick="switchAppMode('skema')" class="px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold">Skema</button>
-                        <button id="btn-mode-kuiz" onclick="switchAppMode('kuiz')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white">Ujian</button>
+                    <div class="bg-black/20 p-1.5 rounded-lg border border-white/10 flex items-center text-sm sm:text-base font-medium whitespace-nowrap">
+                        <button id="btn-mode-skema" onclick="switchAppMode('skema')" class="px-4 py-2 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold">Skema</button>
+                        <button id="btn-mode-kuiz" onclick="switchAppMode('kuiz')" class="px-4 py-2 rounded-md transition-all text-white/80 hover:text-white">Ujian</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="bg-white text-slate-700 border-b border-stone-200 overflow-x-auto custom-scrollbar">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 flex gap-2 py-2 text-xs sm:text-sm font-medium whitespace-nowrap" id="nav-tabs-container">
-                <button onclick="showSection('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 rounded-lg transition-colors tab-active">📊 Dashboard</button>
-                <button onclick="showSection('objektif')" id="tab-objektif" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">Bahagian Alif (1-20)</button>
-                <button onclick="showSection('isitempat')" id="tab-isitempat" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">Isi Tempat Kosong</button>
-                <button onclick="showSection('soalanpendek')" id="tab-soalanpendek" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">Betul / Salah</button>
-                <button onclick="showSection('petaminda')" id="tab-petaminda" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">Peta Minda</button>
-                <button onclick="showSection('berstruktur')" id="tab-berstruktur" class="tab-btn px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors">Berstruktur</button>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 flex gap-2 py-3 text-sm md:text-base font-medium whitespace-nowrap" id="nav-tabs-container">
+                <button onclick="showSection('dashboard')" id="tab-dashboard" class="tab-btn px-5 py-2.5 rounded-lg transition-colors tab-active">📊 Dashboard</button>
+                <button onclick="showSection('objektif')" id="tab-objektif" class="tab-btn px-5 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">Bahagian Alif (1-20)</button>
+                <button onclick="showSection('isitempat')" id="tab-isitempat" class="tab-btn px-5 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">Isi Tempat Kosong</button>
+                <button onclick="showSection('soalanpendek')" id="tab-soalanpendek" class="tab-btn px-5 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">Betul / Salah</button>
+                <button onclick="showSection('petaminda')" id="tab-petaminda" class="tab-btn px-5 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">Peta Minda</button>
+                <button onclick="showSection('berstruktur')" id="tab-berstruktur" class="tab-btn px-5 py-2.5 rounded-lg hover:bg-slate-50 transition-colors">Berstruktur</button>
             </div>
         </div>
     </header>
@@ -337,56 +338,61 @@
             { id: 17, topic: 'topic2', qArabic: "كجاياءن دولة امية دالم علمو القرءان.", qMalay: "Kejayaan Umaiyah Al-Quran?", options: { a: "تيتيق دان ورنا", b: "قچهن جزء", c: "تيتيق دان باريس", d: "سموا" }, ans: "c", exp: "Titik dan baris (Hajjaj bin Yusuf)." },
             { id: 18, topic: 'topic2', qArabic: "تنترا إسلام میبیبکن ایمقایر _____ تله موسنه.", qMalay: "Empayar musnah oleh tentera Islam?", options: { a: "عرب", b: "عثمانية", c: "عباسية", d: "فرسي" }, ans: "d", exp: "Empayar Parsi tumbang." },
             { id: 19, topic: 'topic2', qArabic: "ابو عبيد الله بن الجراح اداله دري قوم _____.", qMalay: "Abu Ubaidah dari kaum?", options: { a: "انصار", b: "قريش", c: "مهاجرين", d: "يهودي" }, ans: "b", exp: "Kaum Quraisy Makkah." },
-            { id: 20, topic: 'topic2', qArabic: "الزبير بن العوام له وفاة كتيك براوسيا _____.", qMalay: "Zubair Al-Awwam wafat usia?", options: { a: "40", b: "41", c: "43", d: "45" }, ans: "d", exp: "Rujukan buku teks (45/64 tahun)." }
+                { id: 39, q: "(أ) كأيستيميواءن ماء نسي؟<br>(ب) فوكوس تفكر.", ans: "(أ) عَقْل فِيكِيرَان.<br>(ب) مَمِيكِيرْكَن كَجَادِيَن الله.", marks: 6, exp: "Akal." },
+                { id: 40, q: "(أ) عاقبت بوروق سڅک؟<br>(ب) چارا مغيلق.", ans: "(أ) مَمُوتُوسْكَن صِلَةُ الرَّحِيم.<br>(ب) حُسْنُ الظَّن (بَائِيق سَغْكَ).", marks: 6, exp: "Su'uzan memecahbelahkan umat." }
+            ];
+
+        const tajwidObj = [
+            { id: 1, topic: 'topic1', qArabic: 'افاكه فغرتين حروف أَقْوَى؟', qMalay: 'Apakah pengertian huruf Aqwa?', options: { a: 'لمه', b: 'قاليغ قوات', c: 'لمبوت', d: 'سدرهان' }, ans: 'b', exp: 'Aqwa bermaksud paling kuat.' },
+            { id: 2, topic: 'topic1', qArabic: 'مقصود _____ اياله حروف يغ سدرهان.', qMalay: 'Maksud _____ ialah huruf yang sederhana.', options: { a: 'أَضْعَفْ', b: 'قَوِيَّة', c: 'مُتَوَسِّطَة', d: 'ضَعِيفَة' }, ans: 'c', exp: 'Mutawassitah bermaksud sederhana.' },
+            { id: 3, topic: 'topic1', qArabic: 'حروف يغ ساعت لمه اداله مقصود .', qMalay: 'Huruf yang sangat lemah adalah maksud...', options: { a: 'أَقْوَى', b: 'قَوِيَّة', c: 'أَضْعَفْ', d: 'ضَعِيفَة' }, ans: 'c', exp: 'Adh\'af bermaksud paling/sangat lemah.' },
+            { id: 4, topic: 'topic1', qArabic: 'برافا كه بهاكين ادغام؟', qMalay: 'Berapakah bahagian idgham?', options: { a: 'دوا', b: 'تیک', c: 'امقت', d: 'ليم' }, ans: 'b', exp: 'Terdapat tiga bahagian utama.' },
+            { id: 5, topic: 'topic1', qArabic: 'ادغام _____ ترما سوق ددالم بها كين ادغام صغير.', qMalay: 'Idgham _____ termasuk di dalam bahagian idgham saghir.', options: { a: 'كبير', b: 'مثلين', c: 'غير كبير', d: 'قصير' }, ans: 'b', exp: 'Idgham Mislain terbahagi kepada saghir, kabir dan mutlaq.' },
+            { id: 6, topic: 'topic1', qArabic: 'مانا که انتارا برایکوت سبب تيدق برلا کو ادغام مثلين؟', qMalay: 'Sebab tidak berlaku idgham mislain? i. bacaan idgham ii. bertemu huruf lam iii. bacaan saktah iv. huruf pertama huruf mad', options: { a: 'i دان ii', b: 'i دان iii', c: 'ii دان iii', d: 'iii دان iv' }, ans: 'd', exp: 'Kerana saktah dan huruf mad menegah idgham.' },
+            { id: 7, topic: 'topic2', qArabic: 'اقاکه ایستيله باكي كلمة " الله " ؟', qMalay: 'Apakah istilah bagi kalimah "Allah"?', options: { a: 'بَلَى', b: 'نَعَمْ', c: 'لَفْظُ الجَلَالَة', d: 'لَفْظُ الضَّلَالَة' }, ans: 'c', exp: 'Ia disebut Lafzul Jalalah.' },
+            { id: 8, topic: 'topic2', qArabic: 'حروف راء يع دباج تبل اداله راء برباريس اتس اتاو', qMalay: 'Huruf ra yang dibaca tebal adalah ra berbaris atas atau...', options: { a: 'باوه', b: 'شده', c: 'سكون', d: 'هادفن' }, ans: 'd', exp: 'Baris hadapan (Dhommah) dibaca tebal (Tafkhim).' },
+            { id: 9, topic: 'topic2', qArabic: 'افاكه سبب حروف "راء" قد كلمة " وَرِزْقٌ " دباج نيفيس؟', qMalay: 'Sebab huruf ra pada kalimah "warizqun" dibaca nipis?', options: { a: 'برباريس اتس', b: 'برباريس باوه', c: 'برباريس سكون', d: 'برباريس هادفن' }, ans: 'c', exp: 'Ra sakinah (sukun) sebelumnya huruf berbaris bawah.' },
+            { id: 10, topic: 'topic2', qArabic: 'همزة وصل اياله تندا _____ حروف صاد (ص).', qMalay: 'Hamzah wasal ialah tanda _____ huruf sad (ص).', options: { a: 'ایكور', b: 'كفالا', c: 'بنتوق', d: 'بادن' }, ans: 'b', exp: 'Diambil dari kepala huruf sad (صـ).' },
+            { id: 11, topic: 'topic2', qArabic: 'برايکوت ایاله چونتوه آیات همزة وصل کچوالي', qMalay: 'Berikut ialah contoh ayat hamzah wasal KECUALI...', options: { a: 'إِلَى رَبِّكُمْ', b: 'أشْدُدْ بِهِ', c: 'اقْتُلُوا يُوسُفَ', d: 'فَقَالُوا ابْنُوا' }, ans: 'a', exp: 'Kalimah Ila (إلى) adalah hamzah qata\'.' },
+            { id: 12, topic: 'topic2', qArabic: 'اقاكه فغرتين همزة قطع ؟', qMalay: 'Apakah pengertian hamzah qata\'?', options: { a: 'تتف با چاء نن', b: 'براو به با چاء نن', c: 'دمولا کن با چاء نن', d: 'دهنتیکن با چاء نن' }, ans: 'a', exp: 'Tetap bacaannya sama ada dimulakan bacaan atau bersambung.' },
+            { id: 13, topic: 'topic2', qArabic: 'منوكر كن همزة ماتي كقد سبوتن ياء اداله فغرتين', qMalay: 'Menukarkan hamzah mati kepada sebutan ya adalah pengertian...', options: { a: 'وقف', b: 'تسهيل', c: 'ابتداء', d: 'إبدال' }, ans: 'd', exp: 'Ibdal bermaksud menukarkan huruf.' },
+            { id: 14, topic: 'topic3', qArabic: 'وقف يع دلا كوكن كران ترفقسا اداله .', qMalay: 'Waqaf yang dilakukan kerana terpaksa adalah...', options: { a: 'وقف اختياري', b: 'وقف اختباري', c: 'وقف اضطراري', d: 'وقف انتظاري' }, ans: 'c', exp: 'Idhtirari bermaksud terpaksa (seperti putus nafas / terbatuk).' },
+            { id: 15, topic: 'topic3', qArabic: 'مانا که تندا وقف ددالم القرءان؟ i. (م) ii. (قلى) iii. (صلى) iv. (لا)', qMalay: 'Manakah tanda waqaf di dalam Al-Quran?', options: { a: 'i دان ii', b: 'ii دان iii', c: 'i, ii, iii دان iv', d: 'i دان iv' }, ans: 'c', exp: 'Kesemua pilihan di atas adalah tanda-tanda waqaf.' },
+            { id: 16, topic: 'topic3', qArabic: 'اقاکه حکوم برهنتي قد وقف جبريل؟', qMalay: 'Apakah hukum berhenti pada waqaf Jibril?', options: { a: 'سنة', b: 'هاروس', c: 'واجب', d: 'مكروه' }, ans: 'a', exp: 'Disunatkan berhenti padanya mengikut perbuatan Nabi SAW.' },
+            { id: 17, topic: 'topic3', qArabic: 'تر داقت سقولوه تمقت وقف _____ ددالم القرءان.', qMalay: 'Terdapat 10 tempat waqaf _____ di dalam Al-Quran.', options: { a: 'تَعَانُق', b: 'مُرَاقَبَة', c: 'اختياري', d: 'جبريل' }, ans: 'd', exp: 'Waqaf Jibril ada 10 tempat kesemuanya.' },
+            { id: 18, topic: 'topic3', qArabic: 'انتارا برایکوت اداله کپاتاون بركاءيتن وقف لازم كجوالي', qMalay: 'Kenyataan berkaitan waqaf lazim KECUALI...', options: { a: 'تندا میم کچیل', b: 'دنا ماكن وقف واجب', c: 'عملن اتاو قربواتن نبي', d: 'دتونتوت برهنتي' }, ans: 'c', exp: 'Amalan nabi merujuk kepada waqaf sunnah (Jibril), bukan waqaf lazim.' },
+            { id: 19, topic: 'topic3', qArabic: 'حكوم وقف قد كلمة " نعم " قد ايات " قَالُوا نَعم " اداله ها روس', qMalay: 'Hukum waqaf pada kalimah "na\'am" adalah harus...', options: { a: 'مولا', b: 'برهنتي', c: 'سامبوغ', d: 'ممباچان' }, ans: 'b', exp: 'Harus berhenti padanya (Waqaf).' },
+            { id: 20, topic: 'topic3', qArabic: 'بردا سر کن کپاتاءن دأتس، ماناكه كلمة يع دباج دغن قاعده ترسبوت؟ (مد عارض للسكون / مد اصلي)', qMalay: 'Dibaca 2 cara ketika berhenti: Mad Asli dan Mad A\'ridh. Kalimah mana?', options: { a: 'ضَعْفِ', b: 'فَمَاءَ اتنة', c: 'سَلسَلاً', d: 'سَلَاسِلْ' }, ans: 'd', exp: 'Salasil (سَلَاسِلْ) boleh dibaca sukun atau isbat alif.' }
         ];
 
-        const akhlakObj = [
-            { id: 1, topic: 'topic1', qArabic: "براقا که سومبر امبيلن اخلاق إسلامية؟", qMalay: "Berapakah sumber akhlak Islamiah?", options: { a: "دوا", b: "تیک", c: "امقت", d: "ليم" }, ans: "a", exp: "Al-Quran dan As-Sunnah." },
-            { id: 2, topic: 'topic1', qArabic: "ممثلا جري علمو اخلاق داقت ممبنتوق...", qMalay: "Ilmu akhlak dapat membentuk...", options: { a: "کمیواهن", b: "فراساءن", c: "كفریبادین", d: "سماعت" }, ans: "c", exp: "Membentuk keperibadian." },
-            { id: 3, topic: 'topic1', qArabic: "کفنتيغن منجاک عالم سكيتر كجوالي...", qMalay: "Kepentingan jaga alam KECUALI...", options: { a: "ماءنسي منفعت", b: "منداقت هر تا", c: "هيدوق صيحت", d: "مظهر كاءي" }, ans: "b", exp: "Bukan untuk mendapat harta." },
-            { id: 4, topic: 'topic1', qArabic: "بنتوق فنچمرن. i کس ii اسید iii امير iv او دارا", qMalay: "Bentuk pencemaran: gas, asid, air, udara", options: { a: "i دان ii", b: "ii دان iii", c: "i دان iv", d: "iii دان iv" }, ans: "d", exp: "Pencemaran air dan udara (iii, iv)." },
-            { id: 5, topic: 'topic1', qArabic: "اقا که ادب کچینتاءن کقد نکارا", qMalay: "Adab cintakan negara?", options: { a: "مروسقكن عالم", b: "کورغ سیویک", c: "بكر جاسام موسوه", d: "مما توهي ركن نكارا" }, ans: "d", exp: "Mematuhi rukun negara." },
-            { id: 6, topic: 'topic1', qArabic: "اورغ منجينتاءي نكارا سعكوف...", qMalay: "Cinta negara sanggup...", options: { a: "برقربان", b: "برکادوه", c: "داعتراف", d: "دسانجوغ" }, ans: "a", exp: "Sanggup berkorban." },
-            { id: 7, topic: 'topic2', qArabic: "اقاکه فغرتين احسان منوروت بهاس؟", qMalay: "Erti ihsan pada bahasa?", options: { a: "چینتا", b: "منريما", c: "بربوات باءيق", d: "برکاسیه" }, ans: "c", exp: "Berbuat kebaikan." },
-            { id: 8, topic: 'topic2', qArabic: "صیفت احسان دالم بر عبادة سفرتي جهاد دان انق.", qMalay: "Ihsan terhadap anak...", options: { a: "منديديق", b: "ممارهي", c: "منجاء وهي", d: "مماتوهي" }, ans: "a", exp: "Mendidik dengan baik." },
-            { id: 9, topic: 'topic2', qArabic: "معصية يغ ممباوا كقد دوسا اياله مينوم ارق دان.", qMalay: "Maksiat membawa dosa meminum arak dan...", options: { a: "امانه", b: "جوجور", c: "بر دوستا", d: "بر چاکف" }, ans: "c", exp: "Berdusta (menipu)." },
-            { id: 10, topic: 'topic2', qArabic: "مغعملكن سيكف برقواس هاتي דغن اف يغ اد...", qMalay: "Berpuas hati dengan apa yang ada...", options: { a: "قَنَاعَة", b: "تواضع", c: "احسان", d: "اخلاص" }, ans: "a", exp: "Sifat Qana'ah." },
-            { id: 11, topic: 'topic2', qArabic: "منمفقكن كرندهن هاتي...", qMalay: "Kerendahan hati...", options: { a: "رضا", b: "تواضع", c: "تَفَكَّر", d: "احسان" }, ans: "b", exp: "Sifat Tawaduk." },
-            { id: 12, topic: 'topic1', qArabic: "صیفت تواضع كقد كورو كچوالي", qMalay: "Tawaduk pada guru KECUALI...", options: { a: "سلام", b: "سوفن", c: "ملقسانا كن لا رغن", d: "منجاک نام" }, ans: "c", exp: "Melaksanakan larangan BUKAN tawaduk." },
-            { id: 13, topic: 'topic2', qArabic: "ارني تفكر قد بهاس؟", qMalay: "Erti Tafakkur pada bahasa?", options: { a: "مميكيركن", b: "مموليا كن", c: "مندعاء", d: "مرندهکن" }, ans: "a", exp: "Memikirkan kebesaran Allah." },
-            { id: 14, topic: 'topic2', qArabic: "تفكر ملاهيركن فراساءن...", qMalay: "Tafakkur melahirkan...", options: { a: "چینتا الله", b: "بنچي", c: "چینتا هر تا", d: "تاكوت ديري" }, ans: "a", exp: "Cinta kepada Allah." },
-            { id: 15, topic: 'topic2', qArabic: "عجب برلا کو دسببکن سریع منريما...", qMalay: "Ujub berlaku asbab menerima...", options: { a: "فوجين", b: "چاچین", c: "قمبريين", d: "فرتولوغن" }, ans: "a", exp: "Pujian yang melampau." },
-            { id: 16, topic: 'topic2', qArabic: "ارتي الظن قد بهاس...", qMalay: "Erti Az-Zan bahasa...", options: { a: "iii دان iii", b: "ii i دان iv", c: "iii ، i دان iv", d: "iii ، ii ، i" }, ans: "c", exp: "Ragu dan sangka." },
-            { id: 17, topic: 'topic2', qArabic: "کسن بر سڤک بوروق ترهادف الله ؟", qMalay: "Kesan sangka buruk kepada Allah?", options: { a: "فهالا", b: "تيغكي", c: "دفوجي", d: "دموركاءي الله" }, ans: "d", exp: "Dimurkai Allah." },
-            { id: 18, topic: 'topic2', qArabic: "قونچا برلا کو سڤک بوروق؟", qMalay: "Punca sangka buruk?", options: { a: "مغيكوت ها وا نفسو", b: "سنتياس بر لافع", c: "اخلاق", d: "علماء" }, ans: "a", exp: "Menuruti hawa nafsu." },
-            { id: 19, topic: 'topic2', qArabic: "قونچا منجادي بخيل اياله بيمبغ...", qMalay: "Punca bakhil bimbang...", options: { a: "اخلاص", b: "تواضع", c: "کدکوت", d: "ميسكين" }, ans: "d", exp: "Takut miskin." },
-            { id: 20, topic: 'topic2', qArabic: "عاقبت بخيل سوکر منداقت...", qMalay: "Akibat bakhil sukar mendapat...", options: { a: "كبها كياءن", b: "كهيناءن", c: "کچلاروان", d: "كبور وقن" }, ans: "a", exp: "Kebahagiaan di dunia dan akhirat." }
+        const tajwidFillData = [
+            { id: 21, q: 'جومله بهاكين قاعدة وقف قد كلمة "كلا ".', ans: 'امقت', exp: 'Terdapat 4 kaedah waqaf pada kalimah kalla.' },
+            { id: 22, q: 'قاعدة وقف قد كلمة " ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ ".', ans: 'تيدق هاروس برهنتي', exp: 'Tidak harus berhenti padanya.' },
+            { id: 23, q: 'حكوم "كلا " قد " شُرَكَاءَ كَلَّا بَلْ هُوَ اللَّهُ ".', ans: 'هاروس برهنتي دان مولاكن سمولا', exp: 'Harus berhenti dan mulakan semula.' },
+            { id: 24, q: 'چونتوه ايات هاروس برهنتي قد "كلا" تتافي اولغ كلمة سبلومن.', ans: 'كَلَّا لَا وَزَرَ', exp: 'Contoh ayat Kalla la wazar.' },
+            { id: 25, q: 'چونتوه آیات تيدق هاروس برهنتي تتافي لبيه باءيق ممولا كن.', ans: 'قَالَ كَلَّا إِنَّ مَعِيَ رَبِّي', exp: 'Contoh Qala kalla inna ma\'iya rabbi.' }
         ];
 
-        const akhlakFillData = [
-            { id: 21, q: "منريما سسواتو فركا را دغن لاقع دادا اداله فغرتين .", ans: "رضا", exp: "Sifat redha." },
-            { id: 22, q: "ملاكوكن او قاچارا كأكاماءن بوكن إسلام حكومن", ans: "کافر", exp: "Batal aqidah." },
-            { id: 23, q: "صيفت رضا تربها كي  بهاكين.", ans: "دوا", exp: "Dua bahagian." },
-            { id: 24, q: "قربا یقکن _____ اونتوق كمانيسن رضا.", ans: "دعاء", exp: "Perbanyakkan berdoa." },
-            { id: 25, q: "سسأورغ يغ برصيفت رضا اکن منداقت کلافغن .", ans: "هاتي", exp: "Kelapangan hati." }
+        const tajwidShortData = [
+            { id: 26, q: 'فَيَسْخَرُونَ مِنْهُم', ans: 'تَفْخِيم', exp: 'Ra berbaris hadapan / tebal.' },
+            { id: 27, q: 'وَرِزْقٌ كَرِيمٌ', ans: 'تَرْقِيق', exp: 'Ra sakinah sebelumnya kasrah / nipis.' },
+            { id: 28, q: 'ارْجِعِي إِلَى', ans: 'تَفْخِيم', exp: 'Ra sakinah selepas hamzah wasal / tebal.' },
+            { id: 29, q: 'أَنْ أَنذِرْ قَوْمَكَ', ans: 'تَرْقِيق', exp: 'Ra sakinah sebelumnya kasrah / nipis.' },
+            { id: 30, q: 'وَاعْفُ عَنَّا وَاغْفِرْ لَنَا', ans: 'تَرْقِيق', exp: 'Ra sakinah sebelumnya kasrah / nipis.' }
         ];
 
-        const akhlakShortData = [
-            { id: 26, q: "عجب ایاله فریلا کو ممبغكا كن ديري سنديري.", ans: "بَتُول", exp: "Bangga diri." },
-            { id: 27, q: "عجب تربهاكي كقد تيك بهاكين.", ans: "سَالَه", exp: "Bukan 3 bahagian khusus." },
-            { id: 28, q: "صیفت عجب مپیبکن رنده ديري", ans: "سَالَه", exp: "Mencegah rendah diri." },
-            { id: 29, q: "صيفت عجب بوليه مروسقكن عمل صالح.", ans: "بَتُول", exp: "Menghapuskan pahala." },
-            { id: 30, q: "راس عجب بوليه دأتسي دغن فراساءن بغك ديري.", ans: "سَالَه", exp: "Di atasi dengan tawaduk." }
+        const tajwidStrucData = [
+            { id: 36, q: '(أ) افاكه فغرتين ادغام قد ايستيله؟<br>(ب) تولیس فقرتين ادغام صغير دان كبير.', ans: '(أ) مَمَاسُوقْكَن حُرُوف مَاتِي كَدَالَم حُرُوف بَرْبَارِيس.<br>(ب) صَغِير: قَرْتَام مَاتِي كَدُوَا بَرْبَارِيس. كَبِير: كَدُوَا-دُوَاپ بَرْبَارِيس.', marks: 6, exp: 'Pengertian Idgham dan pembahagiannya.' },
+            { id: 37, q: '(أ) قدر حركة لام لفظ الجلالة؟<br>(ب) حُكُوم لام: (i) اللَّهُ يَعْلَمُ (ii) وَأَقْسَمُوا بِاللَّهِ', ans: '(أ) دُوَا (2) حَرَكَة.<br>(ب) (i) تَفْخِيم / تَبَل (ii) تَرْقِيق / نِيفِيس.', marks: 6, exp: 'Hukum bacaan kalimah Allah.' },
+            { id: 38, q: '(أ) فغرتين وقف منوروت ايستيله؟<br>(ب) مَقْصُود تَنْدَا وَقَف (م) دَان (قلى).', ans: '(أ) مَمْبَرْهَنْتِيكَن سُوَارَا سَكَتِيكَا أُونْتُوق مَپَامْبُوغ بَاجَاءَن.<br>(ب) (م) وَقَف لَازِم. (قلى) وَقَف أَوْلَى.', marks: 6, exp: 'Ilmu Waqaf dan tanda-tandanya.' },
+            { id: 39, q: '(أ) مقصود ابتداء قد ايستيله؟<br>(ب) دُوَا بَهَاگِيَن ابْتِدَاء مَغِيكُوت امَام السُّيُوطِي.', ans: '(أ) مَمُولَاكَن بَاجَاءَن سَلَفَس وَقَف.<br>(ب) ابْتِدَاء حَسَن دَان ابْتِدَاء قَبِيح.', marks: 6, exp: 'Ilmu Ibtida\'.' },
+            { id: 40, q: '(أ) تندا وقَفْ لازم؟<br>(ب) دُوَا نَام لَاءِين بَاكِي وَقَف لَازِم.', ans: '(أ) حُرُوف مِيم كَچِيل (م).<br>(ب) وَقَف وَاجِب دَان وَقَف تَام.', marks: 6, exp: 'Konsep Waqaf Lazim.' }
         ];
 
-        const akhlakStrucData = [
-            { id: 36, q: "(أ) فونچا كروسقن عالم؟<br>(ب) چونتوه قربواتن.", ans: "(أ) تَغَن مَأْنُسِي.<br>(ب) مَمْبُوَاعَن سَامْفَه.", marks: 6, exp: "Manusia mencemarkan bumi." },
-            { id: 37, q: "(أ) تندا منجينتاءي تانه اءير؟<br>(ب) چارا منيفكتكن.", ans: "(أ) بَرْقُرْبَان هَرْتَا وَ پَاوَا.<br>(ب) مَمَاتُوهِي أُونْدَغ٢.", marks: 6, exp: "Patriotisme." },
-            { id: 38, q: "(أ) لاون صيفت رياء؟<br>(ب) فكتور ممبنتوق تواضع.", ans: "(أ) الإِخْلَاصُ.<br>(ب) مَثَدَارِي كَلَمَاهَن دِيرِي.", marks: 6, exp: "Ikhlas dan buang ego." },
-            { id: 39, q: "(أ) كأيستيميواءن ماء نسي؟<br>(ب) فوكوس تفكر.", ans: "(أ) عَقْل فِيكِيرَان.<br>(ب) مَمِيكِيرْكَن كَجَادِيَن الله.", marks: 6, exp: "Akal." },
-            { id: 40, q: "(أ) عاقبت بوروق سڅک؟<br>(ب) چارا مغيلق.", ans: "(أ) مَمُوتُوسْكَن صِلَةُ الرَّحِيم.<br>(ب) حُسْنُ الظَّن (بَائِيق سَغْكَ).", marks: 6, exp: "Su'uzan memecahbelahkan umat." }
-        ];
-
+        const akhlakObj = [];
+        const akhlakFillData = [];
+        const akhlakShortData = [];
+        const akhlakStrucData = [];
 
         // --- MASTER OBJECT COMPILATION ---
         const masterDatabases = {
@@ -502,6 +508,24 @@
                     mindTitle: "جنیس بخیل", mindPool: ["بَخِيل كَفَدَ الله", "بَخِيل دِيرِي", "بَخِيل مَأْنُسِي", "هَرْتَا", "عِلْمُ"], mindValid: ["بَخِيل كَفَدَ الله", "بَخِيل دِيرِي", "بَخِيل مَأْنُسِي"],
                     strucTitle: 'Berstruktur', berstrukturData: akhlakStrucData
                 }
+            },
+            tajwid: {
+                name: 'Tajwid', code: 'DE 207', logo: 'ت',
+                theme: { headerClass: 'bg-cyan-900', logoBgClass: 'bg-cyan-800', logoBorderClass: 'border-cyan-600', logoTextClass: 'text-cyan-400', bannerClass: 'bg-cyan-800', btnActive: 'bg-cyan-500', borderCorrect: 'border-cyan-400', bgCorrect: 'bg-cyan-50', textCorrect: 'text-cyan-900', textMiniCorrect: 'text-cyan-700', chartColors: ['#0891b2', '#22d3ee', '#67e8f9'] },
+                sebenar: {
+                    title: 'Set Sebenar Tajwid 2025', badgeText: 'TAJWID (SEBENAR)', stats: { t1: 13, t2: 7 }, statLabels: ["Idgham & Ra", "Waqaf & Ibtida'"],
+                    objektif: tajwidObj, fillTitle: 'Isi Tempat Kosong', fillPool: ["امقت", "ساتو", "قَالَ كَلَّا إِنَّ مَعِيَ رَبِّي", "كَلَّا لَا وَزَرَ", "تيدق هاروس برهنتي", "هاروس برهنتي دان مولاكن سمولا"],
+                    fillData: tajwidFillData, shortTitle: 'Padanan Tafkhim / Tarqiq', shortData: tajwidShortData,
+                    mindTitle: "حُرُوف قَوِيَّة", mindPool: ["ب", "ج", "د", "ط", "ق", "ا", "و", "ي"], mindValid: ["ب", "ج", "د", "ط", "ق"],
+                    strucTitle: 'Berstruktur', berstrukturData: tajwidStrucData
+                },
+                percubaan: {
+                    title: 'Set Percubaan Tajwid 2025', badgeText: 'TAJWID (PERCUBAAN)', stats: { t1: 13, t2: 7 }, statLabels: ["Idgham & Ra", "Waqaf & Ibtida'"],
+                    objektif: tajwidObj, fillTitle: 'Isi Tempat Kosong', fillPool: ["امقت", "ساتو", "قَالَ كَلَّا إِنَّ مَعِيَ رَبِّي", "كَلَّا لَا وَزَرَ", "تيدق هاروس برهنتي", "هاروس برهنتي دان مولاكن سمولا"],
+                    fillData: tajwidFillData, shortTitle: 'Padanan Tafkhim / Tarqiq', shortData: tajwidShortData,
+                    mindTitle: "حُرُوف قَوِيَّة", mindPool: ["ب", "ج", "د", "ط", "ق", "ا", "و", "ي"], mindValid: ["ب", "ج", "د", "ط", "ق"],
+                    strucTitle: 'Berstruktur', berstrukturData: tajwidStrucData
+                }
             }
         };
 
@@ -561,7 +585,7 @@
 
             // Header classes
             document.getElementById('main-header').className = `sticky top-0 z-50 text-white shadow-md transition-colors duration-500 ${theme.headerClass}`;
-            document.getElementById('header-logo-bg').className = `w-10 h-10 rounded-lg border flex items-center justify-center font-bold text-xl shadow-inner font-jawi transition-colors duration-300 ${theme.logoBgClass} ${theme.logoBorderClass} ${theme.logoTextClass}`;
+            document.getElementById('header-logo-bg').className = `w-12 h-12 rounded-lg border flex items-center justify-center font-bold text-2xl shadow-inner font-jawi transition-colors duration-300 ${theme.logoBgClass} ${theme.logoBorderClass} ${theme.logoTextClass}`;
             document.getElementById('header-logo-bg').innerText = data.logo;
             document.getElementById('header-subtitle').innerText = `Subjek Aktif: ${data.name}`;
 
@@ -581,13 +605,13 @@
             const kpiText = document.getElementById('kpi-mode-text');
 
             if (currentMode === 'skema') {
-                btnSkema.className = 'px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold';
-                btnKuiz.className = 'px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white';
+                btnSkema.className = 'px-4 py-2 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold';
+                btnKuiz.className = 'px-4 py-2 rounded-md transition-all text-white/80 hover:text-white';
                 kpiText.innerText = 'SKEMA';
                 kpiText.className = 'text-xl sm:text-2xl font-bold text-slate-900 mt-1 uppercase transition-colors';
             } else {
-                btnKuiz.className = `px-3.5 py-1.5 rounded-md transition-all shadow-sm text-white font-bold ${theme.btnActive}`;
-                btnSkema.className = 'px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white';
+                btnKuiz.className = `px-4 py-2 rounded-md transition-all shadow-sm text-white font-bold ${theme.btnActive}`;
+                btnSkema.className = 'px-4 py-2 rounded-md transition-all text-white/80 hover:text-white';
                 kpiText.innerText = 'KUIZ UJIAN';
                 kpiText.className = `text-xl sm:text-2xl font-bold mt-1 uppercase transition-colors ${theme.logoTextClass}`;
             }
