@@ -410,14 +410,43 @@
                 percubaan: { title: 'Set Percubaan Ibadat 2025', badgeText: 'IBADAT (PERCUBAAN)', stats: { t1: 13, t2: 7 }, statLabels: ['Ibadat', 'Faraid'], objektif: ibadatObj, fillTitle: 'Isi Tempat Kosong', fillPool: ['ايستري', 'مرتد', 'ساتو كنتغ', 'إسلام', 'صدقه'], fillData: [], shortTitle: 'Soalan Pendek', shortData: [], mindTitle: 'حُكُوم وَصِيَّة', mindPool: [], mindValid: [], strucTitle: 'Berstruktur', berstrukturData: [] }
             },
             arab: {
-                name: 'Bahasa Arab', code: 'DE 201', logo: 'غ',
+                name: 'Bahasa Arab', code: 'DE 209', logo: 'غ',
                 theme: { headerClass: 'bg-blue-900', logoBgClass: 'bg-blue-800', logoBorderClass: 'border-blue-600', logoTextClass: 'text-blue-400', bannerClass: 'bg-blue-800', btnActive: 'bg-blue-500', borderCorrect: 'border-blue-400', bgCorrect: 'bg-blue-50', textCorrect: 'text-blue-900', textMiniCorrect: 'text-blue-700', chartColors: ['#1d4ed8', '#60a5fa', '#93c5fd'] },
                 sebenar: {
                     title: 'Set Sebenar Arab 2025', badgeText: 'ARAB (SEBENAR)', stats: { t1: 10, t2: 10 }, statLabels: ['Nahu', 'Sorf'],
                     objektif: [ { id: 1, topic: 'topic1', qArabic: 'مَا هُوَ الخَبَرُ؟', qMalay: 'Apakah Khabar?', options: { a: 'فِعْلٌ', b: 'حَرْفُ', c: 'مَا يُكْمِلُ المُبْتَدَأَ', d: 'اِسْمٌ' }, ans: 'c', exp: 'Pelengkap subjek.' }, { id: 2, topic: 'topic1', qArabic: 'أنا \_\_\_\_', qMalay: 'Saya...', options: { a: 'مُسْلِمُ', b: 'مُسْلِماً', c: 'مُسْلِمٍ', d: 'مُسْلِمَاتٌ' }, ans: 'a', exp: 'Marfu\'.' } ],
-                    fillTitle: 'Betul / Salah', fillPool: ['صَحِيح', 'خَطَأ'], fillData: [ { id: 21, q: '"يَجْلِسُ" فِعْلُ المَضَارِعُ.', ans: 'صَحِيح', exp: 'Mudhari\'.' } ], shortTitle: 'Terjemahan', shortData: [ { id: 26, q: 'ما معنى "قَلَم"?', ans: 'PENA', exp: 'Pena.' } ], mindTitle: 'حُرُوفُ الجَرّ', mindPool: ['ب', 'إلى', 'على', 'في', 'ل', 'من'], mindValid: ['ب', 'إلى', 'على', 'في', 'ل'], strucTitle: 'Bina Ayat', berstrukturData: [ { id: 41, q: 'سَيَّارَة', ans: 'هَذِهِ سَيَّارَةٌ جَدِيدَةٌ.', marks: 6, exp: 'Ayat.' } ]
+                    fillTitle: 'Betul / Salah', fillPool: ['صَحِيح', 'خَطَأ'], fillData: [ { id: 21, q: '"يَجْلِسُ" فِعْلُ المَضَارِعُ.', ans: 'صَحِيح', exp: 'Mudhari\'.' } ], shortTitle: 'Terjemahan', shortData: [ { id: 26, q: 'ما معنى "قَلَم"?', ans: 'PENA', exp: 'Pena.' } ], mindTitle: 'حُرُوفُ الجَرّ', mindPool: ['ب', 'إلى', 'على', 'في', 'ل', 'من'], mindValid: ['ب', 'إلى', 'على', 'في', 'ل'], 
+                    strucTitle: 'Pemahaman & Bina Ayat (36 - 45)', 
+                    berstrukturData: [
+                        { id: 36, q: "أَيْنَ يَسْكُنُ حَلِيمٌ ؟<br><span class='text-sm text-slate-500 font-sans mt-2 block tracking-normal text-right'>(Petikan: اِسْمِي حَلِيمٌ. أَنَا أَسْكُنُ فِي تَامَن دَهْلِيَا...)</span>", ans: "يَسْكُنُ حَلِيمٌ فِي تَامَن دَهْلِيَا.", marks: 3, exp: "Soalan kefahaman: Di mana Halim tinggal? Jawapan: Taman Dahlia." },
+                        { id: 37, q: "مَعَ مَنْ يَذْهَبُ حَلِيمٌ إِلَى المَدْرَسَةِ ؟", ans: "يَذْهَبُ حَلِيمٌ إِلَى المَدْرَسَةِ مَعَ أَصْدِقَائِهِ.", marks: 3, exp: "Soalan kefahaman: Dengan siapa dia pergi ke sekolah? Jawapan: Rakan-rakannya (أَصْدِقَائِي ditukar ke أَصْدِقَائِهِ)." },
+                        { id: 38, q: "مَاذَا يَتَعَلَّمُ حَلِيمٌ فِي المَدْرَسَةِ الدِّينِيَّةِ ؟", ans: "يَتَعَلَّمُ العُلُومَ الدِّينِيَّةَ وَاللُّغَةَ العَرَبِيَّةَ وَالأَخْلَاقَ.", marks: 3, exp: "Soalan kefahaman: Apa yang dia belajar? Jawapan: Ilmu agama, bahasa Arab dan Akhlak." },
+                        { id: 39, q: "لِمَاذَا يُحِبُّ حَلِيمٌ أَسَاتِذَتِهِ؟", ans: "يُحِبُّ أَسَاتِذَتِهِ لِأَنَّهُم يُعَلِّمُونَهُ.", marks: 3, exp: "Soalan kefahaman: Kenapa dia sayang gurunya? Jawapan: Kerana mereka mengajarnya." },
+                        { id: 40, q: "اسْتَخْرِجْ ثَلَاثَةَ الْأَفْعَالِ مِنَ القِطْعَةِ السَّابِقَةِ.", ans: "أَسْكُنُ، أَذْهَبُ، أَتَعَلَّمُ", marks: 3, exp: "Mengeluarkan 3 kata kerja (Fi'il) dari petikan." },
+                        { id: 41, q: "كَوِّنْ جُمَلاً مُفِيدَةً: سَيَّارَة (Kereta)", ans: "هَذِهِ سَيَّارَةٌ جَدِيدَةٌ.", marks: 3, exp: "Bina ayat mudah. Contoh: Ini kereta baharu." },
+                        { id: 42, q: "كَوِّنْ جُمَلاً مُفِيدَةً: حَافِلَة (Bas)", ans: "أَرْكَبُ الحَافِلَةَ إِلَى المَدْرَسَةِ.", marks: 3, exp: "Bina ayat mudah. Contoh: Saya menaiki bas ke sekolah." },
+                        { id: 43, q: "كَوِّنْ جُمَلاً مُفِيدَةً: أَزْهَار (Bunga)", ans: "فِي الحَدِيقَةِ أَزْهَارٌ جَمِيلَةٌ.", marks: 3, exp: "Bina ayat mudah. Contoh: Di taman ada bunga yang cantik." },
+                        { id: 44, q: "كَوِّنْ جُمَلاً مُفِيدَةً: أَسْكُنُ (Saya tinggal)", ans: "أَنَا أَسْكُنُ فِي جُوهُور.", marks: 3, exp: "Bina ayat mudah. Contoh: Saya tinggal di Johor." },
+                        { id: 45, q: "كَوِّنْ جُمَلاً مُفِيدَةً: نَظِيفَة (Bersih)", ans: "المَدْرَسَةُ نَظِيفَةٌ.", marks: 3, exp: "Bina ayat mudah. Contoh: Sekolah itu bersih." }
+                    ]
                 },
-                percubaan: { title: 'Set Percubaan Arab 2025', badgeText: 'ARAB (PERCUBAAN)', stats: { t1: 10, t2: 10 }, statLabels: ['Nahu', 'Sorf'], objektif: [], fillTitle: '', fillPool: [], fillData: [], shortTitle: '', shortData: [], mindTitle: '', mindPool: [], mindValid: [], strucTitle: '', berstrukturData: [] }
+                percubaan: { 
+                    title: 'Set Percubaan Arab 2025', badgeText: 'ARAB (PERCUBAAN)', stats: { t1: 10, t2: 10 }, statLabels: ['Nahu', 'Sorf'], 
+                    objektif: [], fillTitle: '', fillPool: [], fillData: [], shortTitle: '', shortData: [], mindTitle: '', mindPool: [], mindValid: [], 
+                    strucTitle: 'Pemahaman & Bina Ayat (36 - 45)', 
+                    berstrukturData: [
+                        { id: 36, q: "مَنْ أَنَا فِي هَذِهِ الْقِطْعَةِ؟<br><span class='text-sm text-slate-500 font-sans mt-2 block tracking-normal text-right'>(Petikan: أَنَا طَالِبَةٌ نَشِيْطَةٌ. أَسْتَيْقِظُ مُبَشِّرًا كُلَّ يَوْمٍ...)</span>", ans: "أَنَا طَالِبَةٌ نَشِيْطَةٌ.", marks: 3, exp: "Soalan kefahaman: Siapa 'saya' dalam petikan? Jawapan: Pelajar perempuan yang aktif." },
+                        { id: 37, q: "كَيْفَ تَسْتَيْقِظِينَ كُلَّ يَوْمٍ؟", ans: "أَسْتَيْقِظُ مُبَشِّرًا كُلَّ يَوْمٍ.", marks: 3, exp: "Soalan kefahaman: Bagaimana awak bangun? Jawapan: Bangun awal." },
+                        { id: 38, q: "مَاذَا تَفْعَلِينَ مَعَ أُخْتِكِ مَسَاءً؟", ans: "أَلْعَبُ كُرَةَ الرِّيشَةِ مَسَاءً مَعَ أُخْتِي.", marks: 3, exp: "Soalan kefahaman: Apa yang dilakukan bersama adik/kakak pada waktu petang? Jawapan: Main badminton." },
+                        { id: 39, q: "أَيْنَ تَلْعَبِينَ كُرَةَ الرِّيشَةِ؟", ans: "أَلْعَبُ كُرَةَ الرِّيشَةِ فِي المَلْعَبِ.", marks: 3, exp: "Soalan kefahaman KBAT: Di mana bermain? Jawapan logik: Di gelanggang / padang (Al-Mal'ab)." },
+                        { id: 40, q: "مَاذَا تَفْعَلِينَ بَعْدَ الْمَغْرِبِ؟", ans: "بَعْدَ المَغْرِبِ أَقْرَأُ سُوْرَةَ السَّجَدَةِ.", marks: 3, exp: "Soalan kefahaman: Apa dibuat selepas Maghrib? Jawapan: Membaca surah As-Sajdah." },
+                        { id: 41, q: "كَوِّنْ جُمَلاً مُفِيدَةً: الْمُسْلِمُ (Orang Islam)", ans: "الْمُسْلِمُ يُصَلِّي فِي المَسْجِدِ.", marks: 3, exp: "Bina ayat mudah. Contoh: Orang Islam solat di masjid." },
+                        { id: 42, q: "كَوِّنْ جُمَلاً مُفِيدَةً: الْمَدْرَسَةُ (Sekolah)", ans: "الْمَدْرَسَةُ كَبِيرَةٌ وَنَظِيفَةٌ.", marks: 3, exp: "Bina ayat mudah. Contoh: Sekolah itu besar dan bersih." },
+                        { id: 43, q: "كَوِّنْ جُمَلاً مُفِيدَةً: أَنَا (Saya)", ans: "أَنَا أُحِبُّ أُمِّي وَأَبِي.", marks: 3, exp: "Bina ayat mudah. Contoh: Saya sayang ibu dan bapa saya." },
+                        { id: 44, q: "كَوِّنْ جُمَلاً مُفِيدَةً: طَالِبٌ (Pelajar)", ans: "أَحْمَدُ طَالِبٌ مُجْتَهِدٌ.", marks: 3, exp: "Bina ayat mudah. Contoh: Ahmad seorang pelajar yang rajin." },
+                        { id: 45, q: "كَوِّنْ جُمَلاً مُفِيدَةً: نَحْنُ (Kami)", ans: "نَحْنُ نَتَعَلَّمُ اللُّغَةَ العَرَبِيَّةَ.", marks: 3, exp: "Bina ayat mudah. Contoh: Kami belajar bahasa Arab." }
+                    ]
+                }
             },
             tauhid: {
                 name: 'Tauhid', code: 'DE 102', logo: 'ت',
@@ -428,7 +457,14 @@
                     fillData: [ { id: 21, q: "کتاب ٢ کچیل.", ans: "صحف", exp: "Suhuf." }, { id: 22, q: "کتاب نبي داود.", ans: "زبور", exp: "Zabur." } ],
                     shortTitle: 'Betul / Salah', shortData: [ { id: 26, q: "هاري قيامة هورو ها را.", ans: "بَتُول", exp: "Betul." }, { id: 27, q: "سغكا كالا عالم دبينا ساكن.", ans: "سَالَه", exp: "Salah." } ],
                     mindTitle: "رَسُول٢ يَع وَاجِب", mindPool: ["آدَم", "إِدْرِيس", "نُوح", "هُود", "صَالِح", "شُعَيْب"], mindValid: ["آدَم", "إِدْرِيس", "نُوح", "هُود", "صَالِح"],
-                    strucTitle: 'Berstruktur', berstrukturData: [ { id: 36, q: "(أ) بهاكين الألوهية ؟", ans: "(أ) دُوَا (2).", marks: 6, exp: "Dua." } ]
+                    strucTitle: 'Berstruktur (36 - 40)', 
+                    berstrukturData: [ 
+                        { id: 36, q: "(أ) برافا که صیفت یغ ترکاندوغ ددالم افْتِقَارُ إِلَيْهِ كُلُّ مَا سِوَاهِ؟<br>(ب) توليس دوا صيفت يع تركاندوغ ددالم افْتِقَارُ إِلَيْهِ كُلُّ مَا سِواه.", ans: "(أ) سَمْبِيلَن بَلَس (19) صِيفَت.<br>(ب) (i) القُدْرَة (ii) الإِرَادَة", marks: 6, exp: "Sifat Iftiqar (Memerlukan Allah) mengandungi 19 sifat." },
+                        { id: 37, q: "(أ) سنار ایکن دوا صيفت واجب باكي رسول.<br>(ب) توليس معنا صیفت مستحيل باكي رسول دباوه.<br>i. كذب<br>ii. كِثْمَان", ans: "(أ) (i) صِدْقُ (ii) أَمَانَة.<br>(ب) (i) دُوسْتَا (ii) مَپَمْبُوپِيكَن", marks: 6, exp: "Sifat-sifat wajib dan mustahil bagi Rasul." },
+                        { id: 38, q: "(أ) اقاکه حکوم برایمان کقد کتاب؟<br>(ب) تولیس دوا كتاب يغ دتورونكن الله كقد رسولن.", ans: "(أ) وَاجِب / فَرْضُ عَيْن.<br>(ب) (i) القُرْءَان (ii) تَوْرَاة", marks: 6, exp: "Kewajipan beriman kepada kitab-kitab suci." },
+                        { id: 39, q: "(أ) برافاكه بيلغن ملائكة يع واجب دكتاهوءي؟<br>(ب) تولیس نام ملائكة يع منوليس عمل قربواتن باءيق دان بوروق.", ans: "(أ) سَقُولُوه (10) مَلَائِكَة.<br>(ب) رَقِيب دَان عَتِيد", marks: 6, exp: "10 Malaikat yang wajib diketahui dan tugas mencatat amalan." },
+                        { id: 40, q: "(أ) توليس مقصود هاري قيامة.<br>(ب) تولیس دوا نام لاءين هاري قيامة.", ans: "(أ) هَارِي كَهَنْچُورَن / كَبِينَاسَاءَن عَالَم.<br>(ب) (i) يَوْمُ الدِّين (ii) يَوْمُ الحِسَاب", marks: 6, exp: "Maksud dan nama-nama lain bagi Hari Kiamat." }
+                    ]
                 },
                 percubaan: {
                     title: 'Set Percubaan Tauhid 2025', badgeText: 'TAUHID (PERCUBAAN)', stats: { t1: 13, t2: 7 }, statLabels: ["Aqaidul Iman", "Sam'iyyat"],
@@ -436,7 +472,14 @@
                     fillData: [ { id: 21, q: "صيفت إستغناء.", ans: "الكلام", exp: "Kalam." } ],
                     shortTitle: 'Padanan', shortData: [ { id: 26, q: "جومله قارا نبي", ans: "124,000 اورغ", exp: "Padanan." } ],
                     mindTitle: "كاندوغن القرءان", mindPool: ["تَوْحِيد", "عِبَادَة", "أَخْلَاق", "حُكُوم"], mindValid: ["تَوْحِيد", "عِبَادَة", "أَخْلَاق", "حُكُوم"],
-                    strucTitle: 'Berstruktur', berstrukturData: [ { id: 36, q: "(أ) بهاكين الألوهية ؟", ans: "(أ) دُوَا (2).", marks: 6, exp: "Dua." } ]
+                    strucTitle: 'Berstruktur (36 - 40)', 
+                    berstrukturData: [ 
+                        { id: 36, q: "(أ) برافاكه بهاكين الألوهية؟<br>(ب) توليس بهاكين الألوهية.", ans: "(أ) دُوَا (2) بَهَاگِيَن.<br>(ب) (i) إِسْتِغْنَاءُ اللَّهِ عَنْ كُلِّ مَا سِوَاهُ (ii) إِفْتِقَارُ إِلَيْهِ كُلُّ مَا سِوَاهُ", marks: 6, exp: "Pembahagian Aqaidul Iman dalam sifat Ketuhanan." },
+                        { id: 37, q: "(أ) افاكه ارتي رسول قد بهاس؟<br>(ب) تولیس قربيذاءن انتارا نبي دان رسول.", ans: "(أ) اُوتُوسَن.<br>(ب) رَسُول: مَنَرِيمَا وَحْيُ دَان وَاجِب دِسَمْفَايْكَن. نَبِي: مَنَرِيمَا وَحْيُ تَتَافِي تِيدَق وَاجِب دِسَمْفَايْكَن.", marks: 6, exp: "Perbezaan definisi antara Nabi dan Rasul." },
+                        { id: 38, q: "(أ) برافا که صیفت يع واجب باكي رسول؟<br>(ب) توليس ارتي صيفت ٢ برايكوت :<br>أ. صِدْقُ<br>ii. كذب", ans: "(أ) أَمْفَت (4) صِيفَت.<br>(ب) (i) بَنَر (ii) دُوسْتَا", marks: 6, exp: "4 sifat wajib dan mustahil bagi Rasul." },
+                        { id: 39, q: "(أ) سياقا كه نبي يغ فاليغ اوتام دأنتارا سكالين نبي دان رسول ؟<br>(ب) سنار ایکن دوا اورغ رسول أولو العزم.", ans: "(أ) نَبِي مُحَمَّد ﷺ.<br>(ب) (i) نَبِي نُوح (ii) نَبِي إِبْرَاهِيم", marks: 6, exp: "Kelebihan Ulul Azmi dan nabi yang utama." },
+                        { id: 40, q: "توليس بيلغن صحف باكي رسول ٢ برايكوت.<br>i. نبي أدم<br>ii. نبي إبراهيم<br>iii. نبي موسى", ans: "(i) 10 صُحُف<br>(ii) 10 صُحُف<br>(iii) 10 صُحُف", marks: 6, exp: "Penerima-penerima suhuf dan bilangannya (semua 10 dalam soalan ini)." }
+                    ]
                 }
             },
             mmj: {
@@ -828,6 +871,14 @@
             const activeData = masterDatabases[currentSubject][currentExamSet];
             const theme = masterDatabases[currentSubject].theme;
             const container = document.getElementById('berstruktur-container');
+            const heading = document.getElementById('structured-heading');
+
+            if (heading && activeData.strucTitle) {
+                heading.innerText = activeData.strucTitle;
+            } else if (heading) {
+                heading.innerText = "Soalan Berstruktur (36 - 40)";
+            }
+
             if(!container) return;
             
             container.innerHTML = '';
