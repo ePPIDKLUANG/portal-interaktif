@@ -589,6 +589,32 @@
             document.getElementById('header-logo-bg').innerText = data.logo;
             document.getElementById('header-subtitle').innerText = `Subjek Aktif: ${data.name}`;
 
+            // Kemas kini gaya Butang Subjek berdasarkan pilihan aktif
+            const subjectList = ['ibadat', 'arab', 'tauhid', 'mmj', 'tafsir', 'sirah', 'akhlak', 'tajwid'];
+            subjectList.forEach(sub => {
+                const btn = document.getElementById(`btn-sub-${sub}`);
+                if (btn) {
+                    if (sub === currentSubject) {
+                        btn.className = 'px-5 py-2.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold whitespace-nowrap';
+                    } else {
+                        btn.className = 'px-5 py-2.5 rounded-md transition-all text-white/80 hover:text-white hover:bg-white/10 whitespace-nowrap';
+                    }
+                }
+            });
+
+            // Kemas kini gaya Butang Set (Sebenar/Percubaan) berdasarkan pilihan aktif
+            const setList = ['sebenar', 'percubaan'];
+            setList.forEach(s => {
+                const btn = document.getElementById(`btn-set-${s}`);
+                if (btn) {
+                    if (s === currentExamSet) {
+                        btn.className = 'px-5 py-2.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold whitespace-nowrap';
+                    } else {
+                        btn.className = 'px-5 py-2.5 rounded-md transition-all text-white/80 hover:text-white hover:bg-white/10 whitespace-nowrap';
+                    }
+                }
+            });
+
             // Banner
             document.getElementById('dashboard-banner').className = `rounded-2xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden transition-colors duration-500 ${theme.bannerClass}`;
             document.getElementById('banner-badge').innerText = activeSet.badgeText;
@@ -605,13 +631,13 @@
             const kpiText = document.getElementById('kpi-mode-text');
 
             if (currentMode === 'skema') {
-                btnSkema.className = 'px-4 py-2 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold';
-                btnKuiz.className = 'px-4 py-2 rounded-md transition-all text-white/80 hover:text-white';
+                btnSkema.className = 'px-5 py-2.5 rounded-md transition-all shadow-sm bg-white text-slate-900 font-bold whitespace-nowrap';
+                btnKuiz.className = 'px-5 py-2.5 rounded-md transition-all text-white/80 hover:text-white hover:bg-white/10 whitespace-nowrap';
                 kpiText.innerText = 'SKEMA';
                 kpiText.className = 'text-xl sm:text-2xl font-bold text-slate-900 mt-1 uppercase transition-colors';
             } else {
-                btnKuiz.className = `px-4 py-2 rounded-md transition-all shadow-sm text-white font-bold ${theme.btnActive}`;
-                btnSkema.className = 'px-4 py-2 rounded-md transition-all text-white/80 hover:text-white';
+                btnKuiz.className = `px-5 py-2.5 rounded-md transition-all shadow-sm text-white font-bold whitespace-nowrap ${theme.btnActive}`;
+                btnSkema.className = 'px-5 py-2.5 rounded-md transition-all text-white/80 hover:text-white hover:bg-white/10 whitespace-nowrap';
                 kpiText.innerText = 'KUIZ UJIAN';
                 kpiText.className = `text-xl sm:text-2xl font-bold mt-1 uppercase transition-colors ${theme.logoTextClass}`;
             }
