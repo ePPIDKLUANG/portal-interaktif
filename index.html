@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Pusat Peperiksaan SDEA 2025 - Bersepadu</title>
+    <title>Portal Pusat Peperiksaan SDEA 2025 - Bersepadu (5 Subjek)</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,24 +22,12 @@
                 extend: {
                     colors: {
                         sys: {
-                            900: '#064e3b', // Deep Emerald (Default Ibadat)
-                            800: '#065f46',
-                            accent: '#10b981',
+                            900: '#064e3b', // Default
                         },
-                        arabic: {
-                            900: '#1e3a8a', // Deep Blue
-                            800: '#1e40af',
-                            accent: '#3b82f6',
-                        },
-                        tauhid: {
-                            900: '#1e1b4b', // Deep Indigo
-                            800: '#312e81',
-                            accent: '#6366f1',
-                        },
-                        mmj: {
-                            900: '#134e4a', // Deep Teal
-                            800: '#115e59',
-                            accent: '#14b8a6',
+                        tafsir: {
+                            900: '#2e1065', // Deep Violet
+                            800: '#4c1d95',
+                            accent: '#8b5cf6',
                         }
                     },
                     fontFamily: {
@@ -96,6 +84,9 @@
                         <button id="btn-sub-mmj" onclick="switchSubject('mmj')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">
                             ⚖️ MMJ
                         </button>
+                        <button id="btn-sub-tafsir" onclick="switchSubject('tafsir')" class="px-3.5 py-1.5 rounded-md transition-all text-white/80 hover:text-white whitespace-nowrap">
+                            📜 Tafsir
+                        </button>
                     </div>
 
                     <!-- Set Switcher: Sebenar vs Percubaan -->
@@ -121,7 +112,7 @@
             </div>
         </div>
 
-        <!-- Section Navigation Tabs (Dynamically Generated) -->
+        <!-- Section Navigation Tabs -->
         <div class="bg-white text-slate-700 border-b border-stone-200 overflow-x-auto custom-scrollbar">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 flex gap-2 py-2 text-xs sm:text-sm font-medium whitespace-nowrap" id="nav-tabs-container">
                 <!-- Populated via JS based on active subject/set -->
@@ -236,12 +227,12 @@
             <div id="short-answer-container" class="grid sm:grid-cols-2 gap-4"></div>
         </section>
 
-        <!-- SECTION: PADANAN (Untuk Tauhid Percubaan) -->
+        <!-- SECTION: PADANAN -->
         <section id="sec-padanan" class="space-y-6 hidden">
             <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
                 <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Bahagian Ba</span>
                 <h2 class="text-xl font-bold text-slate-900 mt-0.5">Padankan Jawapan</h2>
-                <p class="text-xs text-slate-500 mt-1">Padankan kenyataan dengan pasangan yang betul (Mod Ujian interaktif).</p>
+                <p class="text-xs text-slate-500 mt-1">Padankan kenyataan dengan pasangan yang betul.</p>
             </div>
             <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
                 <div id="padanan-container" class="space-y-4"></div>
@@ -286,7 +277,7 @@
 
     <script>
         // --- GLOBAL STATE ---
-        let currentSubject = 'ibadat'; // 'ibadat', 'arab', 'tauhid', 'mmj'
+        let currentSubject = 'ibadat'; // 'ibadat', 'arab', 'tauhid', 'mmj', 'tafsir'
         let currentExamSet = 'sebenar'; // 'sebenar' or 'percubaan'
         let currentMode = 'skema';     // 'skema' or 'kuiz'
         let userQuizAnswers = {};
@@ -382,33 +373,30 @@
                         { id: 19, topic: 'topic2', qArabic: 'عصبه بنفسه دالم فراءيد اياله...', qMalay: 'Asabah Bi-nafsi dikhususkan untuk...', options: { a: 'کولوغن لكي٢ درڤد قرابة سي ماتي', b: 'ڤرمڤوان سهاج', c: 'ايپو دان نينيك', d: 'سأودارا إيبو' }, ans: 'a', exp: 'Asabah Bi-nafsi ialah waris lelaki bernasab.' },
                         { id: 20, topic: 'topic2', qArabic: 'ببراڤ كولوغن واريس يغ تيدق بوليه درڤوتوسكن لڠسوڠ هقڽ...', qMalay: 'Waris yang tidak boleh disekat langsung ialah...', options: { a: 'ايبو، بڤ، سوءامي/ايستري، انك', b: 'مواءخ', c: 'بواة سأودارا', d: 'عمو' }, ans: 'a', exp: 'Terdapat 5 waris asas yang tidak pernah terdinding.' }
                     ],
-                    fillTitle: 'Isi Tempat Kosong',
-                    fillPool: ['فاردو عين', 'دم تمتع', 'موقي', 'عصبه', 'ميراث'],
+                    fillPool: ["حرمت مغحرمتي", "ممبواغ وقتو", "سسأورغ", "ساكيت هاتي", "كأيمانن", "نصیحت"],
                     fillData: [
-                        { id: 21, q: 'هكوم منونتوت علم اصول دين.', ans: 'فاردو عين', exp: 'Ilmu tauhid dan ibadat asas.' },
-                        { id: 22, q: 'دنداءن باكي حج قيران اتاو تمتع.', ans: 'دم تمتع', exp: 'Dam wajib dikenali bagi jemaah haji tamatuk.' },
-                        { id: 23, q: 'تڤتاتن ماس دالم ميقات حج.', ans: 'موقي', exp: 'Miqat zamani menetapkan masa bermulanya ihram.' },
-                        { id: 24, q: 'کوڬولن واريس يغ منريما سيمي باكي.', ans: 'عصبه', exp: 'Asabah mengambil baki harta pusaka.' },
-                        { id: 25, q: 'نام لاءين باكي علم فراءيد.', ans: 'ميراث', exp: 'Ilmu Faraid dikenali juga sebagai Ilmu Mirath.' }
+                        { id: 21, q: 'مقصود "الْمَرْءِ" اياله...', ans: 'سسأورغ', exp: 'Dalam hadith, "al-mar\'i" bermaksud individu atau seseorang.' },
+                        { id: 22, q: 'کونچي اوتام مموفوق فراساءن كاسيه سايع اداله...', ans: 'حرمت مغحرمتي', exp: 'Hormat-menghormati melahirkan kemesraan antara satu sama lain.' },
+                        { id: 23, q: 'فركا رايع مروسقكن فرساوداران اياله...', ans: 'ساكيت هاتي', exp: 'Perasaan negatif seperti berdendam dan sakit hati merosakkan ikatan ukhuwah.' },
+                        { id: 24, q: 'منيغكلكن فركارا يع تيدق قرلو اداله تندا...', ans: 'كأيمانن', exp: 'Tanda kebaikan Islam seseorang (kesempurnaan iman) adalah meninggalkan perkara yang tidak bermanfaat baginya.' },
+                        { id: 25, q: 'فركا را اساس دالم اكام إسلام اياله ممبري...', ans: 'نصیحت', exp: 'Agama itu adalah nasihat (Ad-dinu nasihah).' }
                     ],
-                    shortTitle: 'Soalan Fakta Ringkas',
                     shortData: [
-                        { id: 26, q: 'حكوم ممباي زكاة مال كڤد يغ لايق.', ans: 'وَاجِب', exp: 'Membayar zakat harta adalah wajib.' },
-                        { id: 27, q: 'نام بلاكي تيمڤوه ستاهون هجره ل.', ans: 'حَوْل', exp: 'Haul ialah syarat tempoh genap setahun.' },
-                        { id: 28, q: 'حكوم طواف وداع قبل ڤولڠ.', ans: 'وَاجِب', exp: 'Tawaf Wada\' diwajibkan sebelum meninggalkan Makkah.' },
-                        { id: 29, q: 'نام تمڤت موقي مكاني.', ans: 'يَلَمْلَم', exp: 'Sempadan miqat makani penduduk.' },
-                        { id: 30, q: 'حكوم بربوق ڤواسا سباب ساكيت برداسر.', ans: 'هَارُوس', exp: 'Dibenarkan berbuka puasa bagi orang sakit.' }
+                        { id: 26, q: 'يَا أَيُّهَا الرُّسُلُ بر مقصود واهاي رسول.', ans: 'بَتُول', exp: 'Tafsiran tepat bagi seruan ayat.' },
+                        { id: 27, q: 'دعاء ترهالغ دسببكن مماكن ماكنن يغ حلال.', ans: 'سَالَه', exp: 'Doa terhalang asbab makanan haram, bukan makanan halal.' },
+                        { id: 28, q: 'مستجب بردعاء كتيك هو جن تورون.', ans: 'بَتُول', exp: 'Turunnya hujan adalah antara waktu mustajab berdoa.' },
+                        { id: 29, q: 'منريما رسواه ایاله چارا ممقر اولیه هر تا سچا را حلال.', ans: 'سَالَه', exp: 'Rasuah jelas merupakan pendapatan yang haram dan dilaknat.' },
+                        { id: 30, q: 'حكوم منجاري ماكنن يغ حلال اياله واجب.', ans: 'بَتُول', exp: 'Mencari yang halal itu fardu ke atas setiap Muslim.' }
                     ],
-                    mindTitle: 'أَرْكَان اَلْحَجّ',
-                    mindPool: ['رُكُون', 'شَرْط', 'سُنَّة', 'وَاجِب', 'حَرَام', 'بَاطِل'],
-                    mindValid: ['رُكُون', 'شَرْط', 'سُنَّة', 'وَاجِب', 'حَرَام'],
-                    strucTitle: 'Soalan Berstruktur (36-40)',
+                    mindTitle: "فركارا السمعيات (يَشْهَدُ أَرْجُلُهُم)",
+                    mindPool: ['شُرْگَ', 'نَرَكَا', 'مِيزَان', 'صِرَاط', 'مَحْشَر', 'دُنْيَا'],
+                    mindValid: ['شُرْگَ', 'نَرَكَا', 'مِيزَان', 'صِرَاط', 'مَحْشَر'],
                     berstrukturData: [
-                        { id: 36, q: '(أ) ڤڽتكن امڤت ركون حج.<br><br>(ب) اقاكه يغ دصوڬوتكن دغن ركون وڤءة?', ans: '(أ) ١. إِحْرَام<br>٢. وُقُوف دَعَرَفَة<br>٣. طَوَاف إِفَاضَة<br>٤. سَعْي<br><br>(ب) كسمڤورنن هجي.', marks: 6, exp: 'Rukun haji tidak boleh diganti dengan dam.' },
-                        { id: 37, q: '(أ) سياڤکه يغ دأيضكن درڤد ممڤوڽاءي هق زكاة?<br><br>(ب) سنتکن بنراكن زكاة كڤد...', ans: '(أ) كلوڬن كاي.<br><br>(ب) فقير و مسكين.', marks: 6, exp: 'Keutamaan agihan zakat kepada fakir miskin.' },
-                        { id: 38, q: '(أ) اقاكه فغرتين عصبة مع الغير?<br><br>(ب) بريك كوندوه كلوڬن عصبة مع الغير.', ans: '(أ) سأودارا ڤرمڤوان برسام انك ڤرمڤوان.<br><br>(ب) اخت شقيقة برسام بنت.', marks: 6, exp: 'Asabah Ma\'al Ghair bersama waris perempuan lain.' },
-                        { id: 39, q: '(أ) باڤ سيماتي منريما بڤق سارڠن دالم فراءيد سباڬاي...', ans: '(أ) عصبه اتاو 1/6 + عصبه.', marks: 6, exp: 'Bapa menggabungkan fardu dan asabah.' },
-                        { id: 40, q: '(أ) جليسكن فربيذاان انتارا حج تمتع دان قيران.', ans: '(أ) تمتع: عمرة ثم حج. قيران: serentak.', marks: 6, exp: 'Perbezaan niat ihram dan pelaksanaan.' }
+                        { id: 36, q: '(أ) بريكن ارتي فركاتاءن اسْتَجَابُوا.<br><br>(ب) توليس قاعده ممبنتوق كقواتن اومت إسلام.', ans: '(أ) مَپَاهُوت سَرُوَن (Tuhan).<br><br>(ب) ١. مَنْدِيرِيكَن صَلَاة<br>٢. بَرْمُشَاوَرَة', marks: 6, exp: 'Ayat As-Syura 38 menekankan pentingnya mesyuarat dalam masyarakat.' },
+                        { id: 37, q: '(أ) توليس فركا رايع دفر ينتهكن اوليه الله.<br><br>(ب) اقاكه فركارا يع واجب دمشوار تكن دالم إسلام؟', ans: '(أ) ١. صَلَاة / ٢. زَكَاة.<br><br>(ب) ١. اُورُوسَن فَنْتَدْبِيرَن<br>٢. فَقَرِيسَن / فِيفَرَغَن', marks: 6, exp: 'Musyawarah diwajibkan bagi urusan awam yang menuntut pandangan bernas.' },
+                        { id: 38, q: '(أ) اقاكه عملن يغ داقت مغوكوهكن هو بوغن فرسا وداراء ن دالم إسلام؟<br><br>(ب) توليس سبب دواجبكن برمشوارت دالم اوروسن آکام.', ans: '(أ) مَشْوَرَات / تُولِيرَانْسِي.<br><br>(ب) ١. مَغِيلَقْكَن كَسِيلَافَن<br>٢. مَنْدَافَت كَفُوتُوسَن تَرْبَائِيق', marks: 6, exp: 'Mesyuarat menghalang autokrasi dan kesilapan pertimbangan.' },
+                        { id: 39, q: '(أ) اقاکه مقصود فركاتاءن "لَا يُؤْمِنُ"؟<br><br>(ب) توليس صیفت یع دلارغ دالم كهيد وقن إسلام؟', ans: '(أ) تِيدَق سَمْفُورْنَا إِيمَان.<br><br>(ب) ١. حَسَد دَغْكِي<br>٢. مَمَنْتِيغْكَن دِيرِي (أَنَانِيَّة)', marks: 6, exp: 'Kesempurnaan iman terikat dengan bagaimana kita melayan orang lain.' },
+                        { id: 40, q: '(أ) اقا که عملن فرسا وداراء ن يغ دتونتوت دالم إسلام؟<br><br>(ب) توليس تندا كسمفورناءن ايمان سسأورغ.', ans: '(أ) سَالِيغ مَنْچِينْتَائِي كَرَانَا الله.<br><br>(ب) ١. مَغَاسِيهِي سَأُودَارَا سَأَگَامَا مَچَم دِيرِي سَنْدِيرِي<br>٢. مَمْبَنْتُو كَتِيكَ سُسَاه', marks: 6, exp: 'Hadith menekankan kita mencintai untuk saudara kita apa yang kita cintai untuk diri sendiri.' }
                     ]
                 }
             },
@@ -573,11 +561,11 @@
                     ],
                     shortTitle: 'Betul atau Salah (Kiamat)',
                     shortData: [
-                        { id: 26, q: "هاري قيامة اياله هاري برلا كون هورو ها را.", ans: "بَتُول (Betul)", exp: "Tiupan sangkakala pertama merupakan peristiwa hancurnya bumi, gunung meletus dan laut melimpah ruah dalam huru-hara." },
-                        { id: 27, q: "تيوقن سغكا كالا يغ كدوا عالم اكن دبينا ساكن.", ans: "سَالَه (Salah)", exp: "Tiupan sangkakala kedua adalah untuk proses kebangkitan (Ba'ath) di mana manusia dihidupkan dari alam barzakh menuju mahsyar." },
-                        { id: 28, q: "سموا عملن ماء نسي اكن دتيمبغ.", ans: "بَتُول (Betul)", exp: "Timbangan neraca keadilan (Al-Mizan) akan menimbang setiap zarah pahala dan dosa umat manusia tanpa ada kecurangan." },
-                        { id: 29, q: "ملائكة جبريل اللي ميوءال ماء نسي ددالم قبور.", ans: "سَالَه (Salah)", exp: "Tugas bersoal jawab perihal iman di alam kubur adalah amanah Malaikat Munkar dan Nakir." },
-                        { id: 30, q: "نراک اداله تمقت يع ككل باكي اورغ منافق.", ans: "بَتُول (Betul)", exp: "Al-Quran merakamkan balasan kekal di tingkatan paling bawah neraka bagi munafik (menyembunyikan kekufuran dalaman)." }
+                        { id: 26, q: "هاري قيامة اياله هاري برلا كون هورو ها را.", ans: "بَتُول", exp: "Tiupan sangkakala pertama merupakan peristiwa hancurnya bumi, gunung meletus dan laut melimpah ruah dalam huru-hara." },
+                        { id: 27, q: "تيوقن سغكا كالا يغ كدوا عالم اكن دبينا ساكن.", ans: "سَالَه", exp: "Tiupan sangkakala kedua adalah untuk proses kebangkitan (Ba'ath) di mana manusia dihidupkan dari alam barzakh menuju mahsyar." },
+                        { id: 28, q: "سموا عملن ماء نسي اكن دتيمبغ.", ans: "بَتُول", exp: "Timbangan neraca keadilan (Al-Mizan) akan menimbang setiap zarah pahala dan dosa umat manusia tanpa ada kecurangan." },
+                        { id: 29, q: "ملائكة جبريل اللي ميوءال ماء نسي ددالم قبور.", ans: "سَالَه", exp: "Tugas bersoal jawab perihal iman di alam kubur adalah amanah Malaikat Munkar dan Nakir." },
+                        { id: 30, q: "نراک اداله تمقت يع ككل باكي اورغ منافق.", ans: "بَتُول", exp: "Al-Quran merakamkan balasan kekal di tingkatan paling bawah neraka bagi munafik (menyembunyikan kekufuran dalaman)." }
                     ],
                     mindTitle: "رَسُول٢ يَع وَاجِب دِكَتَاهُوءِي",
                     mindPool: ["آدَم", "إِدْرِيس", "نُوح", "هُود", "صَالِح", "شُعَيْب", "مُوسَى"],
@@ -719,7 +707,7 @@
                         { id: 3, topic: 'topic1', qArabic: "قلابورن دكنلي سباكاي _____.", qMalay: "Pelaburan (dalam kewangan Islam) dikenali sebagai _____.", options: { a: "الْمُضَارَبَة", b: "اللقطة", c: "المزارعة", d: "الْمُخَابَرَة" }, ans: "a", exp: "Al-Mudharabah (atau Al-Qiradh) merujuk kepada perniagaan / pelaburan di mana satu pihak sedia modal dan pihak lain berikan kepakaran." },
                         { id: 4, topic: 'topic1', qArabic: "برايکوت اداله فركا رايغ ممبطلكن عقد القراض.<br>i. كيلا<br>ii. فيتم<br>iii. برعقل<br>iv. بالغ", qMalay: "Berikut adalah perkara yang membatalkan akad Al-Qiradh:", options: { a: "i دان ii", b: "i دان iii", c: "ii دان iii", d: "iii دان iv" }, ans: "a", exp: "Akad terbatal (hilang kelayakan mengurus harta) sekiranya berlaku gila atau pengsan / pitam (i & ii)." },
                         { id: 5, topic: 'topic1', qArabic: "تانه _____ اداله ميليق كراجاءن.", qMalay: "Tanah _____ adalah milik kerajaan.", options: { a: "تربیار", b: "قرتانين", c: "سنديري", d: "توان كبون" }, ans: "a", exp: "Tanah mati atau terbiar (Ihya' Al-Mawat) kebiasaannya hak milik kerajaan melainkan diterokai mengikut undang-undang (dibolehkan)." },
-                        { id: 6, topic: 'topic1', qArabic: "افاكه ايستيله يع دكوناكن باكي بارغ يغ دجو مقاءي", qMalay: "Apakah istilah yang digunakan bagi barang yang dijumpai?", options: { a: "اللقطة", b: "القراض", c: "اللقيط", d: "إِحْيَاءُ المَوات" }, ans: "a", exp: "Al-Luqatah ialah harta atau barang berharga yang tercicir dan dijumpai." },
+                        { id: 6, topic: 'topic1', qArabic: "افا كه ايستيله يع دكوناكن باكي بارغ يغ دجو مقاءي", qMalay: "Apakah istilah yang digunakan bagi barang yang dijumpai?", options: { a: "اللقطة", b: "القراض", c: "اللقيط", d: "إِحْيَاءُ المَوات" }, ans: "a", exp: "Al-Luqatah ialah harta atau barang berharga yang tercicir dan dijumpai." },
                         { id: 7, topic: 'topic1', qArabic: "اللقيط اياله كانق ٢ يع ترجمفق<br><br>بردا سر كن قرياتاءن داتس، اقاکه شرط مميندهكن لقيط كنكري لاءين ؟", qMalay: "Al-Laqit ialah kanak-kanak yang tercampak. Apakah syarat memindahkan laqit ke negeri lain?", options: { a: "تیدق امان", b: "تیاد بریتا", c: "فرجالنن سلامت", d: "فوتوس هو بوغن" }, ans: "c", exp: "Boleh dipindahkan anak pungut itu dengan syarat perjalanannya ke negeri tersebut terjamin selamat." },
                         { id: 8, topic: 'topic1', qArabic: "برافا كه بها كين لفظ رجوع ؟", qMalay: "Berapakah bahagian lafaz rujuk?", options: { a: "دوا", b: "تیک", c: "امقت", d: "ليم" }, ans: "a", exp: "Lafaz rujuk terbahagi kepada 2: Sarih (Jelas) dan Kinayah (Kiasan)." },
                         { id: 9, topic: 'topic1', qArabic: "برايکوت اداله صح طلاق برسومفه کچوالي", qMalay: "Berikut adalah sah talaq bersumpah (oleh suami) KECUALI...", options: { a: "سدر", b: "بها كيا", c: "تيدق کیلا", d: "تيدق دفقسا" }, ans: "b", exp: "Syarat sah pelafaz: Baligh, berakal, atas kerelaan sendiri (tidak dipaksa), dan sedar. 'Bahagia' bukan syarat sah menjatuhkan talak." },
@@ -735,7 +723,6 @@
                         { id: 19, topic: 'topic2', qArabic: "برایکوت اداله چونتوه فر لومباءن کچوالي", qMalay: "Berikut adalah contoh sukan perlumbaan yang disunatkan KECUALI...", options: { a: "برنغ", b: "ممانه", c: "لومبا لاري", d: "لومبا كودا" }, ans: "a", exp: "Menurut syarak yang sangat digalakkan untuk perlumbaan: Kuda, Unta, Lari, & Memanah. Berenang adalah sukan yang dianjurkan (tapi bukan khusus kategori musabaqah/lumba)." },
                         { id: 20, topic: 'topic2', qArabic: "كافير يغ ممينتا قرليندوغن إسلام تيدق بوليه دقرغي<br><br>بردا سر کن فرياتاءن داتس، اقاكه كافير يغ مموسوهي اورغ إسلام ؟", qMalay: "Kafir yang meminta perlindungan... Apakah kafir yang memusuhi orang Islam?", options: { a: "ذمي", b: "حَرْبِي", c: "معاهد", d: "مُسْتَأْمِن" }, ans: "b", exp: "Kafir Harbi merujuk kepada golongan bukan Islam yang secara terang-terangan memerangi / memusuhi umat Islam." }
                     ],
-                    fillTitle: 'Isi Tempat Kosong',
                     fillPool: ["قاسر", "إِحْيَاء الموات", "المُخَابَرَة", "فمیلیق هر تا", "هر تا مودل", "بيت المال"],
                     fillData: [
                         { id: 21, q: "معاملات یغ تيدق دبنركن دالم إسلام.", ans: "قاسر", exp: "Urusniaga secara paksaan atau kekerasan (tanpa kerelaan) terbatal." },
@@ -764,10 +751,127 @@
                         { id: 40, q: "(أ) اقاکه حکوم قرلو مباءن دان ممانه ؟<br><br>(ب) تولیس حکوم قر لومباءن برايكوت:<br>i. ملاكا كن بيناتغ:<br>ii. قرلو مباءن مليبتكن كصيحتن:", ans: "(أ) سُنَّة دَان دِگَالَاقْكَن (تَنْفَا جُودِي).<br><br>(ب) i. حَرَام (مَثِيقْسَا).<br>ii. سُنَّة / هَارُوس.", marks: 6, exp: "Islam melarang sebarang acara sukan yang menganiaya makhluk." }
                     ]
                 }
+            },
+            
+            // ================== TAFSIR & HADITH ==================
+            tafsir: {
+                name: 'Tafsir & Hadith', code: 'DE 208', logo: 'ق',
+                theme: { primary: '#2e1065', accent: '#8b5cf6', headerClass: 'bg-violet-950', bgClass: 'bg-violet-900', borderClass: 'border-violet-400', textClass: 'text-violet-900' },
+                sebenar: {
+                    title: 'Set Sebenar Tafsir & Hadith 2025',
+                    badgeText: 'TAFSIR & HADITH (SEBENAR)',
+                    stats: { t1: 10, t2: 10 }, statLabels: ['Tafsir', 'Hadith'], marks: [40, 60], markLabels: ['Alif (40m)', 'Bahagian Ba (60m)'],
+                    tabs: [ {id: 'dashboard', lbl: '📊 Dashboard'}, {id: 'objektif', lbl: 'Objektif (1-20)'}, {id: 'isitempat', lbl: 'Isi Tempat'}, {id: 'soalanpendek', lbl: 'Betul / Salah'}, {id: 'petaminda', lbl: 'Peta Minda'}, {id: 'berstruktur', lbl: 'Berstruktur'} ],
+                    objektif: [
+                        { id: 1, topic: 'topic1', qArabic: 'اقاكه ارتي فركاتاءن "وَرَحْمَةً"؟ (سورة الروم 21)', qMalay: 'Apakah erti perkataan "wa rahmatan"?', options: { a: 'اونتوق كامو', b: 'دأنتارا كامو', c: 'باكي اورغ يغ برفيكير', d: 'دان بلس كاسيهن' }, ans: 'd', exp: 'Berdasarkan surah Ar-Rum ayat 21, "wa rahmatan" bermaksud "dan belas kasihan".' },
+                        { id: 2, topic: 'topic1', qArabic: '"لِتَسْكُنُوا إِلَيْهَا" بر مقصود "سوقاي كامو... دان هيدوف مسرا".', qMalay: 'Apakah maksud keratan ayat tersebut?', options: { a: 'برسنغ هاتي', b: 'بربوات باءيق', c: 'ملقسانا كن كواجيفن', d: 'جاغن كامو لا كوكن' }, ans: 'a', exp: '"Litaskunu ilaiha" diterjemahkan sebagai supaya kamu bersenang hati (tenang) dan hidup mesra.' },
+                        { id: 3, topic: 'topic1', qArabic: 'حواء دجاديكن در قد روسوق نبي...', qMalay: 'Hawa dijadikan daripada rusuk nabi yang mana?', options: { a: 'ادم', b: 'هود', c: 'نوح', d: 'صالح' }, ans: 'a', exp: 'Saidatina Hawa diciptakan oleh Allah daripada tulang rusuk Nabi Adam A.S.' },
+                        { id: 4, topic: 'topic1', qArabic: 'مانا که انتارا برايکوت چيري ٢ ونيتا دالم كلوارك سكينة؟<br>i. تنع<br>ii. طمع<br>iii. تنترم<br>iv. ظالم', qMalay: 'Antara berikut, manakah ciri-ciri wanita dalam keluarga sakinah?', options: { a: 'i دان ii', b: 'i دان iii', c: 'ii دان iii', d: 'ii دان iv' }, ans: 'b', exp: 'Keluarga sakinah dicirikan oleh ketenangan (tenang) dan keharmonian (tenteram).' },
+                        { id: 5, topic: 'topic1', qArabic: 'اقاکه مقصود "كلوارك سكينة"؟', qMalay: 'Apakah maksud "Keluarga Sakinah"?', options: { a: 'برماسم موک', b: 'کلوارک بھاگیا', c: 'ملاكوكن كموسنهن', d: 'برسيكف تكس' }, ans: 'b', exp: 'Keluarga Sakinah membawa maksud keluarga yang bahagia, tenang dan damai.' },
+                        { id: 6, topic: 'topic1', qArabic: 'افاكه ارتي فركاتاءن فَاسِقٌ؟ (سورة الحجرات 6)', qMalay: 'Apakah erti perkataan "Fasiq"?', options: { a: 'سأورغ برايمان', b: 'سأورغ فاسق', c: 'سأورغ فندوستا', d: 'سأورغ كفور' }, ans: 'b', exp: 'Fasiq merujuk kepada orang yang derhaka atau sentiasa melanggar perintah Allah (Orang fasik).' },
+                        { id: 7, topic: 'topic1', qArabic: 'ترجادي... سسواتو قركارا عاقبت بريتا فلسو.', qMalay: 'Terjadi ___ sesuatu perkara akibat berita palsu.', options: { a: 'باءيق', b: 'بوروق', c: 'بر منفعت', d: 'مناسبه' }, ans: 'b', exp: 'Menerima khabar tanpa usul periksa (berita palsu) akan mengakibatkan keburukan dan penyesalan.' },
+                        { id: 8, topic: 'topic1', qArabic: 'بريتا فلسو مغعاقبتكن كبور وقن كقد...', qMalay: 'Berita palsu mengakibatkan keburukan kepada...', options: { a: 'عالم', b: 'چواچ', c: 'ایندیویدو', d: 'حيوان' }, ans: 'c', exp: 'Fitnah dan berita palsu menjejaskan reputasi dan mendatangkan aib kepada individu atau kaum.' },
+                        { id: 9, topic: 'topic1', qArabic: 'و برايکوت اداله قربواتن فاسيق كجوالي...', qMalay: 'Berikut adalah perbuatan fasik KECUALI...', options: { a: 'مپیبر کن بریتا فلسو', b: 'مپیبر کن فتنه', c: 'مشکل کن دوسا کچیل', d: 'مشكلكن دوسا بسر' }, ans: 'd', exp: 'Meninggalkan dosa besar adalah tuntutan agama (bukan perbuatan fasik).' },
+                        { id: 10, topic: 'topic1', qArabic: 'چونتوه قربواتن یع امت ترکوتوق.<br>i. منابور فتنه<br>ii. بر اخلاق موليا<br>iii. مغادو دومبا<br>iv. مغر جاكن صلاة', qMalay: 'Contoh perbuatan yang amat terkutuk:', options: { a: 'i دان iii', b: 'ii دان iii', c: 'i, ii دان iii', d: 'ii, iii دان iv' }, ans: 'a', exp: 'Menabur fitnah dan mengadu domba (namimah) adalah dosa besar yang dilarang keras.' },
+                        { id: 11, topic: 'topic2', qArabic: 'اقاكه معنا فركاتاءن "فَإِنَّمَا أَهْلَكَ"؟ (حديث)', qMalay: 'Apakah makna perkataan "Fa innama ahlaka"?', options: { a: 'جاغن كامو', b: 'دان بر تنتغن', c: 'مک بینا ساله', d: 'بابق ممقر سوء الکن' }, ans: 'c', exp: '"Fa innama ahlaka" bermaksud "Maka sesungguhnya telah membinasakan (maka binasalah)".' },
+                        { id: 12, topic: 'topic2', qArabic: 'اقا که کسن اومت ترد هولو یغ بابق برتان؟', qMalay: 'Apakah kesan umat terdahulu yang banyak bertanya (banyak soal)?', options: { a: 'منداقت فهالا', b: 'سوء الن ترجواب', c: 'منمبه علمو قعتا هوان', d: 'منداقت عاقبت بوروق' }, ans: 'd', exp: 'Umat terdahulu binasa kerana terlalu banyak bertanya (yang menyusahkan) dan berselisih dengan nabi mereka.' },
+                        { id: 13, topic: 'topic2', qArabic: 'كلمة _____ مرجوع كقد فركا را یع دتکه دان دلارغ.', qMalay: 'Kalimah mana yang merujuk kepada perkara yang ditegah dan dilarang?', options: { a: 'مَا نَهَيْتُكُمْ', b: 'فَاجْتَنِبُوهُ', c: 'فَإِنَّمَا أَهْلَكَ', d: 'مَا اسْتَطَعْتُمْ' }, ans: 'a', exp: '"Ma nahaitukum" bermaksud "Apa yang aku larang kamu daripadanya".' },
+                        { id: 14, topic: 'topic2', qArabic: 'برايكوت اداله حكوم تكليفي دالم إسلام كجوالي...', qMalay: 'Berikut adalah hukum taklifi dalam Islam KECUALI...', options: { a: 'سنة', b: 'شرط', c: 'مكروه', d: 'هاروس' }, ans: 'b', exp: 'Syarat merupakan "Hukum Wadh\'i", manakala Wajib/Fardu, Sunat, Haram, Makruh, Harus adalah "Hukum Taklifi".' },
+                        { id: 15, topic: 'topic2', qArabic: 'حكمه الله ملارغ سواتو فرکا را کران دسبالیقن تردافت...', qMalay: 'Hikmah Allah melarang sesuatu perkara kerana di sebaliknya terdapat...', options: { a: 'مضرت', b: 'كباء يقن', c: 'منفعت', d: 'كسرونوقن' }, ans: 'a', exp: 'Setiap larangan Allah SWT ke atas hamba-Nya adalah demi menjauhkan mereka daripada kemudaratan.' },
+                        { id: 16, topic: 'topic2', qArabic: 'اقاكه ارتي فركاتاءن "طُمَأْنِينَةٌ"؟', qMalay: 'Apakah erti perkataan "Tuma\'ninah"?', options: { a: 'كبترن', b: 'كتنغن', c: 'كراكوان', d: 'كجاهیلن' }, ans: 'b', exp: 'Tuma\'ninah membawa erti ketenangan (hati yang tenang tanpa was-was).' },
+                        { id: 17, topic: 'topic2', qArabic: '"مَا لَا يَرِيبُكَ" بر مقصود فركار ا ٢ يغ تيدق كامو...', qMalay: '"Ma la yaribuka" bermaksud perkara-perkara yang tidak kamu...', options: { a: 'راكوءي', b: 'لاكوكن', c: 'کا تاکن', d: 'لالوءي' }, ans: 'a', exp: '"Da\' ma yaribuka ila ma la yaribuka" bermaksud tinggalkan apa yang meragukanmu kepada apa yang tidak kamu ragui.' },
+                        { id: 18, topic: 'topic2', qArabic: 'فركاتاءن "فَإِنَّ الصَّدْقَ" برارتي...', qMalay: 'Perkataan "Fa inna as-sidqa" bererti...', options: { a: 'دي منادهكن', b: 'کامو ميسلي', c: 'سسام مریک', d: 'کران کبنرن ایت' }, ans: 'd', exp: '"Fa inna as-sidqa" diterjemahkan sebagai "Kerana sesungguhnya kebenaran itu..."' },
+                        { id: 19, topic: 'topic2', qArabic: 'چيري اورغ یغ _____ ایاله مني كلكن فركا را يع مراكوكن.', qMalay: 'Ciri orang yang ___ ialah meninggalkan perkara yang meragukan.', options: { a: 'شك', b: 'برتقوی', c: 'شبهة', d: 'كرسهن' }, ans: 'b', exp: 'Orang yang bertaqwa akan menjauhi perkara syubhah (meragukan) demi memelihara agamanya.' },
+                        { id: 20, topic: 'topic2', qArabic: 'إسلام مندوروغ اومتن مغعملكن صیفت _____ دان برهاتي هاتي.', qMalay: 'Islam mendorong umatnya mengamalkan sifat ___ dan berhati-hati.', options: { a: 'ورع', b: 'عجب', c: 'شبهة', d: 'وسواس' }, ans: 'a', exp: 'Sifat Warak (Wara\') adalah sifat berhati-hati dalam menjaga diri daripada terjebak ke lembah dosa atau syubhah.' }
+                    ],
+                    fillTitle: 'Isi Tempat Kosong',
+                    fillPool: ["حرمت مغحرمتي", "ممبواغ وقتو", "سسأورغ", "ساكيت هاتي", "كأيمانن", "نصیحت"],
+                    fillData: [
+                        { id: 21, q: 'مقصود "الْمَرْءِ" اياله...', ans: 'سسأورغ', exp: 'Dalam hadith, "al-mar\'i" bermaksud individu atau seseorang.' },
+                        { id: 22, q: 'کونچي اوتام مموفوق فراساءن كاسيه سايع اداله...', ans: 'حرمت مغحرمتي', exp: 'Hormat-menghormati melahirkan kemesraan antara satu sama lain.' },
+                        { id: 23, q: 'فركا رايع مروسقكن فرساوداران اياله...', ans: 'ساكيت هاتي', exp: 'Perasaan negatif seperti berdendam dan sakit hati merosakkan ikatan ukhuwah.' },
+                        { id: 24, q: 'منيغكلكن فركارا يع تيدق قرلو اداله تندا...', ans: 'كأيمانن', exp: 'Tanda kebaikan Islam seseorang (kesempurnaan iman) adalah meninggalkan perkara yang tidak bermanfaat baginya.' },
+                        { id: 25, q: 'فركا را اساس دالم اكام إسلام اياله ممبري...', ans: 'نصیحت', exp: 'Agama itu adalah nasihat (Ad-dinu nasihah).' }
+                    ],
+                    shortTitle: 'Soalan Betul / Salah',
+                    shortData: [
+                        { id: 26, q: 'يَا أَيُّهَا الرُّسُلُ بر مقصود واهاي رسول.', ans: 'بَتُول', exp: 'Tafsiran tepat bagi seruan ayat.' },
+                        { id: 27, q: 'دعاء ترهالغ دسببكن مماكن ماكنن يغ حلال.', ans: 'سَالَه', exp: 'Doa terhalang asbab makanan haram, bukan makanan halal.' },
+                        { id: 28, q: 'مستجب بردعاء كتيك هو جن تورون.', ans: 'بَتُول', exp: 'Turunnya hujan adalah antara waktu mustajab berdoa.' },
+                        { id: 29, q: 'منريما رسواه ایاله چارا ممقر اولیه هر تا سچا را حلال.', ans: 'سَالَه', exp: 'Rasuah jelas merupakan pendapatan yang haram dan dilaknat.' },
+                        { id: 30, q: 'حكوم منجاري ماكنن يغ حلال اياله واجب.', ans: 'بَتُول', exp: 'Mencari yang halal itu fardu ke atas setiap Muslim.' }
+                    ],
+                    mindTitle: "فركارا السمعيات (يَشْهَدُ أَرْجُلُهُم)",
+                    mindPool: ['شُرْگَ', 'نَرَكَا', 'مِيزَان', 'صِرَاط', 'مَحْشَر', 'دُنْيَا'],
+                    mindValid: ['شُرْگَ', 'نَرَكَا', 'مِيزَان', 'صِرَاط', 'مَحْشَر'],
+                    strucTitle: 'Soalan Berstruktur',
+                    berstrukturData: [
+                        { id: 36, q: '(أ) بريكن ارتي فركاتاءن اسْتَجَابُوا.<br><br>(ب) توليس قاعده ممبنتوق كقواتن اومت إسلام.', ans: '(أ) مَپَاهُوت سَرُوَن (Tuhan).<br><br>(ب) ١. مَنْدِيرِيكَن صَلَاة<br>٢. بَرْمُشَاوَرَة', marks: 6, exp: 'Ayat As-Syura 38 menekankan pentingnya mesyuarat dalam masyarakat.' },
+                        { id: 37, q: '(أ) توليس فركا رايع دفر ينتهكن اوليه الله.<br><br>(ب) اقاكه فركارا يع واجب دمشوار تكن دالم إسلام؟', ans: '(أ) ١. صَلَاة / ٢. زَكَاة.<br><br>(ب) ١. اُورُوسَن فَنْتَدْبِيرَن<br>٢. فَقَرِيسَن / فِيفَرَغَن', marks: 6, exp: 'Musyawarah diwajibkan bagi urusan awam yang menuntut pandangan bernas.' },
+                        { id: 38, q: '(أ) اقاكه عملن يغ داقت مغوكوهكن هو بوغن فرسا وداراء ن دالم إسلام؟<br><br>(ب) توليس سبب دواجبكن برمشوارت دالم اوروسن آکام.', ans: '(أ) مَشْوَرَات / تُولِيرَانْسِي.<br><br>(ب) ١. مَغِيلَقْكَن كَسِيلَافَن<br>٢. مَنْدَافَت كَفُوتُوسَن تَرْبَائِيق', marks: 6, exp: 'Mesyuarat menghalang autokrasi dan kesilapan pertimbangan.' },
+                        { id: 39, q: '(أ) اقاکه مقصود فركاتاءن "لَا يُؤْمِنُ"؟<br><br>(ب) توليس صیفت یع دلارغ دالم كهيد وقن إسلام؟', ans: '(أ) تِيدَق سَمْفُورْنَا إِيمَان.<br><br>(ب) ١. حَسَد دَغْكِي<br>٢. مَمَنْتِيغْكَن دِيرِي (أَنَانِيَّة)', marks: 6, exp: 'Kesempurnaan iman terikat dengan bagaimana kita melayan orang lain.' },
+                        { id: 40, q: '(أ) اقا که عملن فرسا وداراء ن يغ دتونتوت دالم إسلام؟<br><br>(ب) توليس تندا كسمفورناءن ايمان سسأورغ.', ans: '(أ) سَالِيغ مَنْچِينْتَائِي كَرَانَا الله.<br><br>(ب) ١. مَغَاسِيهِي سَأُودَارَا سَأَگَامَا مَچَم دِيرِي سَنْدِيرِي<br>٢. مَمْبَنْتُو كَتِيكَ سُسَاه', marks: 6, exp: 'Hadith menekankan kita mencintai untuk saudara kita apa yang kita cintai untuk diri sendiri.' }
+                    ]
+                },
+                percubaan: {
+                    title: 'Set Percubaan Tafsir & Hadith 2025',
+                    badgeText: 'TAFSIR & HADITH (PERCUBAAN)',
+                    stats: { t1: 10, t2: 10 }, statLabels: ['Tafsir', 'Hadith'], marks: [40, 60], markLabels: ['Alif (40m)', 'Bahagian Ba (60m)'],
+                    tabs: [ {id: 'dashboard', lbl: '📊 Dashboard'}, {id: 'objektif', lbl: 'Objektif (1-20)'}, {id: 'isitempat', lbl: 'Isi Tempat'}, {id: 'soalanpendek', lbl: 'Betul / Salah'}, {id: 'petaminda', lbl: 'Peta Minda'}, {id: 'berstruktur', lbl: 'Berstruktur'} ],
+                    objektif: [
+                        { id: 1, topic: 'topic1', qArabic: 'اقاكه ارتي فركاتاءن "وَرَحْمَةً"؟ (سورة الروم 21)', qMalay: 'Apakah erti perkataan "wa rahmatan"?', options: { a: 'اونتوق كامو', b: 'دأنتارا كامو', c: 'باكي اورغ يغ برفيكير', d: 'دان بلس كاسيهن' }, ans: 'd', exp: 'Berdasarkan surah Ar-Rum ayat 21, "wa rahmatan" bermaksud "dan belas kasihan".' },
+                        { id: 2, topic: 'topic1', qArabic: '"لِتَسْكُنُوا إِلَيْهَا" بر مقصود "سوقاي كامو... دان هيدوف مسرا".', qMalay: 'Apakah maksud keratan ayat tersebut?', options: { a: 'برسنغ هاتي', b: 'بربوات باءيق', c: 'ملقسانا كن كواجيفن', d: 'جاغن كامو لا كوكن' }, ans: 'a', exp: '"Litaskunu ilaiha" diterjemahkan sebagai supaya kamu bersenang hati (tenang) dan hidup mesra.' },
+                        { id: 3, topic: 'topic1', qArabic: 'حواء دجاديكن در قد روسوق نبي...', qMalay: 'Hawa dijadikan daripada rusuk nabi yang mana?', options: { a: 'ادم', b: 'هود', c: 'نوح', d: 'صالح' }, ans: 'a', exp: 'Saidatina Hawa diciptakan oleh Allah daripada tulang rusuk Nabi Adam A.S.' },
+                        { id: 4, topic: 'topic1', qArabic: 'مانا که انتارا برايکوت چيري ٢ ونيتا دالم كلوارك سكينة؟<br>i. تنع<br>ii. طمع<br>iii. تنترم<br>iv. ظالم', qMalay: 'Antara berikut, manakah ciri-ciri wanita dalam keluarga sakinah?', options: { a: 'i دان ii', b: 'i دان iii', c: 'ii دان iii', d: 'ii دان iv' }, ans: 'b', exp: 'Keluarga sakinah dicirikan oleh ketenangan (tenang) dan keharmonian (tenteram).' },
+                        { id: 5, topic: 'topic1', qArabic: 'اقاکه مقصود "كلوارك سكينة"؟', qMalay: 'Apakah maksud "Keluarga Sakinah"?', options: { a: 'برماسم موک', b: 'کلوارک بھاگیا', c: 'ملاكوكن كموسنهن', d: 'برسيكف تكس' }, ans: 'b', exp: 'Keluarga Sakinah membawa maksud keluarga yang bahagia, tenang dan damai.' },
+                        { id: 6, topic: 'topic1', qArabic: 'افاكه ارتي فركاتاءن فَاسِقٌ؟ (سورة الحجرات 6)', qMalay: 'Apakah erti perkataan "Fasiq"?', options: { a: 'سأورغ برايمان', b: 'سأورغ فاسق', c: 'سأورغ فندوستا', d: 'سأورغ كفور' }, ans: 'b', exp: 'Fasiq merujuk kepada orang yang derhaka atau sentiasa melanggar perintah Allah (Orang fasik).' },
+                        { id: 7, topic: 'topic1', qArabic: 'ترجادي... سسواتو قركارا عاقبت بريتا فلسو.', qMalay: 'Terjadi ___ sesuatu perkara akibat berita palsu.', options: { a: 'باءيق', b: 'بوروق', c: 'بر منفعت', d: 'مناسبه' }, ans: 'b', exp: 'Menerima khabar tanpa usul periksa (berita palsu) akan mengakibatkan keburukan dan penyesalan.' },
+                        { id: 8, topic: 'topic1', qArabic: 'بريتا فلسو مغعاقبتكن كبور وقن كقد...', qMalay: 'Berita palsu mengakibatkan keburukan kepada...', options: { a: 'عالم', b: 'چواچ', c: 'ایندیویدو', d: 'حيوان' }, ans: 'c', exp: 'Fitnah dan berita palsu menjejaskan reputasi dan mendatangkan aib kepada individu atau kaum.' },
+                        { id: 9, topic: 'topic1', qArabic: 'و برايکوت اداله قربواتن فاسيق كجوالي...', qMalay: 'Berikut adalah perbuatan fasik KECUALI...', options: { a: 'مپیبر کن بریتا فلسو', b: 'مپیبر کن فتنه', c: 'مشکل کن دوسا کچیل', d: 'مشكلكن دوسا بسر' }, ans: 'd', exp: 'Meninggalkan dosa besar adalah tuntutan agama (bukan perbuatan fasik).' },
+                        { id: 10, topic: 'topic1', qArabic: 'چونتوه قربواتن یع امت ترکوتوق.<br>i. منابور فتنه<br>ii. بر اخلاق موليا<br>iii. مغادو دومبا<br>iv. مغر جاكن صلاة', qMalay: 'Contoh perbuatan yang amat terkutuk:', options: { a: 'i دان iii', b: 'ii دان iii', c: 'i, ii دان iii', d: 'ii, iii دان iv' }, ans: 'a', exp: 'Menabur fitnah dan mengadu domba (namimah) adalah dosa besar yang dilarang keras.' },
+                        { id: 11, topic: 'topic2', qArabic: 'اقاكه معنا فركاتاءن "فَإِنَّمَا أَهْلَكَ"؟ (حديث)', qMalay: 'Apakah makna perkataan "Fa innama ahlaka"?', options: { a: 'جاغن كامو', b: 'دان بر تنتغن', c: 'مک بینا ساله', d: 'بابق ممقر سوء الکن' }, ans: 'c', exp: '"Fa innama ahlaka" bermaksud "Maka sesungguhnya telah membinasakan (maka binasalah)".' },
+                        { id: 12, topic: 'topic2', qArabic: 'اقا که کسن اومت ترد هولو یغ بابق برتان؟', qMalay: 'Apakah kesan umat terdahulu yang banyak bertanya (banyak soal)?', options: { a: 'منداقت فهالا', b: 'سوء الن ترجواب', c: 'منمبه علمو قعتا هوان', d: 'منداقت عاقبت بوروق' }, ans: 'd', exp: 'Umat terdahulu binasa kerana terlalu banyak bertanya (yang menyusahkan) dan berselisih dengan nabi mereka.' },
+                        { id: 13, topic: 'topic2', qArabic: 'كلمة _____ مرجوع كقد فركا را یع دتکه دان دلارغ.', qMalay: 'Kalimah mana yang merujuk kepada perkara yang ditegah dan dilarang?', options: { a: 'مَا نَهَيْتُكُمْ', b: 'فَاجْتَنِبُوهُ', c: 'فَإِنَّمَا أَهْلَكَ', d: 'مَا اسْتَطَعْتُمْ' }, ans: 'a', exp: '"Ma nahaitukum" bermaksud "Apa yang aku larang kamu daripadanya".' },
+                        { id: 14, topic: 'topic2', qArabic: 'برايكوت اداله حكوم تكليفي دالم إسلام كجوالي...', qMalay: 'Berikut adalah hukum taklifi dalam Islam KECUALI...', options: { a: 'سنة', b: 'شرط', c: 'مكروه', d: 'هاروس' }, ans: 'b', exp: 'Syarat merupakan "Hukum Wadh\'i", manakala Wajib/Fardu, Sunat, Haram, Makruh, Harus adalah "Hukum Taklifi".' },
+                        { id: 15, topic: 'topic2', qArabic: 'حكمه الله ملارغ سواتو فرکا را کران دسبالیقن تردافت...', qMalay: 'Hikmah Allah melarang sesuatu perkara kerana di sebaliknya terdapat...', options: { a: 'مضرت', b: 'كباء يقن', c: 'منفعت', d: 'كسرونوقن' }, ans: 'a', exp: 'Setiap larangan Allah SWT ke atas hamba-Nya adalah demi menjauhkan mereka daripada kemudaratan.' },
+                        { id: 16, topic: 'topic2', qArabic: 'اقاكه ارتي فركاتاءن "طُمَأْنِينَةٌ"؟', qMalay: 'Apakah erti perkataan "Tuma\'ninah"?', options: { a: 'كبترن', b: 'كتنغن', c: 'كراكوان', d: 'كجاهیلن' }, ans: 'b', exp: 'Tuma\'ninah membawa erti ketenangan (hati yang tenang tanpa was-was).' },
+                        { id: 17, topic: 'topic2', qArabic: '"مَا لَا يَرِيبُكَ" بر مقصود فركار ا ٢ يغ تيدق كامو...', qMalay: '"Ma la yaribuka" bermaksud perkara-perkara yang tidak kamu...', options: { a: 'راكوءي', b: 'لاكوكن', c: 'کا تاکن', d: 'لالوءي' }, ans: 'a', exp: '"Da\' ma yaribuka ila ma la yaribuka" bermaksud tinggalkan apa yang meragukanmu kepada apa yang tidak kamu ragui.' },
+                        { id: 18, topic: 'topic2', qArabic: 'فركاتاءن "فَإِنَّ الصَّدْقَ" برارتي...', qMalay: 'Perkataan "Fa inna as-sidqa" bererti...', options: { a: 'دي منادهكن', b: 'کامو ميسلي', c: 'سسام مریک', d: 'کران کبنرن ایت' }, ans: 'd', exp: '"Fa inna as-sidqa" diterjemahkan sebagai "Kerana sesungguhnya kebenaran itu..."' },
+                        { id: 19, topic: 'topic2', qArabic: 'چيري اورغ یغ _____ ایاله مني كلكن فركا را يع مراكوكن.', qMalay: 'Ciri orang yang ___ ialah meninggalkan perkara yang meragukan.', options: { a: 'شك', b: 'برتقوی', c: 'شبهة', d: 'كرسهن' }, ans: 'b', exp: 'Orang yang bertaqwa akan menjauhi perkara syubhah (meragukan) demi memelihara agamanya.' },
+                        { id: 20, topic: 'topic2', qArabic: 'إسلام مندوروغ اومتن مغعملكن صیفت _____ دان برهاتي هاتي.', qMalay: 'Islam mendorong umatnya mengamalkan sifat ___ dan berhati-hati.', options: { a: 'ورع', b: 'عجب', c: 'شبهة', d: 'وسواس' }, ans: 'a', exp: 'Sifat Warak (Wara\') adalah sifat berhati-hati dalam menjaga diri daripada terjebak ke lembah dosa atau syubhah.' }
+                    ],
+                    fillTitle: 'Isi Tempat Kosong',
+                    fillPool: ["حرمت مغحرمتي", "ممبواغ وقتو", "سسأورغ", "ساكيت هاتي", "كأيمانن", "نصیحت"],
+                    fillData: [
+                        { id: 21, q: 'مقصود "الْمَرْءِ" اياله...', ans: 'سسأورغ', exp: 'Dalam hadith, "al-mar\'i" bermaksud individu atau seseorang.' },
+                        { id: 22, q: 'کونچي اوتام مموفوق فراساءن كاسيه سايع اداله...', ans: 'حرمت مغحرمتي', exp: 'Hormat-menghormati melahirkan kemesraan antara satu sama lain.' },
+                        { id: 23, q: 'فركا رايع مروسقكن فرساوداران اياله...', ans: 'ساكيت هاتي', exp: 'Perasaan negatif seperti berdendam dan sakit hati merosakkan ikatan ukhuwah.' },
+                        { id: 24, q: 'منيغكلكن فركارا يع تيدق قرلو اداله تندا...', ans: 'كأيمانن', exp: 'Tanda kebaikan Islam seseorang (kesempurnaan iman) adalah meninggalkan perkara yang tidak bermanfaat baginya.' },
+                        { id: 25, q: 'فركا را اساس دالم اكام إسلام اياله ممبري...', ans: 'نصیحت', exp: 'Agama itu adalah nasihat (Ad-dinu nasihah).' }
+                    ],
+                    shortTitle: 'Soalan Betul / Salah',
+                    shortData: [
+                        { id: 26, q: 'يَا أَيُّهَا الرُّسُلُ بر مقصود واهاي رسول.', ans: 'بَتُول', exp: 'Tafsiran tepat bagi seruan ayat.' },
+                        { id: 27, q: 'دعاء ترهالغ دسببكن مماكن ماكنن يغ حلال.', ans: 'سَالَه', exp: 'Doa terhalang asbab makanan haram, bukan makanan halal.' },
+                        { id: 28, q: 'مستجب بردعاء كتيك هو جن تورون.', ans: 'بَتُول', exp: 'Turunnya hujan adalah antara waktu mustajab berdoa.' },
+                        { id: 29, q: 'منريما رسواه ایاله چارا ممقر اولیه هر تا سچا را حلال.', ans: 'سَالَه', exp: 'Rasuah jelas merupakan pendapatan yang haram dan dilaknat.' },
+                        { id: 30, q: 'حكوم منجاري ماكنن يغ حلال اياله واجب.', ans: 'بَتُول', exp: 'Mencari yang halal itu fardu ke atas setiap Muslim.' }
+                    ],
+                    mindTitle: "فركارا السمعيات (يَشْهَدُ أَرْجُلُهُم)",
+                    mindPool: ['شُرْگَ', 'نَرَكَا', 'مِيزَان', 'صِرَاط', 'مَحْشَر', 'دُنْيَا'],
+                    mindValid: ['شُرْگَ', 'نَرَكَا', 'مِيزَان', 'صِرَاط', 'مَحْشَر'],
+                    strucTitle: 'Soalan Berstruktur',
+                    berstrukturData: [
+                        { id: 36, q: '(أ) بريكن ارتي فركاتاءن اسْتَجَابُوا.<br><br>(ب) توليس قاعده ممبنتوق كقواتن اومت إسلام.', ans: '(أ) مَپَاهُوت سَرُوَن (Tuhan).<br><br>(ب) ١. مَنْدِيرِيكَن صَلَاة<br>٢. بَرْمُشَاوَرَة', marks: 6, exp: 'Ayat As-Syura 38 menekankan pentingnya mesyuarat dalam masyarakat.' },
+                        { id: 37, q: '(أ) توليس فركا رايع دفر ينتهكن اوليه الله.<br><br>(ب) اقاكه فركارا يع واجب دمشوار تكن دالم إسلام؟', ans: '(أ) ١. صَلَاة / ٢. زَكَاة.<br><br>(ب) ١. اُورُوسَن فَنْتَدْبِيرَن<br>٢. فَقَرِيسَن / فِيفَرَغَن', marks: 6, exp: 'Musyawarah diwajibkan bagi urusan awam yang menuntut pandangan bernas.' },
+                        { id: 38, q: '(أ) اقاكه عملن يغ داقت مغوكوهكن هو بوغن فرسا وداراء ن دالم إسلام؟<br><br>(ب) توليس سبب دواجبكن برمشوارت دالم اوروسن آکام.', ans: '(أ) مَشْوَرَات / تُولِيرَانْسِي.<br><br>(ب) ١. مَغِيلَقْكَن كَسِيلَافَن<br>٢. مَنْدَافَت كَفُوتُوسَن تَرْبَائِيق', marks: 6, exp: 'Mesyuarat menghalang autokrasi dan kesilapan pertimbangan.' },
+                        { id: 39, q: '(أ) اقاکه مقصود فركاتاءن "لَا يُؤْمِنُ"؟<br><br>(ب) توليس صیفت یع دلارغ دالم كهيد وقن إسلام؟', ans: '(أ) تِيدَق سَمْفُورْنَا إِيمَان.<br><br>(ب) ١. حَسَد دَغْكِي<br>٢. مَمَنْتِيغْكَن دِيرِي (أَنَانِيَّة)', marks: 6, exp: 'Kesempurnaan iman terikat dengan bagaimana kita melayan orang lain.' },
+                        { id: 40, q: '(أ) اقا که عملن فرسا وداراء ن يغ دتونتوت دالم إسلام؟<br><br>(ب) توليس تندا كسمفورناءن ايمان سسأورغ.', ans: '(أ) سَالِيغ مَنْچِينْتَائِي كَرَانَا الله.<br><br>(ب) ١. مَغَاسِيهِي سَأُودَارَا سَأَگَامَا مَچَم دِيرِي سَنْدِيرِي<br>٢. مَمْبَنْتُو كَتِيكَ سُسَاه', marks: 6, exp: 'Hadith menekankan kita mencintai untuk saudara kita apa yang kita cintai untuk diri sendiri.' }
+                    ]
+                }
             }
         };
 
-        // --- STREAMING_CHUNK:Attaching App Core Bootstrapper... ---
         document.addEventListener('DOMContentLoaded', () => {
             initApp();
         });
@@ -785,12 +889,11 @@
             renderCharts();
         }
 
-        // --- STREAMING_CHUNK:Configuring Global Switchers... ---
         function switchSubject(subjectName) {
             currentSubject = subjectName;
             userQuizAnswers = {};
 
-            ['ibadat', 'arab', 'tauhid', 'mmj'].forEach(sub => {
+            ['ibadat', 'arab', 'tauhid', 'mmj', 'tafsir'].forEach(sub => {
                 const btn = document.getElementById(`btn-sub-${sub}`);
                 if(sub === subjectName) {
                     btn.className = `px-3.5 py-1.5 rounded-md transition-all shadow-sm bg-white font-bold whitespace-nowrap ${masterDatabases[sub].theme.textClass}`;
@@ -843,7 +946,6 @@
             renderMatching();
         }
 
-        // --- STREAMING_CHUNK:Building Dynamic Layout Controllers... ---
         function renderTabs() {
             const activeSet = masterDatabases[currentSubject][currentExamSet];
             const container = document.getElementById('nav-tabs-container');
@@ -886,7 +988,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- STREAMING_CHUNK:Rendering Custom Themes per Subject... ---
         function renderHeaderTheme() {
             const activeData = masterDatabases[currentSubject];
             const activeSet = activeData[currentExamSet];
@@ -925,7 +1026,7 @@
             kpiSubText.className = `text-lg sm:text-xl font-bold mt-1 uppercase transition-colors ${activeData.theme.textClass}`;
             
             // Dynamic KPI coloring
-            kpiScoreCard.className = `p-5 rounded-xl shadow-sm transition-colors border ${activeData.theme.borderClass} ${currentSubject === 'ibadat' ? 'bg-emerald-50' : currentSubject === 'arab' ? 'bg-blue-50' : currentSubject === 'tauhid' ? 'bg-indigo-50' : 'bg-teal-50'}`;
+            kpiScoreCard.className = `p-5 rounded-xl shadow-sm transition-colors border ${activeData.theme.borderClass} ${currentSubject === 'ibadat' ? 'bg-emerald-50' : currentSubject === 'arab' ? 'bg-blue-50' : currentSubject === 'tauhid' ? 'bg-indigo-50' : currentSubject === 'tafsir' ? 'bg-violet-50' : 'bg-teal-50'}`;
             kpiScoreTitle.className = `text-xs font-bold mb-1 transition-colors ${activeData.theme.textClass}`;
             kpiScoreVal.className = `text-2xl sm:text-3xl font-bold transition-colors ${activeData.theme.textClass}`;
             kpiScoreDesc.className = `text-[10px] transition-colors ${activeData.theme.textClass} opacity-70`;
@@ -941,7 +1042,6 @@
             kpiScoreVal.innerText = `${correctCount} / 20`;
         }
 
-        // --- STREAMING_CHUNK:Mounting Objective Module System... ---
         function renderObjektifQuestions(filterTopic = 'all') {
             const activeData = masterDatabases[currentSubject];
             const activeSet = activeData[currentExamSet];
@@ -966,6 +1066,7 @@
                             if(currentSubject === 'arab') { correctBg = 'bg-blue-50'; correctBorder = 'border-blue-400'; correctText = 'text-blue-900'; correctMini = 'text-blue-700'; }
                             if(currentSubject === 'tauhid') { correctBg = 'bg-indigo-50'; correctBorder = 'border-indigo-400'; correctText = 'text-indigo-900'; correctMini = 'text-indigo-700'; }
                             if(currentSubject === 'mmj') { correctBg = 'bg-teal-50'; correctBorder = 'border-teal-400'; correctText = 'text-teal-900'; correctMini = 'text-teal-700'; }
+                            if(currentSubject === 'tafsir') { correctBg = 'bg-violet-50'; correctBorder = 'border-violet-400'; correctText = 'text-violet-900'; correctMini = 'text-violet-700'; }
                         }
 
                         optionsHtml += `
@@ -983,6 +1084,7 @@
                                 if(currentSubject === 'arab') btnStyle = 'bg-blue-100 border-blue-400 text-blue-900 font-bold';
                                 if(currentSubject === 'tauhid') btnStyle = 'bg-green-100 border-green-400 text-green-900 font-bold';
                                 if(currentSubject === 'mmj') btnStyle = 'bg-teal-100 border-teal-400 text-teal-900 font-bold';
+                                if(currentSubject === 'tafsir') btnStyle = 'bg-violet-100 border-violet-400 text-violet-900 font-bold';
                             }
                             else if (userAns === opt) btnStyle = 'bg-red-100 border-red-300 text-red-800';
                         }
@@ -1031,7 +1133,6 @@
             document.getElementById('kpi-score-set1').innerText = `${correctCount} / 20`;
         }
 
-        // --- STREAMING_CHUNK:Processing Theory Modules (Fill Blanks, Structs)... ---
         function renderFillBlanks() {
             const activeData = masterDatabases[currentSubject];
             const activeSet = activeData[currentExamSet];
@@ -1054,6 +1155,7 @@
                 if(currentSubject === 'arab') ansBoxClasses = "bg-blue-100 border border-blue-300 text-blue-900";
                 if(currentSubject === 'tauhid') ansBoxClasses = "bg-indigo-100 border border-indigo-300 text-indigo-900";
                 if(currentSubject === 'mmj') ansBoxClasses = "bg-teal-100 border border-teal-300 text-teal-900";
+                if(currentSubject === 'tafsir') ansBoxClasses = "bg-violet-100 border border-violet-300 text-violet-900";
 
                 let qText = q.q.includes('___') ? q.q.replace('___', '<span class="inline-block w-20 border-b-2 border-slate-300 mx-2"></span>') : q.q;
 
@@ -1103,6 +1205,7 @@
                     if(currentSubject === 'arab') ansBoxClasses = "bg-blue-50 text-blue-900 border-blue-200";
                     if(currentSubject === 'tauhid') ansBoxClasses = "bg-indigo-50 text-indigo-900 border-indigo-200";
                     if(currentSubject === 'mmj') ansBoxClasses = "bg-teal-50 text-teal-900 border-teal-200";
+                    if(currentSubject === 'tafsir') ansBoxClasses = "bg-violet-50 text-violet-900 border-violet-200";
                 }
 
                 container.innerHTML += `
@@ -1177,7 +1280,6 @@
             if(!activeSet.mindValid) return;
 
             document.getElementById('mindmap-center-title').innerText = activeSet.mindTitle;
-            document.getElementById('mindmap-center-title').className = `inline-block text-white font-jawi text-3xl sm:text-4xl font-bold px-10 py-4 rounded-2xl shadow-md border-b-4 relative z-10 transition-colors ${activeData.theme.bgClass} border-black/20`;
 
             const pool = document.getElementById('mindmap-pool');
             pool.innerHTML = '';
@@ -1194,7 +1296,7 @@
             activeSet.mindValid.forEach((ans, idx) => {
                 nodesContainer.innerHTML += `
                     <div class="rounded-xl border-2 border-slate-200 bg-white p-5 text-center shadow-sm flex flex-col items-center justify-center min-h-[120px]">
-                        <span class="text-[10px] uppercase font-bold text-slate-400 block mb-2 tracking-widest">Item ${idx + 1}</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400 block mb-2 tracking-widest">Ruang ${idx + 1}</span>
                         <div class="font-jawi text-3xl font-bold ${activeData.theme.textClass}">${ans}</div>
                     </div>
                 `;
@@ -1218,6 +1320,7 @@
                 if(currentSubject === 'arab') { ansBoxClasses = "bg-blue-50/50 border-blue-100"; sideBarClass = "bg-blue-400"; }
                 if(currentSubject === 'tauhid') { ansBoxClasses = "bg-indigo-50/50 border-indigo-100"; sideBarClass = "bg-indigo-400"; }
                 if(currentSubject === 'mmj') { ansBoxClasses = "bg-teal-50/50 border-teal-100"; sideBarClass = "bg-teal-400"; }
+                if(currentSubject === 'tafsir') { ansBoxClasses = "bg-violet-50/50 border-violet-100"; sideBarClass = "bg-violet-400"; }
 
                 container.innerHTML += `
                     <div class="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm flex flex-col gap-4">
@@ -1244,7 +1347,6 @@
             });
         }
 
-        // --- STREAMING_CHUNK:Painting Visual Analytics... ---
         function renderCharts() {
             const activeData = masterDatabases[currentSubject];
             const activeSet = activeData[currentExamSet];
@@ -1259,6 +1361,7 @@
             if (currentSubject === 'arab') { cPrimary = '#1d4ed8'; cSecondary = '#60a5fa'; cTertiary = '#93c5fd'; }
             if (currentSubject === 'tauhid') { cPrimary = '#4f46e5'; cSecondary = '#818cf8'; cTertiary = '#a5b4fc'; }
             if (currentSubject === 'mmj') { cPrimary = '#0f766e'; cSecondary = '#14b8a6'; cTertiary = '#5eead4'; }
+            if (currentSubject === 'tafsir') { cPrimary = '#6d28d9'; cSecondary = '#8b5cf6'; cTertiary = '#c4b5fd'; }
 
             let marksBgColors = [cPrimary, cSecondary];
             if (activeSet.marks.length > 2) marksBgColors.push(cTertiary);
